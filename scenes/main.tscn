@@ -123,8 +123,9 @@ script = ExtResource("3_tbgi4")
 [node name="Player" parent="." instance=ExtResource("4_tbgi4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0676021, 0)
 
-[node name="DirtWorld3D" parent="." instance=ExtResource("3_sugp2")]
+[node name="DirtWorld3D" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_sugp2")]
 max_particles = 20000
+player = NodePath("../Player")
 color_range = SubResource("GradientTexture1D_jyhfs")
 
 [node name="BoundsShape" parent="DirtWorld3D/Bounds" index="0"]
