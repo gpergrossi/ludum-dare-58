@@ -1,9 +1,10 @@
 extends CharacterBody3D
 
-const SPEED = 1.0
-const DECELLERATION = 5.0
-const JUMP_VELOCITY = 4.5
-const TURN_SPEED = 1.0
+const SPEED := 1.0
+const DECELLERATION := 5.0
+const JUMP_VELOCITY := 2.5
+const TURN_SPEED := 1.0
+const GRAVITY := 4.0
 
 
 func _physics_process(delta: float) -> void:
@@ -11,7 +12,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Add the gravity.
 	if not is_on_floor():
-		vertical_velocity -= 9.8 * delta
+		vertical_velocity -= GRAVITY * delta
 	
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
