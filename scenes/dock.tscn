@@ -19,13 +19,13 @@ size = Vector3(0.1, 0.14, 0.05)
 size = Vector3(0.100250244, 0.14123535, 0.053222656)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bo6mv"]
+render_priority = 1
 blend_mode = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
 
 [sub_resource type="TorusMesh" id="TorusMesh_pi7v4"]
 material = SubResource("StandardMaterial3D_bo6mv")
-flip_faces = true
 inner_radius = 0.38
 outer_radius = 0.41
 rings = 24

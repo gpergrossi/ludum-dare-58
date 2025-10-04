@@ -4,11 +4,13 @@ class_name DirtWorld3D extends Node3D
 const DEFAULT_COLOR := Color(0.1, 0.1, 0.1)
 const FLAT_TRANSFORM := Basis(Vector3.RIGHT, PI * 0.5)
 const REST_Y := 0.01
+const MAX_TRIES := 100
 
 @onready var bounds: Area3D = %Bounds
 @onready var bounds_shape := %BoundsShape as CollisionShape3D
 @onready var bounds_shape_shape := %BoundsShape.shape as BoxShape3D
 @onready var particles: MultiMeshInstance3D = %Particles
+@onready var sprite3d_pattern: Sprite3D = %Pattern
 
 var frame_share := 4
 var frame_i := 0
@@ -21,7 +23,12 @@ var frame_i := 0
 
 @export var dirt_min_size := 3.0
 @export var dirt_max_size := 7.0
-@export var color_range: GradientTexture1D
+
+@export var pattern: Texture2D:
+	set(p):
+		pattern = p
+		if is_node_ready():
+			initialize_pattern()
 
 var cell_size := Vector3.ONE * 10.0
 var true_cell_size: Vector3
@@ -33,23 +40,56 @@ signal on_dust_initialized(total: int)
 signal on_dust_collected(collected: int, total: int)
 
 
+func initialize_pattern():
+	sprite3d_pattern.texture = pattern
+	var world_size := bounds_shape_shape.size
+	var world_size_xz := Vector2(world_size.x, world_size.z)
+	var size_scale := world_size_xz / Vector2(pattern.get_image().get_size())
+	sprite3d_pattern.pixel_size = minf(size_scale.x, size_scale.y)
+
+
 func _ready() -> void:
+	initialize_pattern()
 	particles.multimesh.instance_count = max_particles
 	var world_size := bounds_shape_shape.size
+	var world_size_xz := Vector2(world_size.x, world_size.z)
 	true_cell_size = Vector3(ceil(world_size.x / cell_size.x), ceil(world_size.y / cell_size.y), ceil(world_size.z / cell_size.z))
 	
+	var pattern_image := pattern.get_image()
+	var pattern_size := pattern_image.get_size()
+	
+	if pattern_image.is_compressed():
+		pattern_image.decompress()
+	
 	for i in range(max_particles):
+		var pos2d: Vector2 = Vector2.ZERO
+		var sample_color := Color.BLACK
+		var pos_chosen := false
+		var tries := 0
+		while not pos_chosen and tries < MAX_TRIES:
+			var param2d := Vector2(randf(), randf())
+			pos2d = (param2d - 0.5 * Vector2.ONE) * world_size_xz
+			var pattern_coord := Vector2i(floori(param2d.x * pattern_size.x), floori(param2d.y * pattern_size.y))
+			var sample := pattern_image.get_pixelv(pattern_coord)
+			if randf() < sample.a:
+				pos_chosen = true
+				sample_color = sample
+				break
+			else:
+				tries += 1
+		
+		if tries >= MAX_TRIES:
+			continue
+		
 		var size := dirt_min_size + randf() * (dirt_max_size - dirt_min_size)
 		var part_basis := FLAT_TRANSFORM.scaled(Vector3.ONE * size).rotated(Vector3.UP, randf() * TAU)
-		var part_position := (Vector3(randf(), 0.0, randf()) - 0.5 * Vector3.ONE) * bounds_shape_shape.size + bounds_shape.position + Vector3.UP * 0.01
+		var part_position := Vector3(pos2d.x, 0, pos2d.y) + bounds_shape.position + Vector3.UP * (0.01 + -0.5 * world_size.y)
 		particles.multimesh.set_instance_transform(i, Transform3D(part_basis, part_position))
-		var color := DEFAULT_COLOR
-		if is_instance_valid(color_range) and is_instance_valid(color_range.gradient):
-			color = color_range.gradient.sample(randf())
-		particles.multimesh.set_instance_color(i, color)
+		particles.multimesh.set_instance_color(i, sample_color)
 		alive_count += 1
 	
-	on_dust_initialized.emit(alive_count)
+	if on_dust_initialized:
+		on_dust_initialized.emit(alive_count)
 
 
 func _process(delta: float) -> void:
@@ -75,7 +115,8 @@ func _process(delta: float) -> void:
 		if dist < 0.2:
 			particles.multimesh.set_instance_transform(i, Transform3D(Basis.from_scale(Vector3.ZERO), ppos))
 			alive_count -= 1
-			on_dust_collected.emit(max_particles - alive_count, max_particles)
+			if on_dust_collected:
+				on_dust_collected.emit(max_particles - alive_count, max_particles)
 			continue
 		
 		if dist < 0.6:

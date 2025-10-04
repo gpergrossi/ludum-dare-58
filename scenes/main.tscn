@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bdjrsigh8ajkn" path="res://scenes/dirt_world_3d.tscn" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://bxotqlnrj5vex" path="res://code/dust_label.gd" id="3_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://cr3833ido0so1" path="res://scenes/player.tscn" id="4_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://csvl4a2s8unhi" path="res://assets/images/pattern.png" id="6_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://3j15a5i12y2c" path="res://scenes/dock.tscn" id="6_tefeu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
@@ -51,16 +52,16 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 corner_detail = 5
 
-[sub_resource type="Gradient" id="Gradient_sugp2"]
-offsets = PackedFloat32Array(0.010274, 1)
-colors = PackedColorArray(0.0980392, 0.0980392, 0.0980392, 1, 0.17, 0.10217, 0.0629, 1)
+[sub_resource type="GDScript" id="GDScript_tefeu"]
+script/source = "extends Label
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_jyhfs"]
-gradient = SubResource("Gradient_sugp2")
+func _process(delta: float) -> void:
+	text = \"FPS \" + str(Engine.get_frames_per_second())
+"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sugp2"]
 resource_local_to_scene = true
-size = Vector3(20, 5, 20)
+size = Vector3(39.97455, 5, 30.006775)
 
 [node name="Main" type="Node3D"]
 
@@ -73,6 +74,8 @@ environment = SubResource("Environment_0xm2m")
 transform = Transform3D(0.91739, 0.368891, -0.149382, -0.000957724, 0.377387, 0.926055, 0.397988, -0.849411, 0.346564, 0, 3.89882, 0)
 light_color = Color(0.337255, 0.533333, 1, 1)
 shadow_enabled = true
+shadow_bias = 3.0
+shadow_normal_bias = 1.0
 directional_shadow_split_1 = 0.06
 directional_shadow_max_distance = 10.0
 
@@ -167,20 +170,31 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_tbgi4")
 
+[node name="Label" type="Label" parent="Room/CanvasLayer/WholeWindow"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "FPS: 2"
+script = SubResource("GDScript_tefeu")
+
 [node name="Player" parent="." instance=ExtResource("4_tbgi4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0676021, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.050946355, 0.08211346, -1.1379962)
 
 [node name="DirtWorld3D" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_sugp2")]
 max_particles = 20000
 player = NodePath("../Player")
-color_range = SubResource("GradientTexture1D_jyhfs")
+pattern = ExtResource("6_o6xl0")
 
 [node name="BoundsShape" parent="DirtWorld3D/Bounds" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011810303, 2.5, -0.012298584)
 shape = SubResource("BoxShape3D_sugp2")
 
 [node name="Particles" parent="DirtWorld3D" index="1"]
 cast_shadow = 0
+
+[node name="Pattern" parent="DirtWorld3D" index="2"]
+pixel_size = 0.04238245
+texture = ExtResource("6_o6xl0")
 
 [node name="Dock" parent="." instance=ExtResource("6_tefeu")]
 
