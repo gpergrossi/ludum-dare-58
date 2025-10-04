@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dox2jabpdp11p"]
 
-[ext_resource type="Script" uid="uid://66wagnfsrong" path="res://scenes/dirt_world_2d.gd" id="1_nf2pf"]
+[ext_resource type="Script" uid="uid://66wagnfsrong" path="res://code/dirt_world_2d.gd" id="1_nf2pf"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ugqm3"]
 

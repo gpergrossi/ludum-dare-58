@@ -1,8 +1,5 @@
 extends CharacterBody3D
 
-@export var dirt_map: DirtMap
-
-
 const SPEED = 1.0
 const DECELLERATION = 5.0
 const JUMP_VELOCITY = 4.5
@@ -31,6 +28,4 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity.rotated(Vector3.UP, turn)
 
 	move_and_slide()
-	
-	dirt_map.player_position = position
 	
