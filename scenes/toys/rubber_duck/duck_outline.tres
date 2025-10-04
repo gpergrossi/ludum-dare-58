@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dqir4hvu715cr"]
+
+[sub_resource type="Shader" id="Shader_l0jt3"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.4.stable's CanvasItemMaterial.
+
+shader_type canvas_item;
+render_mode blend_add,unshaded;
+
+uniform vec2 uv_scale = vec2(16.0, 16.0);
+uniform vec3 modulate : source_color = vec3(1.0, 1.0, 1.0);
+uniform vec2 scroll_speed = vec2(-0.3, -0.1);
+
+void fragment() {
+	COLOR.rgb = texture(TEXTURE, UV * uv_scale + scroll_speed * TIME).rgb * modulate;
+}"
+
+[resource]
+shader = SubResource("Shader_l0jt3")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/modulate = Color(0.281126, 0.289966, 4.81308e-08, 1)
+shader_parameter/scroll_speed = Vector2(0, 0)

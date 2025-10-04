@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://7v76lyrbbyn4"]
+
+[ext_resource type="Shader" uid="uid://c5yv1mrxoicyp" path="res://code/shaders/outline.gdshader" id="1_mhv3c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h2r22"]
+render_priority = 0
+shader = ExtResource("1_mhv3c")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/size = 1.02999999932944
+
+[resource]
+resource_name = "_defaultMat"
+next_pass = SubResource("ShaderMaterial_h2r22")
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission_energy_multiplier = 0.0

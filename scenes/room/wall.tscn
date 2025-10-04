@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cc3wa0s5jnjjd"]
+
+[ext_resource type="PackedScene" uid="uid://vvkb8ggqlwlm" path="res://scenes/room/_meshs/wall.fbx" id="1_en1jt"]
+[ext_resource type="Material" uid="uid://7v76lyrbbyn4" path="res://scenes/room/_mats/_defaultMat.tres" id="2_pkutu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sposu"]
+size = Vector3(10.005127, 12.902023, 0.50878906)
+
+[node name="wall" instance=ExtResource("1_en1jt")]
+transform = Transform3D(0.21, 0, 0, 0, 0.21, 0, 0, 0, 0.21, 0, 0, 0)
+
+[node name="wall" parent="." index="0"]
+transform = Transform3D(0.21, 0, 0, 0, 0.21, 0, 0, 0, 0.21, 0, 0, 0)
+surface_material_override/0 = ExtResource("2_pkutu")
+surface_material_override/1 = ExtResource("2_pkutu")
+surface_material_override/2 = ExtResource("2_pkutu")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+disable_mode = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(0.21000002, 0, 0, 0, 0.21000002, 0, 0, 0, 0.21000002, -1.0498722, 1.3525951, 0.051577162)
+shape = SubResource("BoxShape3D_sposu")

@@ -1,0 +1,450 @@
+[gd_scene load_steps=35 format=3 uid="uid://o7kk80oc35bu"]
+
+[ext_resource type="Script" uid="uid://ylvyihrnuexb" path="res://scenes/toys/rubber_duck/rubber_duck.gd" id="1_rmueh"]
+[ext_resource type="PackedScene" uid="uid://cgwcfbgi3chlf" path="res://scenes/toys/rusty_duck/Rusty_Duck_01.fbx" id="2_4jpjf"]
+[ext_resource type="PackedScene" uid="uid://cvcdsxhcv0oi6" path="res://scenes/toys/rubber_duck/R_Duck_01.fbx" id="2_dty4o"]
+[ext_resource type="AudioStream" uid="uid://ciib08ifc206i" path="res://scenes/toys/rubber_duck/quack.ogg" id="3_tq6bf"]
+[ext_resource type="Material" uid="uid://dd1we4dqnq17q" path="res://scenes/toys/rubber_duck/top_hat.tres" id="4_4jpjf"]
+[ext_resource type="Material" uid="uid://b1b8lcda5vrry" path="res://scenes/toys/rubber_duck/exclaim.tres" id="5_sxh28"]
+[ext_resource type="Material" uid="uid://tbtq00t5gg5u" path="res://scenes/toys/rubber_duck/scrolling_texture_rect.tres" id="6_4jpjf"]
+[ext_resource type="Texture2D" uid="uid://7rdwjiioeked" path="res://scenes/toys/rubber_duck/duck_portrait.png" id="7_61imk"]
+[ext_resource type="Texture2D" uid="uid://dnrf8hmfq5wps" path="res://scenes/toys/rubber_duck/duck_silhouette.png" id="7_dty4o"]
+[ext_resource type="Material" uid="uid://dqir4hvu715cr" path="res://scenes/toys/rubber_duck/duck_outline.tres" id="8_sxh28"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dt58e"]
+friction = 0.6
+bounce = 0.34
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dt58e"]
+points = PackedVector3Array(0.0474516, 0.0227999, 0.0222105, -0.0532623, -0.0275433, 0.0220029, -0.0529036, -0.0273562, 0.0267799, -0.0166036, 0.0714824, 0.0449326, 0.00639102, -0.0365378, 0.106666, 0.0271716, -0.0667542, 0.0196199, -0.0142318, 0.0206611, 0.0013192, 0.0212024, 0.0649582, 0.0661699, -0.0209571, -0.0341746, 0.0997085, -0.00526796, -0.0697822, 0.0902348, 0.02882, -0.036021, 0.0879125, -0.0257532, -0.064408, 0.0127493, -0.0221058, 0.0625613, 0.0661699, 0.0479132, -0.034551, 0.0103782, 0.0224139, 0.0480103, 0.0106971, -0.0344206, 0.0430248, 0.0156408, 0.0180372, -0.0485648, 0.00095084, -0.0416082, -0.0182919, 0.00384941, 0.00624506, -0.0133992, 0.105547, -0.0428304, 0.0334525, 0.0385354, 0.0519353, -0.0273281, 0.0336495, 0.0293187, 0.0114366, 0.00147039, -0.00286255, 0.0697822, 0.0733861, -0.0226691, -0.0199899, 0.0985768, -0.0460475, -0.0478761, 0.0267845, 0.0156951, 0.071554, 0.0426055, 0.0280975, -0.0153573, 0.0892847, -0.00737635, -0.0738338, 0.0195364, 0.0378179, -0.0562851, 0.033885, 0.0425697, 0.0362246, 0.0382946, -0.00274456, 0.0526259, 0.0106716, -0.0483592, 0.0159648, 0.0153631)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dty4o"]
+material = ExtResource("4_4jpjf")
+top_radius = 0.03
+bottom_radius = 0.03
+height = 0.003
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4jpjf"]
+material = ExtResource("4_4jpjf")
+top_radius = 0.025
+bottom_radius = 0.02
+height = 0.028
+
+[sub_resource type="SphereMesh" id="SphereMesh_4jpjf"]
+material = ExtResource("5_sxh28")
+radius = 0.005
+height = 0.01
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_u74oa"]
+material = ExtResource("5_sxh28")
+radius = 0.005
+height = 0.03
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4jpjf"]
+radius = 0.11
+
+[sub_resource type="Animation" id="Animation_u74oa"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../DrawMover:custom_minimum_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 300)]
+}
+
+[sub_resource type="Animation" id="Animation_4jpjf"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../DrawMover:custom_minimum_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 300), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sxh28"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../DrawMover:custom_minimum_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.533333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 300)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sxh28"]
+_data = {
+&"RESET": SubResource("Animation_u74oa"),
+&"fade_in": SubResource("Animation_4jpjf"),
+&"fade_out": SubResource("Animation_sxh28")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ygcil"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dt58e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q4fiu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sxh28"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u74oa"]
+content_margin_left = 10.0
+content_margin_top = 18.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3wiqo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dt58e"]
+bg_color = Color(0.74, 0.74, 0.74, 1)
+border_width_right = 6
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 0.32549)
+corner_radius_top_left = 24
+corner_radius_top_right = 29
+corner_radius_bottom_right = 29
+corner_radius_bottom_left = 29
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l0jt3"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 6.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_61imk"]
+bg_color = Color(0.737193, 0.737193, 0.737193, 1)
+border_color = Color(0, 0, 0, 0.184314)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_61imk"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 6.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dty4o"]
+bg_color = Color(0.737193, 0.737193, 0.737193, 1)
+draw_center = false
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color(0.423529, 0.423529, 0.423529, 0.345098)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4jpjf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dty4o"]
+content_margin_left = 40.0
+content_margin_top = 40.0
+content_margin_right = 40.0
+content_margin_bottom = 40.0
+
+[node name="Rubber Duck" type="Node3D"]
+script = ExtResource("1_rmueh")
+
+[node name="RigidBody" type="RigidBody3D" parent="."]
+unique_name_in_owner = true
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_dt58e")
+linear_velocity = Vector3(0.1, 0.1, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RigidBody"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_dt58e")
+
+[node name="Rusty_Duck_01" parent="RigidBody" instance=ExtResource("2_4jpjf")]
+transform = Transform3D(1.315, 0, 0, 0, 1.315, 0, 0, 0, 1.315, 0, 0, 0)
+visible = false
+
+[node name="R_Duck_01" parent="RigidBody" instance=ExtResource("2_dty4o")]
+transform = Transform3D(1.315, 0, 0, 0, 1.315, 0, 0, 0, 1.315, 0, 0, 0)
+
+[node name="TopHat" type="Node3D" parent="RigidBody"]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody/TopHat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.103175, 0.0179266)
+mesh = SubResource("CylinderMesh_dty4o")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="RigidBody/TopHat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.118517, 0.0179266)
+mesh = SubResource("CylinderMesh_4jpjf")
+
+[node name="Exclaim" type="Node3D" parent="RigidBody"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody/Exclaim"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.122965, 0.0179266)
+mesh = SubResource("SphereMesh_4jpjf")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="RigidBody/Exclaim"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.149122, 0.0179266)
+mesh = SubResource("CapsuleMesh_u74oa")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RigidBody"]
+stream = ExtResource("3_tq6bf")
+volume_db = -20.0
+max_polyphony = 2
+bus = &"Sound"
+
+[node name="RemoteTransform3D2" type="RemoteTransform3D" parent="RigidBody"]
+remote_path = NodePath("../../Clickable")
+update_rotation = false
+update_scale = false
+
+[node name="Clickable" type="CharacterBody3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Clickable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.048917, 0)
+shape = SubResource("SphereShape3D_4jpjf")
+
+[node name="ChatUI" type="CanvasLayer" parent="."]
+
+[node name="UIAnimations" type="AnimationPlayer" parent="ChatUI"]
+unique_name_in_owner = true
+root_node = NodePath("../FullScreen/MarginContainer/Drawer/VBoxContainer/ScalerAnim")
+libraries = {
+&"": SubResource("AnimationLibrary_sxh28")
+}
+
+[node name="FullScreen" type="PanelContainer" parent="ChatUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ygcil")
+
+[node name="MarginContainer" type="MarginContainer" parent="ChatUI/FullScreen"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_bottom = -305
+
+[node name="Drawer" type="PanelContainer" parent="ChatUI/FullScreen/MarginContainer"]
+custom_minimum_size = Vector2(0, 601)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dt58e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChatUI/FullScreen/MarginContainer/Drawer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="DrawMover" type="Panel" parent="ChatUI/FullScreen/MarginContainer/Drawer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_q4fiu")
+
+[node name="ScalerAnim" type="PanelContainer" parent="ChatUI/FullScreen/MarginContainer/Drawer/VBoxContainer"]
+custom_minimum_size = Vector2(800, 296)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_sxh28")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="ChatUI/FullScreen/MarginContainer/Drawer/VBoxContainer/ScalerAnim"]
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="ChatUI/FullScreen/MarginContainer/Drawer/VBoxContainer/ScalerAnim/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(2, 2)
+render_target_update_mode = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="ChatUI/FullScreen/MarginContainer/Drawer/VBoxContainer/ScalerAnim/SubViewportContainer/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_u74oa")
+
+[node name="PanelContainer" type="PanelContainer" parent="ChatUI/FullScreen/MarginContainer/Drawer/VBoxContainer/ScalerAnim/SubViewportContainer/SubViewport/PanelContainer"]
+modulate = Color(1, 1, 1, 0.72549)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3wiqo")
+
+[node name="ShadowBG" type="PanelContainer" parent="ChatUI/FullScreen/MarginContainer/Drawer/VBoxContainer/ScalerAnim/SubViewportContainer/SubViewport/PanelContainer/PanelContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dt58e")
+
+[node name="InsetShadow" type="PanelContainer" parent="ChatUI/FullScreen/MarginContainer/Drawer/VBoxContainer/ScalerAnim/SubViewportContainer/SubViewport/PanelContainer/PanelContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_l0jt3")
+
+[node name="ClipShape" type="PanelContainer" parent="ChatUI/FullScreen/MarginContainer/Drawer/VBoxContainer/ScalerAnim/SubViewportContainer/SubViewport/PanelContainer/PanelContainer/InsetShadow"]
+clip_children = 2
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_61imk")
+
+[node name="TextureRect" type="TextureRect" parent="ChatUI/FullScreen/MarginContainer/Drawer/VBoxContainer/ScalerAnim/SubViewportContainer/SubViewport/PanelContainer/PanelContainer/InsetShadow/ClipShape"]
+material = ExtResource("6_4jpjf")
+layout_mode = 2
+texture = ExtResource("7_dty4o")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="InsetOutline" type="PanelContainer" parent="ChatUI/FullScreen/MarginContainer/Drawer/VBoxContainer/ScalerAnim/SubViewportContainer/SubViewport/PanelContainer/PanelContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_61imk")
+
+[node name="Outline" type="PanelContainer" parent="ChatUI/FullScreen/MarginContainer/Drawer/VBoxContainer/ScalerAnim/SubViewportContainer/SubViewport/PanelContainer/PanelContainer/InsetOutline"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dty4o")
+
+[node name="NameLabel" type="PanelContainer" parent="ChatUI/FullScreen/MarginContainer/Drawer/VBoxContainer/ScalerAnim/SubViewportContainer/SubViewport/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4jpjf")
+
+[node name="MarginExpand" type="MarginContainer" parent="ChatUI/FullScreen/MarginContainer/Drawer/VBoxContainer/ScalerAnim/SubViewportContainer/SubViewport/PanelContainer/NameLabel"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = -25
+
+[node name="RichTextLabelName" type="RichTextLabel" parent="ChatUI/FullScreen/MarginContainer/Drawer/VBoxContainer/ScalerAnim/SubViewportContainer/SubViewport/PanelContainer/NameLabel/MarginExpand"]
+clip_contents = false
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_colors/default_color = Color(1, 0.778, 0.26, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.827451)
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_offset_y = 6
+theme_override_constants/shadow_offset_x = 4
+theme_override_font_sizes/normal_font_size = 36
+text = "Doug
+"
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="Content" type="PanelContainer" parent="ChatUI/FullScreen/MarginContainer/Drawer/VBoxContainer/ScalerAnim/SubViewportContainer/SubViewport/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dty4o")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ChatUI/FullScreen/MarginContainer/Drawer/VBoxContainer/ScalerAnim/SubViewportContainer/SubViewport/PanelContainer/Content"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="MarginExpand" type="MarginContainer" parent="ChatUI/FullScreen/MarginContainer/Drawer/VBoxContainer/ScalerAnim/SubViewportContainer/SubViewport/PanelContainer/Content/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -5
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_right = -5
+theme_override_constants/margin_bottom = -5
+
+[node name="Duck Outline" type="TextureRect" parent="ChatUI/FullScreen/MarginContainer/Drawer/VBoxContainer/ScalerAnim/SubViewportContainer/SubViewport/PanelContainer/Content/HBoxContainer/MarginExpand"]
+material = ExtResource("8_sxh28")
+custom_minimum_size = Vector2(170, 170)
+layout_mode = 2
+texture = ExtResource("7_61imk")
+stretch_mode = 5
+
+[node name="MarginShrink" type="MarginContainer" parent="ChatUI/FullScreen/MarginContainer/Drawer/VBoxContainer/ScalerAnim/SubViewportContainer/SubViewport/PanelContainer/Content/HBoxContainer/MarginExpand"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Front Duck" type="TextureRect" parent="ChatUI/FullScreen/MarginContainer/Drawer/VBoxContainer/ScalerAnim/SubViewportContainer/SubViewport/PanelContainer/Content/HBoxContainer/MarginExpand/MarginShrink"]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture = ExtResource("7_61imk")
+stretch_mode = 5
+
+[node name="ChatText" type="RichTextLabel" parent="ChatUI/FullScreen/MarginContainer/Drawer/VBoxContainer/ScalerAnim/SubViewportContainer/SubViewport/PanelContainer/Content/HBoxContainer"]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0.778, 0.26, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/bold_italics_font_size = 36
+theme_override_font_sizes/italics_font_size = 36
+theme_override_font_sizes/mono_font_size = 36
+theme_override_font_sizes/normal_font_size = 36
+theme_override_font_sizes/bold_font_size = 36
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+shortcut_keys_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false

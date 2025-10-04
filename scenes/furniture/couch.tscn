@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://7bk2wqvaqlga"]
+[gd_scene load_steps=4 format=3 uid="uid://7bk2wqvaqlga"]
+
+[ext_resource type="Material" uid="uid://7v76lyrbbyn4" path="res://scenes/room/_mats/_defaultMat.tres" id="1_7aacu"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_sgp6g"]
 size = Vector3(2, 0.5, 1)
@@ -9,6 +11,7 @@ size = Vector3(1.99945, 0.503387, 1)
 [node name="Couch" type="StaticBody3D"]
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_7aacu")
 mesh = SubResource("BoxMesh_sgp6g")
 skeleton = NodePath("../../..")
 

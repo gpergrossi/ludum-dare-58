@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bppmxh5ktk3wm"]
+
+[ext_resource type="PackedScene" uid="uid://fxeour8f4fhv" path="res://scenes/toys/roomba/_mesh/RoombaBase_01.fbx" id="1_e8mxu"]
+[ext_resource type="Material" uid="uid://7v76lyrbbyn4" path="res://scenes/room/_mats/_defaultMat.tres" id="2_7v7dc"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6ijx4"]
+height = 0.09466553
+radius = 0.3486328
+
+[node name="RoombaBase_01" instance=ExtResource("1_e8mxu")]
+
+[node name="Roomba_BaseSize" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_7v7dc")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Roomba_BaseSize" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Roomba_BaseSize/RigidBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05227661, 0)
+shape = SubResource("CylinderShape3D_6ijx4")

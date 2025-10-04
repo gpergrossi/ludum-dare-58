@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://lhy0wufyrn48"]
+
+[ext_resource type="Shader" uid="uid://c5yv1mrxoicyp" path="res://code/shaders/outline.gdshader" id="1_7jvtd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fwh5d"]
+render_priority = 0
+shader = ExtResource("1_7jvtd")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/size = 1.0
+
+[resource]
+resource_name = "wood"
+next_pass = SubResource("ShaderMaterial_fwh5d")
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.9529211, 0.79866743, 0.6600249, 1)
+emission_energy_multiplier = 0.0

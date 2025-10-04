@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ToyData" load_steps=3 format=3 uid="uid://b66c8hsjmvgtv"]
+
+[ext_resource type="PackedScene" uid="uid://o7kk80oc35bu" path="res://scenes/toys/rubber_duck/rubber_duck.tscn" id="1_ulx3y"]
+[ext_resource type="Script" uid="uid://dmcqqq3dlcnhe" path="res://scripts/toy_data.gd" id="2_soubh"]
+
+[resource]
+script = ExtResource("2_soubh")
+scene = ExtResource("1_ulx3y")
+icon = 0
+SpawnableTypes = 7
+small_payout = 1.0
+large_payout = 5.0
+despawn_payout = 0.5
+base_duration = 6.0
+max_on_screen = 1
+unlock_threshold = 0
+unlock_cost = 0
+auto_unlock = true
+metadata/_custom_type_script = "uid://dmcqqq3dlcnhe"
