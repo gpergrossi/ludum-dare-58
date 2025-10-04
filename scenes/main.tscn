@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://cahfo4lc3ufi6"]
+[gd_scene load_steps=19 format=3 uid="uid://cahfo4lc3ufi6"]
 
 [ext_resource type="PackedScene" uid="uid://7bk2wqvaqlga" path="res://scenes/furniture/couch.tscn" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://bsv40w867i0ye" path="res://code/player.gd" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://bpsvkjcb822ad" path="res://code/dust_bar.gd" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bdjrsigh8ajkn" path="res://scenes/dirt_world_3d.tscn" id="3_sugp2"]
+[ext_resource type="Script" uid="uid://bxotqlnrj5vex" path="res://code/dust_label.gd" id="3_tbgi4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
 sky_top_color = Color(0.344926, 0.309394, 1, 1)
@@ -30,6 +32,8 @@ albedo_color = Color(0.233925, 0.233925, 0.233925, 1)
 material = SubResource("StandardMaterial3D_h2yge")
 size = Vector2(40, 30)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sugp2"]
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_sgp6g"]
 height = 0.1
 radius = 0.35
@@ -38,6 +42,13 @@ radius = 0.35
 top_radius = 0.35
 bottom_radius = 0.35
 height = 0.1
+
+[sub_resource type="Gradient" id="Gradient_sugp2"]
+offsets = PackedFloat32Array(0.010274, 1)
+colors = PackedColorArray(0.0980392, 0.0980392, 0.0980392, 1, 0.17, 0.10217, 0.0629, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jyhfs"]
+gradient = SubResource("Gradient_sugp2")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sugp2"]
 resource_local_to_scene = true
@@ -51,7 +62,7 @@ size = Vector3(20, 5, 20)
 environment = SubResource("Environment_0xm2m")
 
 [node name="Sun" type="DirectionalLight3D" parent="Room"]
-transform = Transform3D(0.9173901, 0.36889082, -0.14938197, -0.0009577241, 0.3773869, 0.9260552, 0.39798805, -0.8494109, 0.34656423, 0, 3.89882, 0)
+transform = Transform3D(0.91739, 0.368891, -0.149382, -0.000957724, 0.377387, 0.926055, 0.397988, -0.849411, 0.346564, 0, 3.89882, 0)
 light_color = Color(0.337255, 0.533333, 1, 1)
 shadow_enabled = true
 directional_shadow_split_1 = 0.06
@@ -69,19 +80,54 @@ mesh = SubResource("PlaneMesh_1bvp3")
 skeleton = NodePath("../../..")
 
 [node name="Couch" parent="Room" instance=ExtResource("1_0wfyh")]
-transform = Transform3D(0.41378772, 0, 0.9103734, 0, 1, 0, -0.9103734, 0, 0.41378772, -2.65407, 0.361659, 0)
+transform = Transform3D(0.413788, 0, 0.910373, 0, 1, 0, -0.910373, 0, 0.413788, -2.65407, 0.361659, 0)
 
 [node name="Couch2" parent="Room" instance=ExtResource("1_0wfyh")]
-transform = Transform3D(0.97638285, 0, -0.21604767, 0, 1, 0, 0.21604767, 0, 0.97638285, 1.9925032, 0.361659, 3.2685292)
+transform = Transform3D(0.976383, 0, -0.216048, 0, 1, 0, 0.216048, 0, 0.976383, 1.9925, 0.361659, 3.26853)
 
 [node name="Couch3" parent="Room" instance=ExtResource("1_0wfyh")]
-transform = Transform3D(0.79484904, 0, 0.60680723, 0, 1, 0, -0.60680723, 0, 0.79484904, 2.1559303, 0.361659, -2.7281702)
+transform = Transform3D(0.794849, 0, 0.606807, 0, 1, 0, -0.606807, 0, 0.794849, 2.15593, 0.361659, -2.72817)
 
 [node name="Couch4" parent="Room" instance=ExtResource("1_0wfyh")]
-transform = Transform3D(-0.71278536, 0, 0.7013822, 0, 1, 0, -0.7013822, 0, -0.71278536, -2.2031147, 0.361659, -3.66627)
+transform = Transform3D(-0.712785, 0, 0.701382, 0, 1, 0, -0.701382, 0, -0.712785, -2.20311, 0.361659, -3.66627)
 
 [node name="Couch5" parent="Room" instance=ExtResource("1_0wfyh")]
-transform = Transform3D(-0.71278536, 0, 0.7013822, 0, 1, 0, -0.7013822, 0, -0.71278536, 3.6030967, 0.361659, 0.16803741)
+transform = Transform3D(-0.712785, 0, 0.701382, 0, 1, 0, -0.701382, 0, -0.712785, 3.6031, 0.361659, 0.168037)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Room"]
+
+[node name="WholeWindow" type="PanelContainer" parent="Room/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_sugp2")
+
+[node name="PanelContainer" type="PanelContainer" parent="Room/CanvasLayer/WholeWindow"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="ProgressBar" type="ProgressBar" parent="Room/CanvasLayer/WholeWindow/PanelContainer"]
+custom_minimum_size = Vector2(400, 20)
+layout_mode = 2
+show_percentage = false
+script = ExtResource("2_jyhfs")
+
+[node name="Label" type="Label" parent="Room/CanvasLayer/WholeWindow/PanelContainer/ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0 / ?"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_tbgi4")
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0676021, 0)
@@ -95,7 +141,7 @@ mesh = SubResource("CylinderMesh_sgp6g")
 skeleton = NodePath("")
 
 [node name="Main Camera" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 0.991216, 0.132256, 0, -0.132256, 0.991216, 0, 0.4208152, 0.9783993)
+transform = Transform3D(1, 0, 0, 0, 0.991216, 0.132256, 0, -0.132256, 0.991216, 0, 0.420815, 0.978399)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255488, 0)
@@ -106,6 +152,7 @@ shadow_enabled = true
 [node name="DirtWorld3D" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_sugp2")]
 max_particles = 20000
 player = NodePath("../Player")
+color_range = SubResource("GradientTexture1D_jyhfs")
 
 [node name="BoundsShape" parent="DirtWorld3D/Bounds" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
@@ -113,5 +160,10 @@ shape = SubResource("BoxShape3D_sugp2")
 
 [node name="Particles" parent="DirtWorld3D" index="1"]
 cast_shadow = 0
+
+[connection signal="on_dust_collected" from="DirtWorld3D" to="Room/CanvasLayer/WholeWindow/PanelContainer/ProgressBar" method="_on_dirt_world_3d_on_dust_collected"]
+[connection signal="on_dust_collected" from="DirtWorld3D" to="Room/CanvasLayer/WholeWindow/PanelContainer/ProgressBar/Label" method="_on_dirt_world_3d_on_dust_collected"]
+[connection signal="on_dust_initialized" from="DirtWorld3D" to="Room/CanvasLayer/WholeWindow/PanelContainer/ProgressBar" method="_on_dirt_world_3d_on_dust_initialized"]
+[connection signal="on_dust_initialized" from="DirtWorld3D" to="Room/CanvasLayer/WholeWindow/PanelContainer/ProgressBar/Label" method="_on_dirt_world_3d_on_dust_initialized"]
 
 [editable path="DirtWorld3D"]
