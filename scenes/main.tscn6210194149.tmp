@@ -68,7 +68,7 @@ environment = SubResource("Environment_0xm2m")
 transform = Transform3D(0.9173901, 0.36889082, -0.14938197, -0.0009577241, 0.3773869, 0.9260552, 0.39798805, -0.8494109, 0.34656423, 0, 3.89882, 0)
 light_color = Color(0.337255, 0.533333, 1, 1)
 shadow_enabled = true
-directional_shadow_split_1 = 0.06
+directional_shadow_mode = 1
 directional_shadow_max_distance = 10.0
 
 [node name="Floor" type="StaticBody3D" parent="Room"]

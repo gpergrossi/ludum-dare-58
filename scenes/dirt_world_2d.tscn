@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://dox2jabpdp11p"]
+
+[ext_resource type="Script" uid="uid://66wagnfsrong" path="res://scenes/dirt_world_2d.gd" id="1_nf2pf"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ugqm3"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_ugqm3"]
+
+[sub_resource type="MultiMesh" id="MultiMesh_ugqm3"]
+use_colors = true
+instance_count = 1
+mesh = SubResource("QuadMesh_ugqm3")
+buffer = PackedFloat32Array(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_ugqm3"]
+colors = PackedColorArray(1, 1, 1, 0.23529412, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nf2pf"]
+gradient = SubResource("Gradient_ugqm3")
+width = 7
+height = 7
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="DirtWorld2D" type="Node2D"]
+script = ExtResource("1_nf2pf")
+size = Vector2i(1600, 1200)
+
+[node name="Particles" type="MultiMeshInstance2D" parent="."]
+material = SubResource("CanvasItemMaterial_ugqm3")
+multimesh = SubResource("MultiMesh_ugqm3")
+texture = SubResource("GradientTexture2D_nf2pf")
