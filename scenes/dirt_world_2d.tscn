@@ -8,9 +8,7 @@
 
 [sub_resource type="MultiMesh" id="MultiMesh_ugqm3"]
 use_colors = true
-instance_count = 1
 mesh = SubResource("QuadMesh_ugqm3")
-buffer = PackedFloat32Array(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0)
 
 [sub_resource type="Gradient" id="Gradient_ugqm3"]
 colors = PackedColorArray(1, 1, 1, 0.23529412, 1, 1, 1, 0)
