@@ -2,7 +2,8 @@
 
 [resource]
 resource_name = "glass"
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.85324365, 0.9199412, 0.8904402, 1)
+transparency = 1
+albedo_color = Color(0.041999992, 0.28, 0.2403333, 0.47058824)
+roughness = 0.1
 emission_enabled = true
 emission_energy_multiplier = 0.0
