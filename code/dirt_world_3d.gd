@@ -1,7 +1,7 @@
 @tool
 class_name DirtWorld3D extends Node3D
 
-const DEFAULT_COLOR := Color(0.1, 0.1, 0.1)
+const DEFAULT_COLOR := Color(0.5, 0.5, 0.46)
 const FLAT_TRANSFORM := Basis(Vector3.RIGHT, PI * 0.5)
 const REST_Y := 0.01
 const MAX_TRIES := 100

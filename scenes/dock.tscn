@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dvddy7iifqfhb" path="res://code/dock.gd" id="1_pi7v4"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tbgi4"]
-height = 0.1980599
+height = 0.016022138
 radius = 0.20751953
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pi7v4"]
@@ -24,8 +24,7 @@ size = Vector3(0.1, 0.14, 0.05)
 size = Vector3(0.100250244, 0.14123535, 0.053222656)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bo6mv"]
-blend_mode = 1
-no_depth_test = true
+transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
 
@@ -38,7 +37,7 @@ ring_segments = 8
 
 [sub_resource type="Gradient" id="Gradient_uvgon"]
 offsets = PackedFloat32Array(0, 0.05147059, 1)
-colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Dock" type="Node3D"]
 script = ExtResource("1_pi7v4")
@@ -46,7 +45,7 @@ script = ExtResource("1_pi7v4")
 [node name="Detector" type="Area3D" parent="."]
 
 [node name="CylinderCollider" type="CollisionShape3D" parent="Detector"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.101653636, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01063475, 0)
 shape = SubResource("CylinderShape3D_tbgi4")
 
 [node name="MeshBottom" type="MeshInstance3D" parent="."]
@@ -67,7 +66,6 @@ shape = SubResource("BoxShape3D_o6xl0")
 
 [node name="RingParticles" type="CPUParticles3D" parent="."]
 unique_name_in_owner = true
-emitting = false
 amount = 4
 lifetime = 2.0
 mesh = SubResource("TorusMesh_pi7v4")

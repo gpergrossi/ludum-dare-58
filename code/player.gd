@@ -10,7 +10,7 @@ class_name RoboVac extends CharacterBody3D
 @export var dash_speed := 3.0
 @export var dash_duration := 0.5
 @export var max_charge := 30.0
-@export var max_dust := 300.0
+@export var max_dust := 1000.0
 @export var dock_charge_rate := 10.0
 @export var dock_dust_rate := 100.0
 
@@ -24,32 +24,64 @@ const DECELLERATION := 5.0
 const GRAVITY := 4.0
  
 # Runtime use
+var respawn_transform: Transform3D
 var ground_velocity := Vector2.ZERO
 var vertical_velocity := 0.0
-var dash_timer := 0.0
 var dash_t := 0.0
+var dirt_worlds: Array[DirtWorld3D] = []
+
+# Runtime respawn might reset
+var dead := false
+var dash_timer := 0.0
 var current_charge := 0.0
 var current_dust := 0.0
 var stored_dust := 0.0
+var just_spawned := false
 var current_dock: Dock = null
-var dirt_worlds: Array[DirtWorld3D] = []
 
 signal charge_changed(current: float, max: float)
 signal dust_changed(current: float, capacity: float)
 signal dust_storage_changed(amount: float)
+signal battery_died(player: RoboVac)
+signal respawned(player: RoboVac)
+signal enter_dock(player: RoboVac, dock: Dock)
+signal exit_dock(player: RoboVac, dock: Dock)
 
 
 func _ready() -> void:
+	respawn_transform = transform
 	dirt_worlds.clear()
+	current_dust = 0.0
 	current_charge = max_charge
-	charge_changed.emit(current_charge, max_charge)
+	respawn(false, true)
 
 
 func exp_decay(a: float, b: float, decay: float, dt: float) -> float:
 	return b + (a - b) * exp(-decay * dt)
 
 
+func respawn(lose_half_dust := false, reset_storage := false) -> void:
+	current_dock = null
+	transform = Transform3D(respawn_transform.basis, respawn_transform.origin + Vector3.UP * 0.1)
+	dead = false
+	dash_timer = 0.0
+	current_charge = max_charge
+	charge_changed.emit(current_charge, max_charge)
+	if lose_half_dust:
+		current_dust *= 0.5
+		dust_changed.emit(current_dust, max_dust)
+	if reset_storage:
+		stored_dust = 0
+		current_dust = 0
+		just_spawned = true
+	respawned.emit(self)
+
+
 func _physics_process(delta: float) -> void:
+	if current_charge <= 0.0 and not dead:
+		dead = true
+		battery_died.emit(self)
+	
 	var old_charge := current_charge
 	dash_timer = move_toward(maxf(0.0, dash_timer), 0.0, delta)
 	dash_t = sqrt(minf(1.0, dash_timer / dash_duration))
@@ -63,8 +95,8 @@ func _physics_process(delta: float) -> void:
 		var dust_collected := minf(current_dust, delta * dock_dust_rate)
 		stored_dust += dust_collected
 		current_dust -= dust_collected
-		if dust_changed:  dust_changed.emit(current_dust, max_dust)
-		if dust_storage_changed:  dust_storage_changed.emit(stored_dust)
+		dust_changed.emit(current_dust, max_dust)
+		dust_storage_changed.emit(stored_dust)
 	
 	# Handle turning.
 	if current_charge > 0.0:
@@ -110,6 +142,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Do friction
 	if is_on_floor():
+		just_spawned = false
 		ground_velocity *= exp_decay(1.0, 0.0, 3.0, delta)
 		if ground_velocity.length() < move_speed:
 			ground_velocity *= exp_decay(1.0, 0.0, 6.0, delta)
@@ -157,3 +190,13 @@ func on_dust_collected(world: DirtWorld3D, just_added: int) -> void:
 		# Note: you are allowed to pick up more dust, but at this point the vacuum should turn off
 		# We will HIDE the fact that you are holding more than max from the player.
 		dust_changed.emit(minf(current_dust, max_dust), max_dust)
+
+
+func notify_enter_dock(dock: Dock):
+	current_dock = dock
+	enter_dock.emit(self, dock)
+
+
+func notify_exit_dock(dock: Dock):
+	current_dock = null
+	exit_dock.emit(self, dock)
