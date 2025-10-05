@@ -1,23 +1,28 @@
 class_name RoboVac extends CharacterBody3D
 
-@export var vacuum_radius := 0.4
-@export var vacuum_power := 4.0
+# Base Stats (Unmodified during game)
+@export var base_stats := PlayerBaseStats.new()
 
-@export var move_speed := 0.5
-@export var reverse_speed_portion := 0.5
-@export var jump_speed := 2.5
-@export var turn_speed := 1.0
-@export var dash_speed := 3.0
-@export var dash_duration := 0.5
-@export var max_charge := 30.0
-@export var max_dust := 1000.0
-@export var dock_charge_rate := 10.0
-@export var dock_dust_rate := 100.0
+# Current Stats (Modified during game)
+var vacuum_radius := 0.4
+var vacuum_power := 4.0
+var move_speed := 0.5
+var jump_speed := 2.5
+var turn_speed := 1.0
+var dash_speed := 3.0
+var dash_duration := 0.5
+var max_charge := 30.0
+var max_dust := 1000.0
+var dock_charge_rate := 10.0
+var dock_dust_rate := 100.0
+var move_cost_rate := 1.0     # Charge per second at max input
+var dash_cost := 5.0          # One time cost
+var jump_cost := 10.0         # One time cost
+var fly_cost_rate := 2.0      # Charge per second at max input (in addition to move cost)
+var energy_efficiency := 1.0
+var energy_regen := 0.0
 
-@export var move_cost_rate := 1.0     # 1 charge per second at max input
-@export var dash_cost := 5.0     # One time cost
-@export var jump_cost := 10.0    # One time cost
-@export var jet_cost_rate := 10.0     # One time cost
+var upgrades := PlayerUpgrades.new()
 
 # Constants
 const DECELLERATION := 5.0
@@ -32,6 +37,7 @@ var dirt_worlds: Array[DirtWorld3D] = []
 
 # Runtime respawn might reset
 var dead := false
+var sleeping := false
 var dash_timer := 0.0
 var current_charge := 0.0
 var current_dust := 0.0
@@ -46,9 +52,13 @@ signal battery_died(player: RoboVac)
 signal respawned(player: RoboVac)
 signal enter_dock(player: RoboVac, dock: Dock)
 signal exit_dock(player: RoboVac, dock: Dock)
+signal upgrades_changed(player: RoboVac)
+signal stats_changed(player: RoboVac)
+signal sleep_changed(player: RoboVac, sleeping: bool)
 
 
 func _ready() -> void:
+	upgrades.upgrades_changed.connect(do_upgrades_changed)
 	respawn_transform = transform
 	dirt_worlds.clear()
 	current_dust = 0.0
@@ -60,6 +70,17 @@ func exp_decay(a: float, b: float, decay: float, dt: float) -> float:
 	return b + (a - b) * exp(-decay * dt)
 
 
+func go_to_sleep() -> void:
+	sleeping = true
+	sleep_changed.emit(self, true)
+
+
+func wake_up() -> void:
+	sleeping = false
+	respawn(false, false)
+	sleep_changed.emit(self, false)
+
+
 func respawn(lose_half_dust := false, reset_storage := false) -> void:
 	current_dock = null
 	transform = Transform3D(respawn_transform.basis, respawn_transform.origin + Vector3.UP * 0.1)
@@ -67,18 +88,54 @@ func respawn(lose_half_dust := false, reset_storage := false) -> void:
 	dash_timer = 0.0
 	current_charge = max_charge
 	charge_changed.emit(current_charge, max_charge)
+	just_spawned = true # Block UI when just spawned
 	if lose_half_dust:
+		LevelManager.lost_dust += current_dust * 0.5
 		current_dust *= 0.5
 		dust_changed.emit(current_dust, max_dust)
+		just_spawned = false # Show UI when you die and respawn
 	if reset_storage:
 		stored_dust = 0
 		current_dust = 0
-		just_spawned = true
 	respawned.emit(self)
 
 
+func reset_stats() -> void:
+	vacuum_radius = base_stats.vacuum_radius
+	vacuum_power = base_stats.vacuum_power
+	move_speed = base_stats.move_speed
+	jump_speed = base_stats.jump_speed
+	turn_speed = base_stats.turn_speed
+	dash_speed = base_stats.dash_speed
+	dash_duration = base_stats.dash_duration
+	max_charge = base_stats.max_charge
+	max_dust = base_stats.max_dust
+	dock_charge_rate = base_stats.dock_charge_rate
+	dock_dust_rate = base_stats.dock_dust_rate
+	move_cost_rate = base_stats.move_cost_rate
+	dash_cost = base_stats.dash_cost
+	jump_cost = base_stats.jump_cost
+	fly_cost_rate = base_stats.fly_cost_rate
+	energy_efficiency = base_stats.energy_efficiency
+	energy_regen = base_stats.energy_regen
+	stats_changed.emit()
+
+
+func update_stats() -> void:
+	reset_stats()
+	upgrades.apply_all_purchased(self)
+	stats_changed.emit()
+
+
+func do_upgrades_changed() -> void:
+	upgrades_changed.emit()
+	update_stats()
+
+
 func _physics_process(delta: float) -> void:
-	if current_charge <= 0.0 and not dead:
+	current_charge += delta * energy_regen
+	
+	if current_charge <= 0.0 and not dead and energy_regen == 0.0:
 		dead = true
 		battery_died.emit(self)
 	
@@ -98,51 +155,56 @@ func _physics_process(delta: float) -> void:
 		dust_changed.emit(current_dust, max_dust)
 		dust_storage_changed.emit(stored_dust)
 	
-	# Handle turning.
-	if current_charge > 0.0:
-		var input_turn := Input.get_axis("turn_left", "turn_right")
-		var turn := -input_turn * turn_speed * delta * (1.0 - dash_t)
-		basis = basis.rotated(Vector3.UP, turn)
-		velocity = velocity.rotated(Vector3.UP, turn)
-	
-	# Handle moving.
+	var input_move := 0.0
 	var forward := -basis.z
 	var forward2d := Vector2(forward.x, forward.z)
-	var input_move := Input.get_axis("backward", "forward")
-	if input_move < 0.0: 
-		input_move *= reverse_speed_portion
-	var max_input_move := minf(1.0, current_charge / (move_cost_rate * delta))
-	input_move = signf(input_move) * minf(max_input_move, absf(input_move))
-	var walk_velocity := forward2d * input_move * move_speed
+	var walk_velocity := Vector2.ZERO
+	if not sleeping:
+		# Handle turning.
+		if current_charge > 0.0:
+			var input_turn := Input.get_axis("turn_left", "turn_right")
+			var turn := -input_turn * turn_speed * delta * (1.0 - dash_t)
+			basis = basis.rotated(Vector3.UP, turn)
+			velocity = velocity.rotated(Vector3.UP, turn)
+		
+		# New basis from turn
+		forward = -basis.z
+		forward2d = Vector2(forward.x, forward.z)
 	
-	# Handle move charge drain
-	current_charge -= absf(input_move) * move_cost_rate * delta
+		# Handle moving.
+		input_move = Input.get_axis("backward", "forward")
+		var max_input_move := minf(1.0, current_charge / ((move_cost_rate / energy_efficiency) * delta))
+		input_move = signf(input_move) * minf(max_input_move, absf(input_move))
+		walk_velocity = forward2d * input_move * move_speed
+		
+		# Handle move charge drain
+		current_charge -= absf(input_move) * (move_cost_rate / energy_efficiency) * delta
 	
 	# Add the gravity.
 	if not is_on_floor():
 		vertical_velocity -= GRAVITY * delta
 	
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor() and current_charge > jump_cost:
-		print("Jump")
-		current_charge -= jump_cost
-		vertical_velocity = jump_speed
+	if not sleeping:
+		# Handle jump.
+		if Input.is_action_just_pressed("jump") and is_on_floor() and current_charge > (jump_cost / energy_efficiency):
+			print("Jump")
+			current_charge -= (jump_cost / energy_efficiency)
+			vertical_velocity = jump_speed
 	
-	# Handle dash.
-	if dash_timer <= 0.0:
-		if Input.is_action_just_pressed("dash") and input_move > 0.5 and is_on_floor() and current_charge > dash_cost:
-			print("Dash")
-			current_charge -= dash_cost
-			dash_timer = dash_duration
-			dash_t = 1.0
-	if dash_timer > 0.0:
-		var target_dash := dash_speed * dash_t
-		var curr_dash := maxf(target_dash, ground_velocity.dot(forward2d))
-		ground_velocity = ground_velocity + forward2d * (curr_dash - ground_velocity.dot(forward2d))
+		# Handle dash.
+		if dash_timer <= 0.0:
+			if Input.is_action_just_pressed("dash") and input_move > 0.5 and is_on_floor() and current_charge > (dash_cost / energy_efficiency):
+				print("Dash")
+				current_charge -= (dash_cost / energy_efficiency)
+				dash_timer = dash_duration
+				dash_t = 1.0
+		if dash_timer > 0.0:
+			var target_dash := dash_speed * dash_t
+			var curr_dash := maxf(target_dash, ground_velocity.dot(forward2d))
+			ground_velocity = ground_velocity + forward2d * (curr_dash - ground_velocity.dot(forward2d))
 	
 	# Do friction
 	if is_on_floor():
-		just_spawned = false
 		ground_velocity *= exp_decay(1.0, 0.0, 3.0, delta)
 		if ground_velocity.length() < move_speed:
 			ground_velocity *= exp_decay(1.0, 0.0, 6.0, delta)
@@ -162,6 +224,13 @@ func _physics_process(delta: float) -> void:
 	
 	# Do physics.
 	move_and_slide()
+
+
+func can_open_dock() -> bool:
+	if just_spawned:
+		just_spawned = false
+		return false
+	return true
 
 
 func can_vacuum() -> bool:
