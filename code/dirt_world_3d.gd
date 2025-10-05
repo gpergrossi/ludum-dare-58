@@ -28,48 +28,103 @@ var frame_i := 0
 		if is_node_ready():
 			initialize_pattern()
 
-var cell_size := Vector3.ONE * 10.0
-var true_cell_size: Vector3
-var true_cell_count: Vector3i
-var lookup: Dictionary[int, PackedInt32Array] = {}
-var alive_count := 0
+var placing_dust := false
+var dust_ready := false
+var dust_placed := 0
 
-signal on_dust_initialized(total: int)
-signal on_dust_collected(collected: int, total: int)
+var pattern_image: Image = null
+var alive_count := 0
+var dust_collected := 0
+var max_dust_collected := 0
+
+signal on_dust_ready(world: DirtWorld3D)
+signal on_dust_placement_progress(world: DirtWorld3D, value: int, max: int)
+signal on_dust_collected(world: DirtWorld3D, just_collected: int)
 
 
 func initialize_pattern():
 	sprite3d_pattern.texture = pattern
 	var world_size := bounds_shape_shape.size
 	var world_size_xz := Vector2(world_size.x, world_size.z)
-	var size_scale := world_size_xz / Vector2(pattern.get_image().get_size())
-	sprite3d_pattern.pixel_size = minf(size_scale.x, size_scale.y)
+	if pattern != null:
+		var size_scale := world_size_xz / Vector2(pattern.get_image().get_size())
+		sprite3d_pattern.pixel_size = minf(size_scale.x, size_scale.y)
 
 
 func _ready() -> void:
 	if not Engine.is_editor_hint(): 
 		sprite3d_pattern.visible = false
-	
+	reset()
+
+
+func reset():
+	alive_count = 0
+	dust_collected = 0
+	max_dust_collected = 0
 	initialize_pattern()
 	particles.multimesh.instance_count = max_particles
-	var world_size := bounds_shape_shape.size
-	var world_size_xz := Vector2(world_size.x, world_size.z)
-	true_cell_size = Vector3(ceil(world_size.x / cell_size.x), ceil(world_size.y / cell_size.y), ceil(world_size.z / cell_size.z))
+	particles.multimesh.visible_instance_count = 0
+	placing_dust = true
+	dust_ready = false
+	dust_placed = 0
+	if pattern != null:
+		pattern_image = pattern.get_image()
+		if pattern_image.is_compressed():
+			pattern_image.decompress()
+
+
+func do_ready():
+	dust_ready = true
+	placing_dust = false
+	dust_collected = 0
+	max_dust_collected = alive_count
+	if not Engine.is_editor_hint():
+		on_dust_ready.emit(self)
+		player.on_dust_ready(self)
+		on_dust_collected.emit(self, 0)
+
+
+func _process(delta: float) -> void:
+	if placing_dust:
+		for i in range(100):
+			if not placing_dust: break
+			place_dust()
+		particles.multimesh.visible_instance_count = dust_placed
+		if not Engine.is_editor_hint():
+			on_dust_placement_progress.emit(self, dust_placed, max_particles)
+		return
 	
-	var pattern_image := pattern.get_image()
-	var pattern_size := pattern_image.get_size()
+	if dust_ready and not Engine.is_editor_hint():
+		do_dust_collection(delta)
+
+
+func place_dust():
+	if dust_placed >= max_particles:
+		do_ready()
+		return
 	
-	if pattern_image.is_compressed():
-		pattern_image.decompress()
+	var minX := (bounds_shape.position.x - bounds_shape_shape.size.x * 0.5)
+	var maxX := (bounds_shape.position.x + bounds_shape_shape.size.x * 0.5)
+	var minY := (bounds_shape.position.y - bounds_shape_shape.size.y * 0.5) + REST_Y
+	#var maxY := (bounds_shape.position.y + bounds_shape_shape.size.y * 0.5) - REST_Y
+	var minZ := (bounds_shape.position.z - bounds_shape_shape.size.z * 0.5)
+	var maxZ := (bounds_shape.position.z + bounds_shape_shape.size.z * 0.5)
 	
-	for i in range(max_particles):
-		var pos2d: Vector2 = Vector2.ZERO
-		var sample_color := Color.BLACK
-		var pos_chosen := false
-		var tries := 0
-		while not pos_chosen and tries < MAX_TRIES:
-			var param2d := Vector2(randf(), randf())
-			pos2d = (param2d - 0.5 * Vector2.ONE) * world_size_xz
+	var pos2d: Vector2 = Vector2.ZERO
+	var size: float = dirt_min_size
+	var sample_color := DEFAULT_COLOR
+	var pos_chosen := false
+	var tries := 0
+	while not pos_chosen and tries < MAX_TRIES:
+		var param2d := Vector2(randf(), randf())
+		
+		# Select a position that doesn't overlap the edge
+		size = dirt_min_size + randf() * (dirt_max_size - dirt_min_size)
+		var radius := 0.05 * size
+		pos2d = param2d * Vector2(maxX - minX - 2 * radius, maxZ - minZ - 2 * radius) + Vector2(minX + radius, minZ + radius)
+		
+		if pattern_image != null:
+			var pattern_size := pattern_image.get_size()
 			var pattern_coord := Vector2i(floori(param2d.x * pattern_size.x), floori(param2d.y * pattern_size.y))
 			var sample := pattern_image.get_pixelv(pattern_coord)
 			if randf() < sample.a:
@@ -78,24 +133,24 @@ func _ready() -> void:
 				break
 			else:
 				tries += 1
-		
-		if tries >= MAX_TRIES:
-			continue
-		
-		var size := dirt_min_size + randf() * (dirt_max_size - dirt_min_size)
-		var part_basis := FLAT_TRANSFORM.scaled(Vector3.ONE * size).rotated(Vector3.UP, randf() * TAU)
-		var part_position := Vector3(pos2d.x, 0, pos2d.y) + bounds_shape.position + Vector3.UP * (0.01 + -0.5 * world_size.y)
-		particles.multimesh.set_instance_transform(i, Transform3D(part_basis, part_position))
-		particles.multimesh.set_instance_color(i, sample_color)
-		alive_count += 1
+		else:
+			pos_chosen = true
+			break
 	
-	if on_dust_initialized:
-		on_dust_initialized.emit(alive_count)
+	if tries >= MAX_TRIES:
+		size = dirt_min_size
+	
+	var part_basis := FLAT_TRANSFORM.scaled(Vector3.ONE * size).rotated(Vector3.UP, randf() * TAU)
+	var part_position := Vector3(pos2d.x, minY, pos2d.y)
+	var index := dust_placed
+	particles.multimesh.set_instance_transform(index, Transform3D(part_basis, part_position))
+	particles.multimesh.set_instance_color(index, sample_color)
+	dust_placed += 1
+	alive_count += 1
 
 
-func _process(delta: float) -> void:
-	if Engine.is_editor_hint():
-		return
+func do_dust_collection(delta: float):
+	if not player.can_vacuum(): return
 	
 	frame_i += 1
 	delta *= frame_share
@@ -116,8 +171,9 @@ func _process(delta: float) -> void:
 		if dist < 0.2:
 			particles.multimesh.set_instance_transform(i, Transform3D(Basis.from_scale(Vector3.ZERO), ppos))
 			alive_count -= 1
-			if on_dust_collected:
-				on_dust_collected.emit(max_particles - alive_count, max_particles)
+			dust_collected += 1
+			on_dust_collected.emit(self, 1)
+			player.on_dust_collected(self, 1)
 			continue
 		
 		if dist < 0.6:
@@ -128,7 +184,6 @@ func _process(delta: float) -> void:
 		ppos += dir * pull * delta
 		ppos.y = move_toward(ppos.y, get_bottom_y(), delta)
 		particles.multimesh.set_instance_transform(i, Transform3D(FLAT_TRANSFORM.scaled(pscale), ppos))
-		
 
 
 func get_bottom_y() -> float:
