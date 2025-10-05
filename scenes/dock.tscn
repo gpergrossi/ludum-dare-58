@@ -1,10 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://3j15a5i12y2c"]
+[gd_scene load_steps=10 format=3 uid="uid://3j15a5i12y2c"]
+
+[ext_resource type="Script" uid="uid://dvddy7iifqfhb" path="res://code/dock.gd" id="1_pi7v4"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tbgi4"]
 height = 0.13501306
 radius = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pi7v4"]
+albedo_color = Color(0.30323282, 0.30323282, 0.30323282, 1)
+metallic = 0.36
+metallic_specular = 0.57
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_tbgi4"]
 material = SubResource("StandardMaterial3D_pi7v4")
@@ -28,13 +33,15 @@ vertex_color_use_as_albedo = true
 material = SubResource("StandardMaterial3D_bo6mv")
 inner_radius = 0.38
 outer_radius = 0.41
-rings = 24
+rings = 32
 ring_segments = 8
 
 [sub_resource type="Gradient" id="Gradient_uvgon"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.05147059, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
 
 [node name="Dock" type="Node3D"]
+script = ExtResource("1_pi7v4")
 
 [node name="Area3D" type="Area3D" parent="."]
 
@@ -46,17 +53,20 @@ shape = SubResource("CylinderShape3D_tbgi4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0042426735, 0)
 mesh = SubResource("CylinderMesh_tbgi4")
 
-[node name="MeshPillar" type="MeshInstance3D" parent="."]
+[node name="Pillar" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.061010912)
+
+[node name="MeshPillar" type="MeshInstance3D" parent="Pillar"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.067260996, 0.37602812)
 mesh = SubResource("BoxMesh_tefeu")
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pillar"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00010681152, 0.06707764, 0.37670898)
 shape = SubResource("BoxShape3D_o6xl0")
 
-[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+[node name="RingParticles" type="CPUParticles3D" parent="."]
+unique_name_in_owner = true
 amount = 4
 lifetime = 2.0
 mesh = SubResource("TorusMesh_pi7v4")

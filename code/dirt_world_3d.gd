@@ -17,9 +17,7 @@ var frame_i := 0
 
 @export var max_particles := 2000
 
-@export var player: Node3D
-@export var vacuum_radius := 0.4
-@export var vacuum_power := 4.0
+@export var player: RoboVac
 
 @export var dirt_min_size := 3.0
 @export var dirt_max_size := 7.0
@@ -49,6 +47,9 @@ func initialize_pattern():
 
 
 func _ready() -> void:
+	if not Engine.is_editor_hint(): 
+		sprite3d_pattern.visible = false
+	
 	initialize_pattern()
 	particles.multimesh.instance_count = max_particles
 	var world_size := bounds_shape_shape.size
@@ -123,7 +124,7 @@ func _process(delta: float) -> void:
 			pscale.lerp(Vector3.ONE * dirt_min_size, (0.6 - dist) / 0.6)
 		
 		var dir := Vector3(diff.x, 0, diff.z).normalized()
-		var pull := sqrt(maxf(0.0, 1.0 - dist / vacuum_radius)) * vacuum_power
+		var pull := sqrt(maxf(0.0, 1.0 - dist / player.vacuum_radius)) * player.get_current_vacuum_power()
 		ppos += dir * pull * delta
 		ppos.y = move_toward(ppos.y, get_bottom_y(), delta)
 		particles.multimesh.set_instance_transform(i, Transform3D(FLAT_TRANSFORM.scaled(pscale), ppos))
