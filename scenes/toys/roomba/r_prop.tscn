@@ -1,0 +1,325 @@
+[gd_scene load_steps=11 format=4 uid="uid://8erqdd2enftx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0kehq"]
+resource_name = "standardSurface2"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.6651851, 0.6651851, 0.6651851, 1)
+roughness = 0.5
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_8l8d5"]
+_surfaces = [{
+"aabb": AABB(-0.015304337, 0.024799766, -0.013253965, 0.030608661, 0.14744462, 0.026507916),
+"format": 34359742465,
+"index_count": 144,
+"index_data": PackedByteArray("AAABAAIAAQADAAIABAADAAEABQAEAAEAAQAAAAUABgADAAQABgAEAAUAAgADAAcACAADAAYABwADAAgACAAGAAkABQAJAAYABwAIAAoACQAKAAgACwACAAcAAgALAAAACgAMAAcABwAMAAsADQAKAAkADAAKAA0ADgAJAAUACQAOAA0ABQAPAA4ADQAQAAwAEQALAAwADAAQABEAAAALABEADQASABAADgASAA0AEAASABEADwASAA4ABQAAABMAEwAPAAUAEQATAAAAEwASAA8AEQASABMAFAAVABYAFQAUABcAFgAYABQAFwAZABUAGAAWABoAGQAXABsAGgAcABgAGwAdABkAHAAaAB4AHQAbAB8AHgAfABwAHwAeAB0A"),
+"name": "standardSurface2",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 32,
+"vertex_data": PackedByteArray("n6/4O+z3Kz5mXle8Gr/6O9VgMD4pJ1m8OL/6u9VgMD4pJ1m8pC7sKdVgMD7HlxUm/b56PNVgMD7HlxUmgq94POz3Kz7HlxUmGr/6O9VgMD4ZJ1k8C796vNVgMD7HlxUmOL/6u9VgMD4ZJ1k8n6/4O+z3Kz5VXlc8F7D4u+z3Kz5VXlc8F7D4u+z3Kz5mXle8va94vOz3Kz7HlxUmKJ6tu8UGKT4iWxY8sZ2tO8UGKT4iWxY8op0tPMUGKT7HlxUm3Z0tvMUGKT7HlxUmKJ6tu8UGKT4wWxa8x8lussUGKT7HlxUmsZ2tO8UGKT4wWxa83Mluu6c/Lj4JzM673Mluu+EoyzwJzM676MluO+EoyzwGzM674Mnuu6c/Lj4kPpWw6MluO6c/Lj4GzM674Mnuu+EoyzwkPpWw4MnuO+EoyzzHlxUm4sluu6c/Lj4GzM474MnuO6c/Lj7HlxUm4sluu+EoyzwGzM4738luO+EoyzwHzM4738luO6c/Lj4HzM47")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_37nxd"]
+resource_name = "Spinner"
+_surfaces = [{
+"aabb": AABB(-0.015304337, 0.024799766, -0.013253965, 0.030608661, 0.14744462, 0.026507916),
+"attribute_data": PackedByteArray("VVU1PwAAWD9VVVU+AAAoPwAAMD8AACg/AABAPgAAWD///38+AAAoP6qqOj8AACg/qqpqPgAAWD8AAEA/AABYP1VVlT4AACg/VVVFPwAAKD+qqoo+AABYP6qqSj8AAFg/AACAPwAAgD8AAAA/AAAAAAAAAAAAAIA/AACAPwAAgD8AAAAAAACAPwAAgD8AAIA/AAAAAAAAgD8AAIA/AACAPwAAAAAAAIA/AACAPwAAgD8AAAAAAACAPwAAgD8AAIA/AAAAAAAAgD8AAIA/AACAPwAAAD8AAAAAAAAAAAAAgD+qqjo/AAAoPwAAAD8AAAAAVVVVPgAAKD8AAIA/AACAPwAAAD8AAAAAAAAAAAAAgD9VVUU/AAAoPwAAAD8AAAAA//9/PgAAKD8AAIA/AACAPwAAAD8AAAAAAAAAAAAAgD8AADA/AAAoPwAAAD8AAAAAVVWVPgAAKD8AAIA/AACAPwAAAAAAAIA/AAAAAAAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAgD+qqmo+AABYP1VVNT8AAFg/AAAAAAAAgD8AAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAAAAAACAP6qqij4AAFg/AABAPwAAWD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAgD8AAAAAAACAPwAAgD8AAIA/AAAAAAAAgD8AAEA+AABYP6qqSj8AAFg/AACAPwAAgD9VVdU+AACgPlVV1T4AADA/AADAPgAAMD8AAMA+AACgPqqq6j4AAKA+qqrqPgAAMD9VVdU+AAAwP1VV1T4AAKA+////PgAAoD7///8+AAAwP6qq6j4AADA/qqrqPgAAoD6qqgo/AACgPqqqCj8AADA/////PgAAMD////8+AACgPlVVFT8AAKA+VVUVPwAAMD+qqgo/AAAwP6qqCj8AAKA+AAAgPwAAoD4AACA/AAAwP1VVFT8AADA/VVUVPwAAoD4AAEA/AABYP6qqij4AAFg/VVVFPwAAKD///38+AAAoPwAAQD4AAFg/AAAwPwAAKD9VVZU+AAAoP6qqSj8AAFg/qqpqPgAAWD+qqjo/AAAoP1VVVT4AACg/VVU1PwAAWD8="),
+"format": 34359742487,
+"index_count": 144,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADwANABAAEQANABIAEwANABQAFQANABYAFwANABgAGQAaABsAHAAdAB4AHwAgACEAIgAjACQAJQAmACcAKAApACoAKwAsAC0ALQAuACsALwAwADEAMQAyAC8AMwA0ADUANQA2ADMANwA4ADkAOQA6ADcAOwA8AD0APQA+ADsAPwBAAEEAQQBCAD8AQwBEAEUARQBGAEMARwBIAEkASQBKAEcASwBMAE0ATQBOAEsATwBQAFEAUQBSAE8AUwBUAFUAVQBWAFMAVwBYAFkAWQBaAFcAWwBcAF0AXQBeAFsAXwBgAGEAYQBiAF8AYwBkAGUAZQBmAGMA"),
+"material": SubResource("StandardMaterial3D_0kehq"),
+"name": "standardSurface2",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 103,
+"vertex_data": PackedByteArray("n6/4O+z3Kz5mXle8Gr/6O9VgMD4pJ1m8OL/6u9VgMD4pJ1m8F7D4u+z3Kz5mXle8Gr/6O9VgMD4ZJ1k8/b56PNVgMD7HlxUmgq94POz3Kz7HlxUmn6/4O+z3Kz5VXlc8C796vNVgMD7HlxUmOL/6u9VgMD4ZJ1k8F7D4u+z3Kz5VXlc8va94vOz3Kz7HlxUmKJ6tu8UGKT4wWxa8x8lussUGKT7HlxUmsZ2tO8UGKT4wWxa83Z0tvMUGKT7HlxUmKJ6tu8UGKT4wWxa8KJ6tu8UGKT4iWxY83Z0tvMUGKT7HlxUmsZ2tO8UGKT4iWxY8KJ6tu8UGKT4iWxY8op0tPMUGKT7HlxUmsZ2tO8UGKT4iWxY8sZ2tO8UGKT4wWxa8op0tPMUGKT7HlxUmGr/6O9VgMD4pJ1m8pC7sKdVgMD7HlxUmOL/6u9VgMD4pJ1m8/b56PNVgMD7HlxUmpC7sKdVgMD7HlxUmGr/6O9VgMD4pJ1m8Gr/6O9VgMD4ZJ1k8pC7sKdVgMD7HlxUm/b56PNVgMD7HlxUmOL/6u9VgMD4ZJ1k8pC7sKdVgMD7HlxUmGr/6O9VgMD4ZJ1k8C796vNVgMD7HlxUmpC7sKdVgMD7HlxUmOL/6u9VgMD4ZJ1k8OL/6u9VgMD4pJ1m8pC7sKdVgMD7HlxUmC796vNVgMD7HlxUmKJ6tu8UGKT4wWxa8sZ2tO8UGKT4wWxa8n6/4O+z3Kz5mXle8F7D4u+z3Kz5mXle8sZ2tO8UGKT4wWxa8op0tPMUGKT7HlxUmgq94POz3Kz7HlxUmn6/4O+z3Kz5mXle8sZ2tO8UGKT4iWxY8n6/4O+z3Kz5VXlc8gq94POz3Kz7HlxUmop0tPMUGKT7HlxUmKJ6tu8UGKT4iWxY8F7D4u+z3Kz5VXlc8n6/4O+z3Kz5VXlc8sZ2tO8UGKT4iWxY8KJ6tu8UGKT4iWxY83Z0tvMUGKT7HlxUmva94vOz3Kz7HlxUmF7D4u+z3Kz5VXlc8KJ6tu8UGKT4wWxa8F7D4u+z3Kz5mXle8va94vOz3Kz7HlxUm3Z0tvMUGKT7HlxUm3Mluu6c/Lj4JzM673Mluu+EoyzwJzM676MluO+EoyzwGzM676MluO6c/Lj4GzM674Mnuu6c/Lj4kPpWw4Mnuu+EoyzwkPpWw3Mluu+EoyzwJzM673Mluu6c/Lj4JzM674sluu6c/Lj4GzM474sluu+EoyzwGzM474Mnuu+EoyzwkPpWw4Mnuu6c/Lj4kPpWw38luO6c/Lj4HzM4738luO+EoyzwHzM474sluu+EoyzwGzM474sluu6c/Lj4GzM474MnuO6c/Lj7HlxUm4MnuO+EoyzzHlxUm38luO+EoyzwHzM4738luO6c/Lj4HzM476MluO6c/Lj4GzM676MluO+EoyzwGzM674MnuO+EoyzzHlxUm4MnuO6c/Lj7HlxUmn6/4O+z3Kz5VXlc8F7D4u+z3Kz5VXlc8OL/6u9VgMD4ZJ1k8Gr/6O9VgMD4ZJ1k8F7D4u+z3Kz5mXle8OL/6u9VgMD4pJ1m8C796vNVgMD7HlxUmva94vOz3Kz7HlxUmgq94POz3Kz7HlxUm/b56PNVgMD7HlxUmGr/6O9VgMD4pJ1m8n6/4O+z3Kz5mXle81vwAAP///z/W/AAAAAD/v9b8AAD///8/1vwAAP///z+rz6t9JVH/P6vPq33//2yXq8+rfSVR/z+rz6t9JVH/P1MwrH0AAGwXUzCsfdmu/79TMKx9AABsF1MwrH0AAGwX/38AAAAA/z//fwAAJVH/P/9/AAAAAP8//38AACVR/z//fwAAJVH/P/9/AADZrv8//38AANmu/z//fwAA////P/9/AAD///8//38AAP//bBf/fwAA//9sF/9/AAAAAGwX/38AAAAAbBf/f///////P/9///////8//3///////z//f///2a7/P/9////Zrv8//3///9mu/z//f/7/JVH/P/9//v8lUf8//3/+/yVR/z//f/7/AAD/P/9//v8AAP8//3/+/wAA/z//f///AACSaP9///8AAJJo/3///wAAkmj/f/7//v9sF/9//v/+/2wX/3/+//7/bBfAtQAA////v8C1AAD///+/wLUAAP///7/AtQAA////v6W/WSgAAJLopb9ZKAAAkuilv1koAACS6KW/WSgAAJLoWailP////z9ZqKU/////P1mopT////8/WailP////z//f8E1////v/9/wTX///+//3/BNf///7//f8E1////v6VXpT////8/pVelP////z+lV6U/////P6VXpT////8/WUBZKCVR/79ZQFkoJVH/v1lAWSglUf+/WUBZKCVR/7////7/AAD/v////v8AAP+////+/wAA/7////7/AAD/vwAA2a4lUf+/AADZriVR/78AANmuJVH/vwAA2a4lUf+/2S7/f9mu/7/ZLv9/2a7/v9ku/3/Zrv+/2S7/f9mu/7//f/9//v//v/9//3/+//+//3//f/7//7//f/9//v//vyXR/3///5LoJdH/f///kugl0f9///+S6CXR/3///5Lo///ZrgAAkuj//9muAACS6P//2a4AAJLo///ZrgAAkuj/f9d8AAD/P/9/13z///+//3/XfAAA/z//f9d8AAD/P1MCrE8lUf+/UwKsT///kmhTAqxPJVH/v1MCrE8lUf+/q/2sTwAAkuir/axP2a7/P6v9rE8AAJLoq/2sTwAAkug=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_8l8d5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_71c4c"]
+resource_name = "Default_Material"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.735357, 0.735357, 0.735357, 1)
+emission_enabled = true
+emission_energy_multiplier = 0.0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_4uuae"]
+_surfaces = [{
+"aabb": AABB(-0.007886661, -0.006681609, 0, 0.015837112, 0.010988064, 0.18966669),
+"format": 34359742465,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAwABAAAAAgAEAAAAAQADAAUABQACAAEABgAEAAIAAgAFAAYABwAAAAQAAAAHAAMABAAGAAcABQADAAcABwAGAAUA"),
+"name": "Default_Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("rQLeO2bx2rtHAkI+DjcBvAqdNLtPHEI+Rebfu6Qkujr8N0I+BpT4uwrXozEAAAAAnEICPK5VJru/HUI+KKP6uykdjTvsYeQ4Ktv6OykdjTvsYeQ4r8v4OwrXozEAAAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_rpwrp"]
+resource_name = "Blade1"
+_surfaces = [{
+"aabb": AABB(-0.007886661, -0.006681609, 0, 0.015837112, 0.010988064, 0.18966669),
+"attribute_data": PackedByteArray("////PgAAMD8AAAAAAACAP6qqCj8AAKA+AAAAAAAAgD+qqgo/AACgPqqqCj8AAKA+AAAAAAAAgD8AAAAAAACAPwAAAAAAAIA/AAAAAAAAgD+qqgo/AACgPqqqCj8AAKA+////PgAAMD////8+AAAwPwAAAAAAAIA/AAAAAAAAgD8AAAAAAACAPwAAAAAAAIA/////PgAAMD////8+AAAwP////z4AADA/AAAAAAAAgD+qqgo/AACgPgAAAAAAAIA/"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwAEAARABIAEgATABAAFAAVABYAFgAXABQA"),
+"material": SubResource("StandardMaterial3D_71c4c"),
+"name": "Default_Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("rQLeO2bx2rtHAkI+DjcBvAqdNLtPHEI+Rebfu6Qkujr8N0I+nEICPK5VJru/HUI+Rebfu6Qkujr8N0I+KKP6uykdjTvsYeQ4Ktv6OykdjTvsYeQ4nEICPK5VJru/HUI+DjcBvAqdNLtPHEI+BpT4uwrXozEAAAAAKKP6uykdjTvsYeQ4Rebfu6Qkujr8N0I+rQLeO2bx2rtHAkI+r8v4OwrXozEAAAAABpT4uwrXozEAAAAADjcBvAqdNLtPHEI+nEICPK5VJru/HUI+Ktv6OykdjTvsYeQ4r8v4OwrXozEAAAAArQLeO2bx2rtHAkI+r8v4OwrXozEAAAAAKtv6OykdjTvsYeQ4KKP6uykdjTvsYeQ4BpT4uwrXozEAAAAA/3/XfKK+gWH/f9d8AtsJrf9/13yivoFh/3/XfKK+gWGPjqLu////P4+Oou7///8/j46i7v///z+PjqLu////P7INV43///8/sg1Xjf///z+yDVeN////P7INV43///8/om6QDv///7+ibpAO////v6JukA7///+/om6QDv///7+z70Zv////v7PvRm////+/s+9Gb////7+z70Zv////v9b8//9w8XVH1vz//0HPAqfW/P//cPF1R9b8//9w8XVH")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_4uuae")
+
+[sub_resource type="Animation" id="Animation_4lypk"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spinner:scale:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spinner/Blade1:rotation:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spinner/Blade1:scale:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Spinner/Blade2:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Spinner/Blade2:scale:z")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Spinner:rotation:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Spinner:rotation:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Spinner:rotation:z")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_boi8e"]
+resource_name = "prop_OPEN"
+length = 0.6
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spinner:scale:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.050000004, 0.0016666667, 0, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spinner/Blade1:rotation:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1.6, 0, 0, 0.038888894, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.26666668, 0.6)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spinner/Blade1:scale:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0.5, 0, 0, 0.05555556, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.4, 0.6)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Spinner/Blade2:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1.6, 0, 0, 0.04444445, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.26666668, 0.6)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Spinner/Blade2:scale:z")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0.5, 0, 0, 0.04444445, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.4, 0.6)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Spinner/Blade3:rotation:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1.6, 0, 0, 0.04444445, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.26666668, 0.6)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Spinner/Blade3:scale:z")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0.5, 0, 0, 0.04444445, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.4, 0.6)
+}
+
+[sub_resource type="Animation" id="Animation_37nxd"]
+resource_name = "prop_Spin"
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spinner:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spinner:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 6.2831855, -0.16666667, -1.0471976, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spinner:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mbixa"]
+_data = {
+&"RESET": SubResource("Animation_4lypk"),
+&"prop_OPEN": SubResource("Animation_boi8e"),
+&"prop_Spin": SubResource("Animation_37nxd")
+}
+
+[node name="RProp" type="Node3D"]
+
+[node name="Spinner" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0, 0, 0, 0, 1, 3.3455672e-06, 0.06, 2.4240878e-08)
+mesh = SubResource("ArrayMesh_37nxd")
+skeleton = NodePath("")
+
+[node name="Blade1" type="MeshInstance3D" parent="Spinner"]
+transform = Transform3D(-0.50000006, 0, 0, 0, 1, 0, 0.8660254, 0, 0, -0.011359654, 0.16793793, -0.006317566)
+mesh = SubResource("ArrayMesh_rpwrp")
+skeleton = NodePath("")
+
+[node name="Blade2" type="MeshInstance3D" parent="Spinner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0, -0.00030154482, 0.168, 0.013199415)
+mesh = SubResource("ArrayMesh_rpwrp")
+skeleton = NodePath("")
+
+[node name="Blade3" type="MeshInstance3D" parent="Spinner"]
+transform = Transform3D(-0.50000006, 0, 0.8660254, 0, 1, 0, -0.8660254, 0, -0.50000006, 0.011210227, 0.168, -0.0058686906)
+mesh = SubResource("ArrayMesh_rpwrp")
+skeleton = NodePath("")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_mbixa")
+}
+speed_scale = 2.0
