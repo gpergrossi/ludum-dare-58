@@ -64,7 +64,10 @@ light_color = Color(0, 0.509804, 1, 1)
 light_energy = 0.515
 shadow_enabled = true
 
-[node name="Roomba_BaseSize" type="MeshInstance3D" parent="."]
+[node name="Art" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Roomba_BaseSize" type="MeshInstance3D" parent="Art"]
 mesh = SubResource("ArrayMesh_qhqgy")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("2_g2els")
