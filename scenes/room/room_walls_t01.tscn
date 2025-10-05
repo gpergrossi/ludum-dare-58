@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://drjriit1lfcxy" path="res://scenes/room/_meshs/room_layout_walls_v2.fbx" id="1_6ro04"]
 [ext_resource type="Material" uid="uid://bcmpqa3gjn4sx" path="res://scenes/room/_mats/m_Wall_Paint.tres" id="2_r5bxg"]
-[ext_resource type="Material" uid="uid://lula1wbyn6ku" path="res://scenes/room/_mats/m_Wall_brick.tres" id="3_60jeq"]
+[ext_resource type="Material" uid="uid://dhha3wea33k1v" path="res://assets/materials/instances/o_Brick.tres" id="3_r5bxg"]
 [ext_resource type="Material" uid="uid://cgl53pyostltp" path="res://scenes/room/_mats/glass.tres" id="4_1rug8"]
 [ext_resource type="Material" uid="uid://s520vloid4ew" path="res://scenes/room/_mats/m_Black.tres" id="5_a3mfd"]
 [ext_resource type="PackedScene" uid="uid://cv11fbn508wdb" path="res://scenes/room/_meshs/room_layout_walls_v2p2.fbx" id="6_r5bxg"]
@@ -26,7 +26,7 @@ shape = SubResource("ConcavePolygonShape3D_6ro04")
 material_override = ExtResource("2_r5bxg")
 
 [node name="Window" parent="room_layout_walls_v3/window_Wall" index="0"]
-material_override = ExtResource("3_60jeq")
+material_override = ExtResource("3_r5bxg")
 
 [node name="Window3" parent="room_layout_walls_v3/window_Wall/Window" index="0"]
 surface_material_override/0 = ExtResource("4_1rug8")
@@ -38,7 +38,7 @@ material_override = ExtResource("5_a3mfd")
 material_override = ExtResource("5_a3mfd")
 
 [node name="Window1" parent="room_layout_walls_v3/window_Wall" index="1"]
-material_override = ExtResource("3_60jeq")
+material_override = ExtResource("3_r5bxg")
 
 [node name="Window4" parent="room_layout_walls_v3/window_Wall/Window1" index="0"]
 surface_material_override/0 = ExtResource("4_1rug8")
@@ -50,7 +50,7 @@ surface_material_override/0 = ExtResource("5_a3mfd")
 surface_material_override/0 = ExtResource("5_a3mfd")
 
 [node name="Window2" parent="room_layout_walls_v3/window_Wall" index="2"]
-material_override = ExtResource("3_60jeq")
+material_override = ExtResource("3_r5bxg")
 
 [node name="Window5" parent="room_layout_walls_v3/window_Wall/Window2" index="0"]
 surface_material_override/0 = ExtResource("4_1rug8")
@@ -62,12 +62,12 @@ material_override = ExtResource("5_a3mfd")
 material_override = ExtResource("5_a3mfd")
 
 [node name="Plane1" parent="room_layout_walls_v3" index="3"]
-material_override = ExtResource("3_60jeq")
+material_override = ExtResource("3_r5bxg")
 
 [node name="room_layout_walls_v2p2" parent="room_layout_walls_v3" instance=ExtResource("6_r5bxg")]
 
 [node name="Window_backface" parent="room_layout_walls_v3/room_layout_walls_v2p2" index="0"]
-material_override = ExtResource("3_60jeq")
+material_override = ExtResource("3_r5bxg")
 
 [editable path="room_layout_walls_v3"]
 [editable path="room_layout_walls_v3/room_layout_walls_v2p2"]
