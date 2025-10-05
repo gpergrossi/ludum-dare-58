@@ -1,0 +1,43 @@
+[gd_resource type="VisualShader" load_steps=3 format=3 uid="uid://cxfrpu4dfx203"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_ladbg"]
+expanded_output_ports = [0]
+parameter_name = "Base_Color"
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_etbcn"]
+parameter_name = "Roughness"
+default_value_enabled = true
+default_value = 1.0
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform vec4 Base_Color : source_color = vec4(1.000000, 1.000000, 1.000000, 1.000000);
+uniform float Roughness = 1.0;
+
+
+
+void vertex() {
+// ColorParameter:2
+	vec4 n_out2p0 = Base_Color;
+
+
+// FloatParameter:3
+	float n_out3p0 = Roughness;
+
+
+// Output:0
+	VERTEX = vec3(n_out2p0.xyz);
+	ROUGHNESS = n_out3p0;
+
+
+}
+"
+nodes/vertex/0/position = Vector2(240, 140)
+nodes/vertex/2/node = SubResource("VisualShaderNodeColorParameter_ladbg")
+nodes/vertex/2/position = Vector2(-180, -20)
+nodes/vertex/3/node = SubResource("VisualShaderNodeFloatParameter_etbcn")
+nodes/vertex/3/position = Vector2(-200, 400)
+nodes/vertex/connections = PackedInt32Array(2, 0, 0, 0, 3, 0, 0, 8)
