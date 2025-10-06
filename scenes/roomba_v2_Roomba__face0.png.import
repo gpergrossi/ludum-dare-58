@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxx8y80iffyns"
-path.s3tc="res://.godot/imported/roomba_v1_Roomba__face0.png-010159718dc9e342a6c37a40b3e4340b.s3tc.ctex"
+uid="uid://cwhc2mbm1insh"
+path.s3tc="res://.godot/imported/roomba_v2_Roomba__face0.png-3de246a06fa0a5c24c2006cd44ab9d4f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://scenes/HERO_character/roomba_v1_Roomba__face0.png"
-dest_files=["res://.godot/imported/roomba_v1_Roomba__face0.png-010159718dc9e342a6c37a40b3e4340b.s3tc.ctex"]
+source_file="res://scenes/roomba_v2_Roomba__face0.png"
+dest_files=["res://.godot/imported/roomba_v2_Roomba__face0.png-3de246a06fa0a5c24c2006cd44ab9d4f.s3tc.ctex"]
 
 [params]
 

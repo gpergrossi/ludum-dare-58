@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c5gu3hyaqmpy2"
-path="res://.godot/imported/roomba_v1.glb-0b33d07e920a5e8192b2c9d3a78fe6de.scn"
+uid="uid://bcvue6cxhscls"
+path="res://.godot/imported/roomba_v2.glb-1ab8b48911b1f09f3efbb89752c654c5.scn"
 
 [deps]
 
-source_file="res://scenes/HERO_character/roomba_v1.glb"
-dest_files=["res://.godot/imported/roomba_v1.glb-0b33d07e920a5e8192b2c9d3a78fe6de.scn"]
+source_file="res://scenes/roomba_v2.glb"
+dest_files=["res://.godot/imported/roomba_v2.glb-1ab8b48911b1f09f3efbb89752c654c5.scn"]
 
 [params]
 
