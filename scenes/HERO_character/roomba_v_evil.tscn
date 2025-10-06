@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://i74lqftn1emn"]
+
+[ext_resource type="PackedScene" uid="uid://b83kwtu40niyg" path="res://scenes/HERO_character/roomba_v2.glb" id="1_576vn"]
+[ext_resource type="Material" uid="uid://bb8lexjk20lr" path="res://assets/materials/instances/o_Plastic_Red.tres" id="2_grwas"]
+[ext_resource type="Material" uid="uid://c8evn7vay8png" path="res://scenes/room/_mats/m_Angry_Face.tres" id="2_uwqks"]
+
+[node name="roomba_v2" instance=ExtResource("1_576vn")]
+transform = Transform3D(-0.029666286, 0, 0.9995599, 0, 1, 0, -0.9995599, 0, -0.029666286, 0, 0, 0)
+
+[node name="Boosters_2" parent="Robo_armature/Skeleton3D" index="2"]
+visible = false
+
+[node name="Body" parent="Robo_armature/Skeleton3D/BodyCore" index="0"]
+surface_material_override/0 = ExtResource("2_grwas")
+surface_material_override/2 = ExtResource("2_grwas")
+
+[node name="Bumper" parent="Robo_armature/Skeleton3D/BodyCore" index="1"]
+surface_material_override/0 = ExtResource("2_grwas")
+
+[node name="Center" parent="Robo_armature/Skeleton3D/BodyCore/Center" index="0"]
+surface_material_override/0 = ExtResource("2_grwas")
+
+[node name="face" parent="Robo_armature/Skeleton3D/BodyCore" index="3"]
+surface_material_override/0 = ExtResource("2_uwqks")
+
+[node name="L" parent="Robo_armature/Skeleton3D/BodyCore/L" index="0"]
+surface_material_override/0 = ExtResource("2_grwas")
+
+[node name="Prop_Mount" parent="Robo_armature/Skeleton3D/BodyCore" index="5"]
+surface_material_override/0 = ExtResource("2_grwas")
+
+[node name="R" parent="Robo_armature/Skeleton3D/BodyCore/R" index="0"]
+surface_material_override/0 = ExtResource("2_grwas")
+
+[node name="Top_Button" parent="Robo_armature/Skeleton3D/BodyCore" index="7"]
+surface_material_override/0 = ExtResource("2_grwas")
