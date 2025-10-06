@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://lknoxuy32nh8"]
+
+[ext_resource type="Texture2D" uid="uid://b5mrwhe0w153h" path="res://scenes/room/_mats/textures/wood_Albedo_v2.png" id="1_3ny1v"]
+[ext_resource type="Texture2D" uid="uid://n1x6awqrp4o8" path="res://scenes/room/_mats/textures/wood_Albedo_v2_specular.png" id="2_cn350"]
+[ext_resource type="Texture2D" uid="uid://boe7x8r4hyo8k" path="res://scenes/room/_mats/textures/wood_Albedo_v2_normal.png" id="3_pdnlo"]
+
+[resource]
+resource_name = "metalDark"
+albedo_texture = ExtResource("1_3ny1v")
+metallic_specular = 0.12
+metallic_texture = ExtResource("2_cn350")
+roughness_texture = ExtResource("2_cn350")
+emission_energy_multiplier = 0.0
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource("3_pdnlo")
+uv1_scale = Vector3(5, 10, 10)
+uv1_offset = Vector3(0, 10, 0)
