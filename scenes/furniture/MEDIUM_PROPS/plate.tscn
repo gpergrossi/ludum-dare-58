@@ -9,6 +9,7 @@ data = PackedVector3Array(0.114099994, 0.0072999997, -0.095699996, 0.114099994, 
 
 [node name="Plate" type="StaticBody3D"]
 script = ExtResource("1_ve5li")
+size_class = 1
 metadata/_custom_type_script = "uid://dyd3v0ic217sq"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
