@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://11qftq6s0g08"
-path="res://.godot/imported/Pizza_Slice_01.fbx-f787a2df2ca469f206bb711b7981fe8c.scn"
+uid="uid://cbor7ralg3ux2"
+path="res://.godot/imported/Chip_Broken.fbx-2591981af8f4e77ff46dea70e9ca606e.scn"
 
 [deps]
 
-source_file="res://scenes/FBX_imports/Clutter/Pizza_Slice_01.fbx"
-dest_files=["res://.godot/imported/Pizza_Slice_01.fbx-f787a2df2ca469f206bb711b7981fe8c.scn"]
+source_file="res://scenes/FBX_imports/Clutter/_mesh/Chip_Broken.fbx"
+dest_files=["res://.godot/imported/Chip_Broken.fbx-2591981af8f4e77ff46dea70e9ca606e.scn"]
 
 [params]
 
@@ -39,14 +39,14 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "meshes": {
-"Slice_01": {
+"Chip_Broken": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/models/clutter/pizza_slice.res",
-"save_to_file/path": "uid://byy5gcix4lnlc"
+"save_to_file/fallback_path": "res://assets/models/clutter/chip_broken.res",
+"save_to_file/path": "uid://dbf3hxewrxllw"
 }
 }
 }

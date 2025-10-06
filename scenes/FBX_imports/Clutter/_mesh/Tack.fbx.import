@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cjp0vhlfhrs7g"
-path="res://.godot/imported/Lego2x2.fbx-6728bd87f81393e7a61150e2754f2853.scn"
+uid="uid://bkplvryhwhgl6"
+path="res://.godot/imported/Tack.fbx-8cb1a21e93fc55be3358e97c4aa9cb26.scn"
 
 [deps]
 
-source_file="res://scenes/FBX_imports/Clutter/Lego2x2.fbx"
-dest_files=["res://.godot/imported/Lego2x2.fbx-6728bd87f81393e7a61150e2754f2853.scn"]
+source_file="res://scenes/FBX_imports/Clutter/_mesh/Tack.fbx"
+dest_files=["res://.godot/imported/Tack.fbx-8cb1a21e93fc55be3358e97c4aa9cb26.scn"]
 
 [params]
 
@@ -39,14 +39,14 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "meshes": {
-"Lego2x2": {
+"Tack": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/models/clutter/lego2x2.res",
-"save_to_file/path": "uid://bl6d0qlwcnju7"
+"save_to_file/fallback_path": "res://assets/models/clutter/tack.res",
+"save_to_file/path": "uid://bwpftc2yfrspi"
 }
 }
 }

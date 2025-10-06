@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmlgkbjyte4n0"]
+
+[ext_resource type="PackedScene" uid="uid://dkl80untwy1sl" path="res://scenes/FBX_imports/Clutter/_mesh/vent_Cover_01.fbx" id="1_pkhnw"]
+[ext_resource type="Script" uid="uid://dyd3v0ic217sq" path="res://code/static_body_game_piece.gd" id="2_qo243"]
+[ext_resource type="Material" uid="uid://bprgoph8jekto" path="res://assets/materials/instances/o_Metal_VENT.tres" id="2_sfoe8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pkhnw"]
+size = Vector3(0.017311096, 0.22197723, 0.5541611)
+
+[node name="vent_Cover_01" instance=ExtResource("1_pkhnw")]
+
+[node name="Vent_cover_3" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_sfoe8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Vent_cover_3" index="0"]
+script = ExtResource("2_qo243")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Vent_cover_3/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00036239438, 0.11070633, 0.00011062622)
+shape = SubResource("BoxShape3D_pkhnw")

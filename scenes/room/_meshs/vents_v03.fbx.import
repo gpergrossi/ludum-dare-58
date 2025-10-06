@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://t085esybjlci"
-path="res://.godot/imported/Coin_LD58.fbx-97d5a11127f73a7bd5db38548927bff8.scn"
+uid="uid://8vjp462644ox"
+path="res://.godot/imported/vents_v03.fbx-d7ad53ec1199bd1aebb60f8ca0ec1923.scn"
 
 [deps]
 
-source_file="res://scenes/FBX_imports/Clutter/Coin_LD58.fbx"
-dest_files=["res://.godot/imported/Coin_LD58.fbx-97d5a11127f73a7bd5db38548927bff8.scn"]
+source_file="res://scenes/room/_meshs/vents_v03.fbx"
+dest_files=["res://.godot/imported/vents_v03.fbx-d7ad53ec1199bd1aebb60f8ca0ec1923.scn"]
 
 [params]
 
@@ -37,19 +37,7 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={
-"meshes": {
-"Coin_LD58": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/models/clutter/coin_ld58.res",
-"save_to_file/path": "uid://d4gujsdotthxb"
-}
-}
-}
+_subresources={}
 fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1

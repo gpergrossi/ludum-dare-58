@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://my3dnub4w8w2"
-path="res://.godot/imported/Pizza_w_Box.fbx-0925ff781132896d0658350e1c0f9dbf.scn"
+uid="uid://t085esybjlci"
+path="res://.godot/imported/Coin_LD58.fbx-0baddef55b3e7293e9097f52f05bf3d5.scn"
 
 [deps]
 
-source_file="res://scenes/FBX_imports/Clutter/Pizza_w_Box.fbx"
-dest_files=["res://.godot/imported/Pizza_w_Box.fbx-0925ff781132896d0658350e1c0f9dbf.scn"]
+source_file="res://scenes/FBX_imports/Clutter/_mesh/Coin_LD58.fbx"
+dest_files=["res://.godot/imported/Coin_LD58.fbx-0baddef55b3e7293e9097f52f05bf3d5.scn"]
 
 [params]
 
@@ -39,23 +39,14 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "meshes": {
-"Pizza": {
+"Coin_LD58": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/models/clutter/pizza.res",
-"save_to_file/path": "uid://4af1hs2jlrtb"
-},
-"Pizza_Box": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/models/clutter/pizza_box.res",
-"save_to_file/path": "uid://ccunn71ulafqr"
+"save_to_file/fallback_path": "res://assets/models/clutter/coin_ld58.res",
+"save_to_file/path": "uid://d4gujsdotthxb"
 }
 }
 }

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ca3tj76gkjl4o"
-path="res://.godot/imported/Lego2x4.fbx-836b6d8996f8cbdcdf34d0fca76910f0.scn"
+uid="uid://d1qmpyruinr18"
+path="res://.godot/imported/Paper_Crinkle_v1.fbx-1804716c48649006e200a7ac0d6fbf01.scn"
 
 [deps]
 
-source_file="res://scenes/FBX_imports/Clutter/Lego2x4.fbx"
-dest_files=["res://.godot/imported/Lego2x4.fbx-836b6d8996f8cbdcdf34d0fca76910f0.scn"]
+source_file="res://scenes/FBX_imports/Clutter/_mesh/Paper_Crinkle_v1.fbx"
+dest_files=["res://.godot/imported/Paper_Crinkle_v1.fbx-1804716c48649006e200a7ac0d6fbf01.scn"]
 
 [params]
 
@@ -39,14 +39,14 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "meshes": {
-"Lego2x4": {
+"Crinkle01": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/models/clutter/lego2x4.res",
-"save_to_file/path": "uid://b5r00yc5j1ieo"
+"save_to_file/fallback_path": "res://assets/models/clutter/paper_crinkle.res",
+"save_to_file/path": "uid://bhkumiojjr5g5"
 }
 }
 }

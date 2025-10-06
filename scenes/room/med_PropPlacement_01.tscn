@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://crspbokqxy40t"]
+
+[ext_resource type="PackedScene" uid="uid://cmlgkbjyte4n0" path="res://scenes/FBX_imports/Clutter/_scenes/vent_cover_01.tscn" id="1_q3xra"]
+
+[node name="Med_Props" type="Node3D"]
+
+[node name="vent_Cover_01" parent="." instance=ExtResource("1_q3xra")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.194887, 0, 0.59641695)

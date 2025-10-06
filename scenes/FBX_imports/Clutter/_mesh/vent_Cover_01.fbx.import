@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d1qmpyruinr18"
-path="res://.godot/imported/Paper_Crinkle_v1.fbx-a0b8e8f3e00d5ea5a5aceeefe1f423fe.scn"
+uid="uid://dkl80untwy1sl"
+path="res://.godot/imported/vent_Cover_01.fbx-045d832e0119779ab376b09dcc651c21.scn"
 
 [deps]
 
-source_file="res://scenes/FBX_imports/Clutter/Paper_Crinkle_v1.fbx"
-dest_files=["res://.godot/imported/Paper_Crinkle_v1.fbx-a0b8e8f3e00d5ea5a5aceeefe1f423fe.scn"]
+source_file="res://scenes/FBX_imports/Clutter/_mesh/vent_Cover_01.fbx"
+dest_files=["res://.godot/imported/vent_Cover_01.fbx-045d832e0119779ab376b09dcc651c21.scn"]
 
 [params]
 
@@ -37,19 +37,7 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={
-"meshes": {
-"Crinkle01": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/models/clutter/paper_crinkle.res",
-"save_to_file/path": "uid://bhkumiojjr5g5"
-}
-}
-}
+_subresources={}
 fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1

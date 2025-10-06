@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bkplvryhwhgl6"
-path="res://.godot/imported/Tack.fbx-e3de421dcbf5432b4c2a1a0a8fdefb7e.scn"
+uid="uid://my3dnub4w8w2"
+path="res://.godot/imported/Pizza_w_Box.fbx-251486d3c1177f23eafce0a81e8f0015.scn"
 
 [deps]
 
-source_file="res://scenes/FBX_imports/Clutter/Tack.fbx"
-dest_files=["res://.godot/imported/Tack.fbx-e3de421dcbf5432b4c2a1a0a8fdefb7e.scn"]
+source_file="res://scenes/FBX_imports/Clutter/_mesh/Pizza_w_Box.fbx"
+dest_files=["res://.godot/imported/Pizza_w_Box.fbx-251486d3c1177f23eafce0a81e8f0015.scn"]
 
 [params]
 
@@ -39,14 +39,23 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "meshes": {
-"Tack": {
+"Pizza": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/models/clutter/tack.res",
-"save_to_file/path": "uid://bwpftc2yfrspi"
+"save_to_file/fallback_path": "res://assets/models/clutter/pizza.res",
+"save_to_file/path": "uid://4af1hs2jlrtb"
+},
+"Pizza_Box": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/models/clutter/pizza_box.res",
+"save_to_file/path": "uid://ccunn71ulafqr"
 }
 }
 }
