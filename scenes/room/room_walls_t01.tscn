@@ -280,6 +280,7 @@ material_override = ExtResource("14_ecm8o")
 [node name="StaticBody3D" type="StaticBody3D" parent="room_layout_walls_v4/Level/Vent_01" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="room_layout_walls_v4/Level/Vent_01/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1.4790764, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_gitt3")
 
 [node name="Vent_02" parent="room_layout_walls_v4/Level" index="8"]
@@ -288,6 +289,7 @@ material_override = ExtResource("14_ecm8o")
 [node name="StaticBody3D" type="StaticBody3D" parent="room_layout_walls_v4/Level/Vent_02" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="room_layout_walls_v4/Level/Vent_02/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1.4806393, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_tljql")
 
 [node name="Vent_04" parent="room_layout_walls_v4/Level" index="9"]
@@ -296,6 +298,7 @@ material_override = ExtResource("14_ecm8o")
 [node name="StaticBody3D" type="StaticBody3D" parent="room_layout_walls_v4/Level/Vent_04" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="room_layout_walls_v4/Level/Vent_04/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1.4514587, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_pbxs3")
 
 [node name="Vent_05" parent="room_layout_walls_v4/Level" index="10"]
@@ -304,6 +307,7 @@ material_override = ExtResource("14_ecm8o")
 [node name="StaticBody3D" type="StaticBody3D" parent="room_layout_walls_v4/Level/Vent_05" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="room_layout_walls_v4/Level/Vent_05/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1.49356, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_446y2")
 
 [node name="Label3D" type="Label3D" parent="."]

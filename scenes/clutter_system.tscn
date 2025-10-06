@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://dhq2bna7oyra4"]
+[gd_scene load_steps=88 format=3 uid="uid://dhq2bna7oyra4"]
 
 [ext_resource type="Script" uid="uid://c45o4rirqh8r0" path="res://code/clutter_system.gd" id="1_mpcbd"]
 [ext_resource type="PackedScene" uid="uid://k3u5xcvedbjc" path="res://scenes/clutter_plane.tscn" id="2_gwx86"]
@@ -10,9 +10,7 @@
 [ext_resource type="ArrayMesh" uid="uid://b5r00yc5j1ieo" path="res://assets/models/clutter/lego2x4.res" id="7_yfw72"]
 [ext_resource type="ArrayMesh" uid="uid://d4gujsdotthxb" path="res://assets/models/clutter/coin_ld58.res" id="8_ejqpx"]
 [ext_resource type="ArrayMesh" uid="uid://b4e1ab6tqploq" path="res://assets/models/clutter/pawPrint.res" id="9_byvkq"]
-[ext_resource type="PackedScene" uid="uid://ckhaa76vvgbwy" path="res://scenes/room/room_walls_t01.tscn" id="10_g5q62"]
 [ext_resource type="ArrayMesh" uid="uid://browjnf5ejuir" path="res://assets/models/clutter/kibble.res" id="10_v5p7r"]
-[ext_resource type="PackedScene" uid="uid://bx6wo5s48pcm1" path="res://scenes/room/furnitureLayout_01.tscn" id="11_v5p7r"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ks51d"]
 resource_local_to_scene = true
@@ -635,19 +633,3 @@ points_per_item = 10
 
 [node name="REF_ONLY_DELETE_AFTER" type="Node3D" parent="."]
 visible = false
-
-[node name="RoomWallsT01" parent="REF_ONLY_DELETE_AFTER" instance=ExtResource("10_g5q62")]
-
-[node name="Wall_S2" parent="REF_ONLY_DELETE_AFTER/RoomWallsT01/room_layout_walls_v4/Level" index="2"]
-surface_material_override/0 = null
-surface_material_override/1 = null
-
-[node name="FurnitureLayout01" parent="REF_ONLY_DELETE_AFTER" instance=ExtResource("11_v5p7r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0026097298, 0, -7.522106e-05)
-
-[editable path="REF_ONLY_DELETE_AFTER/RoomWallsT01"]
-[editable path="REF_ONLY_DELETE_AFTER/RoomWallsT01/Balcony_Rail_02"]
-[editable path="REF_ONLY_DELETE_AFTER/RoomWallsT01/Stair_02"]
-[editable path="REF_ONLY_DELETE_AFTER/RoomWallsT01/room_layout_walls_v4"]
-[editable path="REF_ONLY_DELETE_AFTER/RoomWallsT01/vents_v04"]
-[editable path="REF_ONLY_DELETE_AFTER/RoomWallsT01/vents_v04/VENTS/Boss_BoxHider"]
