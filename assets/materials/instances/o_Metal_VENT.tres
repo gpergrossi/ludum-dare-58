@@ -11,10 +11,9 @@ shader_parameter/outline_width = 2.5
 [resource]
 next_pass = SubResource("ShaderMaterial_vn30l")
 diffuse_mode = 3
-specular_mode = 1
+specular_mode = 2
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.7, 0.7, 0.7, 1)
 metallic = 0.5
-metallic_specular = 0.05
+metallic_specular = 0.0
 roughness = 0.2
-emission_enabled = true

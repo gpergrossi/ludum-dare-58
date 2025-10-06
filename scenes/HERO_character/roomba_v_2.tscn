@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsl2vteprffic"]
+
+[ext_resource type="PackedScene" uid="uid://b83kwtu40niyg" path="res://scenes/HERO_character/roomba_v2.glb" id="1_oeixf"]
+
+[node name="roomba_v2" instance=ExtResource("1_oeixf")]
+
+[node name="Boosters_2" parent="Robo_armature/Skeleton3D" index="2"]
+visible = false

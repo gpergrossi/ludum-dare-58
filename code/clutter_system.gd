@@ -11,7 +11,7 @@ func do_forced_update() -> void:
 		_dirty_set[plane] = true
 
 @export var max_particles := 20000
-@export var player: Variant
+@export var player: RoboVac
 
 var clutter_planes: Array[ClutterPlane] = []
 var update_delay := 0.0
@@ -130,7 +130,6 @@ func refresh_plane(plane: ClutterPlane) -> void:
 		if mesh_set == null:
 			mesh_set = create_mesh_set(plane)
 			add_child(mesh_set)
-			mesh_set.owner = self.owner
 			_mesh_sets[plane] = mesh_set
 		
 		refresh_plane_set(plane, mesh_set)
