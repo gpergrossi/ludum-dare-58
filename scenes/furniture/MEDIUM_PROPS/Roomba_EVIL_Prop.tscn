@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpucqsrd8yk5y"]
+
+[ext_resource type="Script" uid="uid://dyd3v0ic217sq" path="res://code/static_body_game_piece.gd" id="1_o6yun"]
+[ext_resource type="PackedScene" uid="uid://i74lqftn1emn" path="res://scenes/HERO_character/roomba_v_evil.tscn" id="2_tjeg7"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_y372y"]
+height = 0.084121704
+radius = 0.20263672
+
+[node name="Node3D" type="StaticBody3D"]
+script = ExtResource("1_o6yun")
+metadata/_custom_type_script = "uid://dyd3v0ic217sq"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.057151794, 0)
+shape = SubResource("CylinderShape3D_y372y")
+
+[node name="roomba_v2" parent="CollisionShape3D" instance=ExtResource("2_tjeg7")]
+transform = Transform3D(-0.029666286, 0, 0.9995599, 0, 1, 0, -0.9995599, 0, -0.029666286, 0, -0.057151794, 0)
