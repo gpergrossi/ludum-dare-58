@@ -159,6 +159,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_k4sla"]
 resource_name = "cealingFan_rotate"
+loop_mode = 1
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -203,3 +204,4 @@ root_node = NodePath("../RigidBody3D")
 libraries = {
 &"": SubResource("AnimationLibrary_usfqo")
 }
+autoplay = "cealingFan_rotate"

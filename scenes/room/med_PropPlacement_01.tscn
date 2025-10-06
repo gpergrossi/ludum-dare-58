@@ -1,8 +1,272 @@
-[gd_scene load_steps=2 format=3 uid="uid://crspbokqxy40t"]
+[gd_scene load_steps=17 format=3 uid="uid://crspbokqxy40t"]
 
-[ext_resource type="PackedScene" uid="uid://cmlgkbjyte4n0" path="res://scenes/FBX_imports/Clutter/_scenes/vent_cover_01.tscn" id="1_q3xra"]
+[ext_resource type="PackedScene" uid="uid://boalb6fv71toe" path="res://scenes/furniture/MEDIUM_PROPS/pizza_box.tscn" id="1_uygir"]
+[ext_resource type="PackedScene" uid="uid://33s11lq11nwr" path="res://scenes/furniture/MEDIUM_PROPS/pizza_slice.tscn" id="2_i36oc"]
+[ext_resource type="PackedScene" uid="uid://cbupwg7nqnp7m" path="res://scenes/furniture/MEDIUM_PROPS/pillow_01.tscn" id="3_dbup7"]
+[ext_resource type="PackedScene" uid="uid://of1cgxuvraiv" path="res://scenes/furniture/MEDIUM_PROPS/pillow_02.tscn" id="4_300ub"]
+[ext_resource type="PackedScene" uid="uid://bypcgdx245vcd" path="res://scenes/furniture/MEDIUM_PROPS/robo_box.tscn" id="5_ltjp0"]
+[ext_resource type="PackedScene" uid="uid://cvv0yrmh56yx3" path="res://scenes/furniture/MEDIUM_PROPS/Vent.tscn" id="6_ltjp0"]
+[ext_resource type="PackedScene" uid="uid://buvpsmhl1bd8m" path="res://scenes/furniture/MEDIUM_PROPS/cat_bowl.tscn" id="7_71kpc"]
+[ext_resource type="PackedScene" uid="uid://dk5fck1jf6l4s" path="res://scenes/furniture/MEDIUM_PROPS/pizza_slice_2.tscn" id="8_8vcyt"]
+[ext_resource type="PackedScene" uid="uid://boeag0lr6jr1e" path="res://scenes/furniture/MEDIUM_PROPS/pillow_3.tscn" id="9_hkvkq"]
+[ext_resource type="PackedScene" uid="uid://ckhaa76vvgbwy" path="res://scenes/room/room_walls_t01.tscn" id="10_8vcyt"]
+[ext_resource type="PackedScene" uid="uid://b5yftnhiuy82w" path="res://scenes/furniture/MEDIUM_PROPS/mug.tscn" id="10_gloqb"]
+[ext_resource type="PackedScene" uid="uid://bx6wo5s48pcm1" path="res://scenes/room/furnitureLayout_01.tscn" id="11_hkvkq"]
+[ext_resource type="PackedScene" uid="uid://esj05x8axr2y" path="res://scenes/furniture/MEDIUM_PROPS/plate.tscn" id="11_hsk1u"]
+[ext_resource type="PackedScene" uid="uid://df4dximk14md0" path="res://scenes/furniture/MEDIUM_PROPS/copptor_hat.tscn" id="12_hsk1u"]
+[ext_resource type="PackedScene" uid="uid://i74lqftn1emn" path="res://scenes/HERO_character/roomba_v_evil.tscn" id="13_sadmy"]
+[ext_resource type="PackedScene" uid="uid://qbqrimxfrku" path="res://scenes/FBX_imports/GLBS/CoppterHat_v1.glb" id="14_kes2h"]
 
 [node name="Med_Props" type="Node3D"]
 
-[node name="vent_Cover_01" parent="." instance=ExtResource("1_q3xra")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.194887, 0, 0.59641695)
+[node name="Medium" type="Node3D" parent="."]
+
+[node name="Pizza_Box" parent="Medium" instance=ExtResource("1_uygir")]
+transform = Transform3D(0.84360707, 0, 0.536961, 0, 1, 0, -0.536961, 0, 0.84360707, 0.67354655, 0.7125346, -0.00219059)
+
+[node name="Pizza_Box2" parent="Medium" instance=ExtResource("1_uygir")]
+transform = Transform3D(0.7126997, 0, -0.70146924, 0, 1, 0, 0.70146924, 0, 0.7126997, -1.8651035, 0.5700921, 1.8480284)
+
+[node name="Pizza_Box3" parent="Medium" instance=ExtResource("1_uygir")]
+transform = Transform3D(0.6323539, 0, -0.77467966, 0, 1, 0, 0.77467966, 0, 0.6323539, 2.0646935, 0.8800918, -5.1137877)
+
+[node name="pizzaSlice" parent="Medium" instance=ExtResource("2_i36oc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7166138, 0.56999975, 1.2101506)
+
+[node name="pizzaSlice2" parent="Medium" instance=ExtResource("2_i36oc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0511875, 0.0031308292, -0.4580146)
+
+[node name="pizzaSlice3" parent="Medium" instance=ExtResource("2_i36oc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7673974, 0.0032833368, -1.9698647)
+
+[node name="pizzaSlice4" parent="Medium" instance=ExtResource("2_i36oc")]
+transform = Transform3D(0.24093951, 0, -0.9705401, 0, 1, 0, 0.9705401, 0, 0.24093951, 1.4612176, 0.0031735874, -0.6799483)
+
+[node name="Node3D" parent="Medium" instance=ExtResource("3_dbup7")]
+transform = Transform3D(0.4246188, -0.7628747, 0.48756647, 0.036224995, 0.55241036, 0.832785, -0.9046473, -0.33595413, 0.26219893, -0.041726142, 0.69719344, 2.325011)
+
+[node name="pillow02" parent="Medium" instance=ExtResource("4_300ub")]
+transform = Transform3D(1, 0, 0, 0, 0.5310141, -0.847363, 0, 0.847363, 0.5310141, -1.4022025, 0.69149524, -2.0853918)
+
+[node name="pillow03" parent="Medium" instance=ExtResource("4_300ub")]
+transform = Transform3D(0.7637735, 0, -0.6454844, 0, 1, 0, 0.6454844, 0, 0.7637735, -0.6031697, 0.59728837, -1.7051384)
+
+[node name="Node3D2" parent="Medium" instance=ExtResource("3_dbup7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.069526, 0.5972883, -0.34626603)
+
+[node name="robo_Box" parent="Medium" instance=ExtResource("5_ltjp0")]
+transform = Transform3D(-0.3918875, 0, 0.9200132, 0, 1, 0, -0.92001307, 0, -0.3918875, 4.279045, 0.0033374727, -1.448441)
+
+[node name="Vent_cover" parent="Medium" instance=ExtResource("6_ltjp0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8089237, -0.026804212, 4.1401386)
+
+[node name="Pizza_Box4" parent="Medium" instance=ExtResource("1_uygir")]
+transform = Transform3D(0.6055996, 0, -0.7957695, 0, 1, 0, 0.7957695, 0, 0.6055996, -0.9537498, 0.78009284, -4.616455)
+
+[node name="catBowl" parent="Medium" instance=ExtResource("7_71kpc")]
+transform = Transform3D(2.4016035, 0, 2.6480436, 0, 2.4155738, 0, -2.6035953, 0, 2.442603, -4.418231, 0.7800004, -4.7186775)
+
+[node name="Pizza_Slice_2" parent="Medium" instance=ExtResource("8_8vcyt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1420937, 0.78000015, -6.9323025)
+
+[node name="pizzaSlice5" parent="Medium" instance=ExtResource("2_i36oc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7368536, 0.7800001, -7.4089484)
+
+[node name="pizzaSlice6" parent="Medium" instance=ExtResource("2_i36oc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.166051, 0.7800005, -4.7766623)
+
+[node name="Pizza_Slice_3" parent="Medium" instance=ExtResource("8_8vcyt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.907868, 0.78000045, -4.525439)
+
+[node name="pillow3" parent="Medium" instance=ExtResource("9_hkvkq")]
+transform = Transform3D(0.46482664, -0.5500259, -0.69383556, 0, 0.78363925, -0.6212162, 0.8854017, 0.28875783, 0.3642564, -0.19431373, 0.6075081, 0.7827738)
+
+[node name="pillow4" parent="Medium" instance=ExtResource("9_hkvkq")]
+transform = Transform3D(0.74205774, 0.67033595, 0, -0.67033595, 0.74205774, 0, 0, 0, 1, -4.0199533, 0.6474515, -1.0392116)
+
+[node name="Vent_cover2" parent="Medium" instance=ExtResource("6_ltjp0")]
+transform = Transform3D(-0.034219183, 0, 0.9994143, 0, 1, 0, -0.9994143, 0, -0.034219183, -3.488356, 2.6661456, -7.6864877)
+
+[node name="Vent_cover3" parent="Medium" instance=ExtResource("6_ltjp0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7964253, 2.6710422, -4.502132)
+
+[node name="Vent_cover4" parent="Medium" instance=ExtResource("6_ltjp0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.710357, -0.022580214, 4.138958)
+
+[node name="Plate" parent="Medium" instance=ExtResource("11_hsk1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.76048, 0.78000045, -7.209025)
+
+[node name="Plate2" parent="Medium" instance=ExtResource("11_hsk1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4920018, 0.88315696, -5.609689)
+
+[node name="Plate3" parent="Medium" instance=ExtResource("11_hsk1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.942137, 0.5699998, 1.0534232)
+
+[node name="Mug" parent="Medium" instance=ExtResource("10_gloqb")]
+transform = Transform3D(0.00353499, -1.6999955, 0.0021791912, 1.4413098, 0.0041526277, 0.9014485, -0.90145093, -2.6878486e-05, 1.4413143, 1.1681021, 0.95259625, -5.1828156)
+
+[node name="Mug2" parent="Medium" instance=ExtResource("10_gloqb")]
+transform = Transform3D(-0.8358613, -0.003290704, 1.8169547, -0.004885517, 1.9999936, 0.0013747, -1.8169514, -0.0038638504, -0.8358666, 4.348589, 4.0365734, -5.9141827)
+
+[node name="Mug4" parent="Medium" instance=ExtResource("10_gloqb")]
+transform = Transform3D(1.6999953, 0.0041527064, -2.4079658e-05, -0.0041526896, 1.6999947, 0.0011684953, 2.6918002e-05, -0.0011684354, 1.6999993, -1.890295, 0.5768419, -0.019476175)
+
+[node name="Mug3" parent="Medium" instance=ExtResource("10_gloqb")]
+transform = Transform3D(-1.461672, 0.0041527073, 0.86804324, 0.002973915, 1.6999948, -0.0031250673, -0.86804795, -0.0011684357, -1.4616745, -3.4323575, 0.7875034, -4.539677)
+
+[node name="Mug5" parent="Medium" instance=ExtResource("10_gloqb")]
+transform = Transform3D(0.63479584, 0.002634636, -1.5770311, -0.0041526896, 1.6999947, 0.001168495, 1.5770283, 0.003415978, 0.6347999, 0.6077453, 0.7118847, 1.7935014)
+
+[node name="Plate4" parent="Medium" instance=ExtResource("11_hsk1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.163666, 4.048627, -5.6034536)
+
+[node name="pizzaSlice7" parent="Medium" instance=ExtResource("2_i36oc")]
+transform = Transform3D(-0.4527927, 0, -0.8916158, 0, 1, 0, 0.8916158, 0, -0.4527927, 4.1729674, 4.0657043, -5.604167)
+
+[node name="Plate5" parent="Medium" instance=ExtResource("11_hsk1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5713654, 0.7099997, -0.9863577)
+
+[node name="Pizza_Slice_4" parent="Medium" instance=ExtResource("8_8vcyt")]
+transform = Transform3D(0.988073, 0, -0.15398613, 0, 1, 0, 0.15398613, 0, 0.988073, 0.5857589, 0.71922874, -1.0974144)
+
+[node name="Pizza_Slice_5" parent="Medium" instance=ExtResource("8_8vcyt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.99709594, 0.61486554, -4.7224994)
+
+[node name="pizzaSlice8" parent="Medium" instance=ExtResource("2_i36oc")]
+transform = Transform3D(0.4023473, 0, 0.9154871, 0, 1, 0, -0.9154871, 0, 0.4023473, 3.8387163, 3.0876536, -5.7238603)
+
+[node name="Plate6" parent="Medium" instance=ExtResource("11_hsk1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8647919, 3.366136e-07, -5.485167)
+
+[node name="Mug6" parent="Medium" instance=ExtResource("10_gloqb")]
+transform = Transform3D(-0.40606958, 1.4994242, 0.69053304, 1.4455209, -0.020454308, 0.894456, 0.79723126, 0.80081815, -1.2700837, -3.217263, 0.07024979, -6.794401)
+
+[node name="Mug7" parent="Medium" instance=ExtResource("10_gloqb")]
+transform = Transform3D(-1.039244, 0, -1.3453523, 0, 1.7000003, 0, 1.3453523, 0, -1.039244, 3.5341802, 0.77, -0.5912893)
+
+[node name="Mug8" parent="Medium" instance=ExtResource("10_gloqb")]
+transform = Transform3D(-0.44368842, 0, 1.6410794, 0, 1.7000003, 0, -1.6410794, 0, -0.44368842, 4.1993604, 0.81000006, 2.7771802)
+
+[node name="robo_Box2" parent="Medium" instance=ExtResource("5_ltjp0")]
+transform = Transform3D(-0.07413731, 0.9937211, -0.083797015, 0.74895585, -1.3065627e-08, -0.66262007, -0.6584596, -0.111885116, -0.7442532, -4.5644035, 3.3560565, -4.188839)
+
+[node name="copptorHat" parent="Medium" instance=ExtResource("12_hsk1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5543188, 0.88098013, -4.9580903)
+
+[node name="Pizza_Box5" parent="Medium" instance=ExtResource("1_uygir")]
+transform = Transform3D(0.4561352, 0, 0.8899105, 0, 1, 0, -0.8899105, 0, 0.4561352, -2.0884044, 3.614233, -6.2302346)
+
+[node name="pizzaSlice9" parent="Medium" instance=ExtResource("2_i36oc")]
+transform = Transform3D(0.594472, 0, -0.8041163, 0, 1, 0, 0.8041163, 0, 0.594472, -1.5811349, 3.6179857, -6.037833)
+
+[node name="Pizza_Slice_6" parent="Medium" instance=ExtResource("8_8vcyt")]
+transform = Transform3D(-0.2421251, 0, 0.97024506, 0, 1, 0, -0.97024506, 0, -0.2421251, -1.2540102, 3.6055884, -6.2899036)
+
+[node name="pizzaSlice10" parent="Medium" instance=ExtResource("2_i36oc")]
+transform = Transform3D(0.63656294, 0, -0.77122474, 0, 1, 0, 0.77122474, 0, 0.63656294, 1.4130218, 3.0840945, -7.1607423)
+
+[node name="pizzaSlice11" parent="Medium" instance=ExtResource("2_i36oc")]
+transform = Transform3D(-0.8153299, 0, 0.5789967, 0, 1, 0, -0.5789967, 0, -0.8153299, -2.0999978, 3.0851068, -6.336777)
+
+[node name="pizzaSlice12" parent="Medium" instance=ExtResource("2_i36oc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.372623, 3.085454, -6.9403505)
+
+[node name="pizzaSlice13" parent="Medium" instance=ExtResource("2_i36oc")]
+transform = Transform3D(0.9236322, 0, 0.38327995, 0, 1, 0, -0.38327995, 0, 0.9236322, -1.4823052, 0.0035459718, -2.2712858)
+
+[node name="Pizza_Slice_8" parent="Medium" instance=ExtResource("8_8vcyt")]
+transform = Transform3D(0.5567886, 0, -0.8306542, 0, 1, 0, 0.8306542, 0, 0.5567886, -0.21009435, 0.003479043, -0.9035038)
+
+[node name="Pizza_Slice_9" parent="Medium" instance=ExtResource("8_8vcyt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26952916, -7.311311e-08, 1.2266344)
+
+[node name="pizzaSlice14" parent="Medium" instance=ExtResource("2_i36oc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1797748, 0.002136377, 3.5648465)
+
+[node name="Mug9" parent="Medium" instance=ExtResource("10_gloqb")]
+transform = Transform3D(1.4727031, 0, -0.8492034, 0, 1.7000003, 0, 0.8492034, 0, 1.4727031, -3.9846184, -1.1338144e-07, 1.5250298)
+
+[node name="Mug10" parent="Medium" instance=ExtResource("10_gloqb")]
+transform = Transform3D(-0.8803922, 0, -1.4542732, 0, 1.7000003, 0, 1.4542732, 0, -0.8803922, -4.250817, -4.1752998e-08, 1.2614832)
+
+[node name="Plate7" parent="Medium" instance=ExtResource("11_hsk1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9797435, -4.5581164e-08, 1.1693544)
+
+[node name="Mug11" parent="Medium" instance=ExtResource("10_gloqb")]
+transform = Transform3D(-0.1360721, 0, 1.6945457, 0, 1.7000003, 0, -1.6945457, 0, -0.1360721, -2.1584632, 0.25999987, 1.2470878)
+
+[node name="Mug12" parent="Medium" instance=ExtResource("10_gloqb")]
+transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, -3.6010368, 0.6124097, -1.1876518)
+
+[node name="pizzaSlice15" parent="Medium" instance=ExtResource("2_i36oc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5051284, 0.6205198, -3.8132331)
+
+[node name="Pizza_Slice_10" parent="Medium" instance=ExtResource("8_8vcyt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2686136, 0.0033122138, 2.2749066)
+
+[node name="Plate8" parent="Medium" instance=ExtResource("11_hsk1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7996136, -2.278067e-07, 1.5540397)
+
+[node name="Pizza_Slice_11" parent="Medium" instance=ExtResource("8_8vcyt")]
+transform = Transform3D(0.91208434, 0, -0.41000262, 0, 1, 0, 0.41000262, 0, 0.91208434, 0.8288127, 8.990429e-05, 2.0170588)
+
+[node name="pizzaSlice16" parent="Medium" instance=ExtResource("2_i36oc")]
+transform = Transform3D(0.83530873, 0, -0.54978114, 0, 1, 0, 0.54978114, 0, 0.83530873, -1.7420108, 0.0023839474, 4.0872483)
+
+[node name="Mug13" parent="Medium" instance=ExtResource("10_gloqb")]
+transform = Transform3D(-0.5341959, -0.42771405, 1.5561802, 1.607903, -7.028367e-08, 0.55195093, -0.13886882, 1.6453153, 0.40454268, -2.1833491, 0.06917257, -1.8545098)
+
+[node name="Pizza_Slice_12" parent="Medium" instance=ExtResource("8_8vcyt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4884977, 2.3908079, -7.363879)
+
+[node name="pizzaSlice17" parent="Medium" instance=ExtResource("2_i36oc")]
+transform = Transform3D(0.020052476, 0, -0.99979895, 0, 1, 0, 0.99979895, 0, 0.020052476, -4.4365625, 2.5722694, -7.262207)
+
+[node name="Pizza_Slice_13" parent="Medium" instance=ExtResource("8_8vcyt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5053265, 2.5724432, -7.651362)
+
+[node name="pizzaSlice18" parent="Medium" instance=ExtResource("2_i36oc")]
+transform = Transform3D(0.5806888, 0, -0.81412566, 0, 1, 0, 0.81412566, 0, 0.5806888, -0.5385484, 0.0038125517, -3.2239327)
+
+[node name="Pizza_Slice_14" parent="Medium" instance=ExtResource("8_8vcyt")]
+transform = Transform3D(0.19916269, 0, 0.97996646, 0, 1, 0, -0.97996646, 0, 0.19916269, -2.1419096, 0.002842003, -3.147604)
+
+[node name="Mug14" parent="Medium" instance=ExtResource("10_gloqb")]
+transform = Transform3D(1.0056572, 0, 1.3706402, 0, 1.7, 0, -1.3706402, 0, 1.0056572, 4.5703616, 0.77, -0.496794)
+
+[node name="Mug15" parent="Medium" instance=ExtResource("10_gloqb")]
+transform = Transform3D(-0.2852329, 0, 1.6759006, 0, 1.7000003, 0, -1.6759006, 0, -0.2852329, 4.6311474, 0.51399994, -0.12669408)
+
+[node name="Plate9" parent="Medium" instance=ExtResource("11_hsk1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5142975, 1.282, -1.236494)
+
+[node name="pizzaSlice19" parent="Medium" instance=ExtResource("2_i36oc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4964137, 1.2875593, -1.2470471)
+
+[node name="Pizza_Slice_15" parent="Medium" instance=ExtResource("8_8vcyt")]
+transform = Transform3D(0.7004734, 0, -0.7136785, 0, 1, 0, 0.7136785, 0, 0.7004734, 3.714095, 1.0284252, -1.0241543)
+
+[node name="Pizza_Slice_16" parent="Medium" instance=ExtResource("8_8vcyt")]
+transform = Transform3D(-0.99893624, 0, 0.04611277, 0, 1, 0, -0.04611277, 0, -0.99893624, 4.4476495, 2.5619996, -2.79056)
+
+[node name="Plate10" parent="Medium" instance=ExtResource("11_hsk1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1258316, 4.3099346, -6.673377)
+
+[node name="pizzaSlice20" parent="Medium" instance=ExtResource("2_i36oc")]
+transform = Transform3D(-0.8030152, 0, -0.5959586, 0, 1, 0, 0.5959586, 0, -0.8030152, -4.109691, 4.320113, -6.660491)
+
+[node name="Mug16" parent="Medium" instance=ExtResource("10_gloqb")]
+transform = Transform3D(-1.3871255, 0, 0.9827941, 0, 1.7000005, 0, -0.9827941, 0, -1.3871255, -0.4572964, 3.706672, -7.172766)
+
+[node name="roomba_v2_EVIL" parent="Medium" instance=ExtResource("13_sadmy")]
+transform = Transform3D(-1.3616098e-07, 0, 3.115, 0, 3.115, 0, -3.115, 0, -1.3616098e-07, 8.934905, 0.00031680614, 1.1132288)
+
+[node name="CoppterHat_v1" parent="Medium" instance=ExtResource("14_kes2h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.934593, 0.2931795, 1.1148183)
+
+[node name="REF_ONLY_DELETE_AFTER" type="Node3D" parent="."]
+
+[node name="RoomWallsT01" parent="REF_ONLY_DELETE_AFTER" instance=ExtResource("10_8vcyt")]
+
+[node name="FurnitureLayout01" parent="REF_ONLY_DELETE_AFTER" instance=ExtResource("11_hkvkq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0031676292, 0, 0.0017291307)
