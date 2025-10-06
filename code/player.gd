@@ -1,8 +1,11 @@
 class_name RoboVac extends CharacterBody3D
 
+@onready var art: Node3D = %Art
+@onready var cat_hat: MeshInstance3D = %Cat_Hat
+
+
 # Base Stats (Unmodified during game)
 @export var base_stats := PlayerBaseStats.new()
-@onready var art: Node3D = %Art
 
 # Current Stats (Modified during game)
 var vacuum_radius: float
@@ -55,6 +58,8 @@ signal exit_dock(player: RoboVac, dock: Dock)
 signal upgrades_changed(player: RoboVac)
 signal stats_changed(player: RoboVac)
 signal sleep_changed(player: RoboVac, sleeping: bool)
+signal pickup_static(player: RoboVac, coll: StaticBodyGamePiece)
+signal pickup_special(player: RoboVac, coll: StaticBodyGamePiece)
 
 
 func _ready() -> void:
@@ -267,6 +272,24 @@ func _physics_process(delta: float) -> void:
 	
 	# Do physics.
 	move_and_slide()
+	
+	# Cheats
+	if Input.is_key_pressed(KEY_PAGEUP):
+		stored_dust += 100000
+	
+	for i in range(get_slide_collision_count()):
+		var collision := get_slide_collision(i)
+		var collider := collision.get_collider()
+		if collider is StaticBodyGamePiece:
+			var sbgp := collider as StaticBodyGamePiece
+			if sbgp.is_queued_for_deletion(): continue
+			if (sbgp.size_class == 0) or \
+				(sbgp.size_class == 1 and upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Stuff_Collector_I)) or \
+				(sbgp.size_class == 2 and upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Stuff_Collector_II)) or \
+				(sbgp.size_class == 3 and upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Stuff_Pulveriser)):
+					sbgp.queue_free()
+					pickup_static.emit(self, sbgp)
+					do_special_pickups(sbgp)
 
 
 func can_open_dock() -> bool:
@@ -306,3 +329,10 @@ func notify_enter_dock(dock: Dock):
 func notify_exit_dock(dock: Dock):
 	current_dock = null
 	exit_dock.emit(self, dock)
+
+
+func do_special_pickups(sbgp: StaticBodyGamePiece):
+	print("Special pickup?")
+	if sbgp.name == "CatRoll":
+		pickup_special.emit(self, sbgp.name)
+		cat_hat.visible = true
