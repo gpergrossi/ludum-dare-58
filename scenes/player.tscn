@@ -1,10 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://cr3833ido0so1"]
+[gd_scene load_steps=13 format=4 uid="uid://cr3833ido0so1"]
 
 [ext_resource type="Script" uid="uid://bsv40w867i0ye" path="res://code/player.gd" id="1_3vyb7"]
 [ext_resource type="PackedScene" uid="uid://b83kwtu40niyg" path="res://scenes/HERO_character/roomba_v2.glb" id="2_g2els"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_sgp6g"]
-height = 0.08104736
+height = 0.08416702
 radius = 0.203125
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g2els"]
@@ -108,13 +108,30 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_mjy5y")
 
-[node name="Player" type="CharacterBody3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qhqgy"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="TorusMesh" id="TorusMesh_dqkch"]
+material = SubResource("StandardMaterial3D_qhqgy")
+inner_radius = 0.122
+outer_radius = 0.148
+rings = 32
+ring_segments = 8
+
+[sub_resource type="Gradient" id="Gradient_qlg0r"]
+offsets = PackedFloat32Array(0, 0.32258064, 0.7311828, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("animations")]
 collision_layer = 4
 collision_mask = 11
 script = ExtResource("1_3vyb7")
+animations = NodePath("Art/roomba_v2/AnimationPlayer")
 
 [node name="ColliderMainBody" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.079874635, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.081434466, 0)
 shape = SubResource("CylinderShape3D_sgp6g")
 
 [node name="ColliderBackLeftWheel" type="CollisionShape3D" parent="."]
@@ -146,14 +163,60 @@ unique_name_in_owner = true
 [node name="roomba_v2" parent="Art" instance=ExtResource("2_g2els")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
+[node name="Skeleton3D" parent="Art/roomba_v2/Robo_armature" index="0"]
+bones/1/position = Vector3(0.0002629717, 0.05853645, -0.20308107)
+bones/1/rotation = Quaternion(-0.00022884415, 0.7075859, 0.7066273, 0.00022915028)
+bones/2/position = Vector3(-0.14067358, 0.06965083, -0.05017661)
+bones/2/rotation = Quaternion(-0.30439422, 0.6380377, 0.638235, -0.30480847)
+bones/3/position = Vector3(0.1411091, 0.06983332, -0.050176848)
+bones/3/rotation = Quaternion(-0.30439433, 0.6380375, 0.6382351, -0.30480853)
+bones/4/rotation = Quaternion(-0.3043943, 0.6380377, 0.638235, -0.30480853)
+bones/5/rotation = Quaternion(-0.30439427, 0.6380377, 0.638235, -0.30480856)
+
+[node name="Cleaner_L" parent="Art/roomba_v2/Robo_armature/Skeleton3D" index="0"]
+transform = Transform3D(0.6293752, -0.0006480141, 0.7771009, -0.0006454783, 0.9999988, 0.0013566321, -0.7771013, -0.0013555315, 0.6293744, 0.14089136, 0.008454304, -0.13327116)
+
+[node name="Cleaner_R" parent="Art/roomba_v2/Robo_armature/Skeleton3D" index="1"]
+transform = Transform3D(0.6293751, -0.0006481331, 0.7771011, -0.00064571697, 0.99999905, 0.0013569894, -0.7771014, -0.0013559491, 0.6293742, -0.14089134, 0.008454312, -0.13327119)
+
 [node name="Boosters_2" parent="Art/roomba_v2/Robo_armature/Skeleton3D" index="2"]
+transform = Transform3D(0.629375, -0.0006479844, 0.77710104, -0.00064550823, 0.99999887, 0.001356632, -0.77710134, -0.0013554719, 0.62937427, 2.910383e-11, 0.08452505, 4.4703484e-08)
 visible = false
 
-[node name="Cat_Hat" type="MeshInstance3D" parent="Art"]
+[node name="BodyCore" parent="Art/roomba_v2/Robo_armature/Skeleton3D" index="3"]
+transform = Transform3D(-0.99999964, -0.0006477016, 8.7195076e-07, -6.0826997e-09, 0.0013555888, 0.9999991, -0.00064770196, 0.9999991, -0.001355648, 0.0002629717, 0.05853645, -0.20308107)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Art/roomba_v2/Robo_armature/Skeleton3D/BodyCore" index="8"]
+remote_path = NodePath("../../../../../BodyAttached")
+
+[node name="BodyAttached" type="Node3D" parent="Art"]
+transform = Transform3D(0.99999964, 0.0006476142, -8.7183224e-07, -6.0826997e-09, 0.0013555888, 0.9999991, 0.00064761454, -0.9999991, 0.001355648, -0.00026295395, 0.05853645, 0.20308107)
+
+[node name="Node3D" type="Node3D" parent="Art/BodyAttached"]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.0017452986, -0.99999845, 0, 0.99999845, 0.0017452986, 1.3413406e-06, 0.20334083, -0.064213164)
+
+[node name="Cat_Hat" type="MeshInstance3D" parent="Art/BodyAttached/Node3D"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0094328495, 0.15341416, -0.0038421869)
+transform = Transform3D(1.0000001, 0, -5.684342e-14, 0, 1, -1.1641532e-10, 0, 1.1641532e-10, 1, -0.0094328495, 0.15341417, -0.00384219)
 visible = false
 mesh = SubResource("ArrayMesh_g2els")
 skeleton = NodePath("")
+
+[node name="RingParticles" type="CPUParticles3D" parent="Art/BodyAttached/Node3D"]
+unique_name_in_owner = true
+transform = Transform3D(1.0000001, 0, -5.684342e-14, 0, 1, -1.1641532e-10, 0, 1.1641532e-10, 1, -1.4551915e-11, 0.03734064, 0)
+emitting = false
+amount = 2
+lifetime = 0.8
+local_coords = true
+draw_order = 1
+mesh = SubResource("TorusMesh_dqkch")
+direction = Vector3(0, -1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.15
+initial_velocity_max = 0.15
+color = Color(0.13313854, 0.36490756, 0.9999886, 1)
+color_ramp = SubResource("Gradient_qlg0r")
 
 [editable path="Art/roomba_v2"]

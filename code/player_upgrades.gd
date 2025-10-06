@@ -261,9 +261,9 @@ func apply_upgrade(upgrade : StringName, player: RoboVac) -> void:
 		Upgrade_Vacuum_Capacity_II:  player.max_dust = player.base_stats.max_dust * 4.0
 		Upgrade_Vacuum_Capacity_III:  player.max_dust = player.base_stats.max_dust * 8.0
 
-		Upgrade_Efficiency_I: player.energy_efficiency = player.base_stats.energy_efficiency * 1.10
-		Upgrade_Efficiency_II: player.energy_efficiency = player.base_stats.energy_efficiency * 1.20
-		Upgrade_Efficiency_III: player.energy_efficiency = player.base_stats.energy_efficiency * 1.25
+		Upgrade_Efficiency_I:  player.energy_efficiency = player.base_stats.energy_efficiency * 1.10
+		Upgrade_Efficiency_II:  player.energy_efficiency = player.base_stats.energy_efficiency * 1.20
+		Upgrade_Efficiency_III:  player.energy_efficiency = player.base_stats.energy_efficiency * 1.25
 
 		Upgrade_Carpet_Speed: return
 		Upgrade_Cat_Speed: return
@@ -275,11 +275,11 @@ func apply_upgrade(upgrade : StringName, player: RoboVac) -> void:
 
 		Upgrade_Dash: return
 		Upgrade_Jump: return
-		Upgrade_Double_Jump: return
+		Upgrade_Double_Jump:  player.max_air_jumps = 1
 		Upgrade_Quick_Turn: return
 		
 		Upgrade_Helicopter: return
 		Upgrade_Jetpack: return
 		
-		Upgrade_Generator: player.energy_regen = 1.0
+		Upgrade_Generator: player.energy_regen = 2.0
 		Upgrade_Teleport: return

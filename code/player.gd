@@ -3,10 +3,15 @@ class_name RoboVac extends CharacterBody3D
 @onready var art: Node3D = %Art
 @onready var cat_hat: MeshInstance3D = %Cat_Hat
 @onready var main_camera: Camera3D = %"Main Camera"
+@onready var ring_particles: CPUParticles3D = %RingParticles
+
+const DIALOG_COOLDOWN_MAX := 10.0
 
 
 # Base Stats (Unmodified during game)
-@export var base_stats := PlayerBaseStats.new()
+var base_stats := PlayerBaseStats.new()
+
+@export var animations: AnimationPlayer
 
 # Current Stats (Modified during game)
 var vacuum_radius: float
@@ -24,6 +29,7 @@ var jump_cost: float          # One time cost
 var fly_cost_rate: float      # Charge per second at max input (in addition to move cost)
 var energy_efficiency: float
 var energy_regen: float
+var max_air_jumps: int
 
 var upgrades := PlayerUpgrades.new()
 
@@ -38,6 +44,10 @@ var vertical_velocity := 0.0
 var dash_t := 0.0
 var sample_angle := 0.0
 var last_hit := Time.get_ticks_msec()
+var last_position := Vector3.ZERO
+var not_moving_time := 0.0
+var frustration_time_plus := 0.0
+var frustration_time_minus := 0.0
 
 # Runtime respawn might reset
 var dead := false
@@ -48,6 +58,9 @@ var current_dust := 0.0
 var stored_dust := 0.0
 var just_spawned := false
 var current_dock: Dock = null
+var air_jumps_used := 0
+var dialog_cooldown := 0.0
+var is_flying := false
 
 signal charge_changed(current: float, max: float)
 signal dust_changed(current: float, capacity: float)
@@ -61,6 +74,9 @@ signal stats_changed(player: RoboVac)
 signal sleep_changed(player: RoboVac, sleeping: bool)
 signal pickup_static(player: RoboVac, coll: StaticBodyGamePiece)
 signal pickup_special(player: RoboVac, coll: StaticBodyGamePiece)
+signal player_is_stuck(player: RoboVac)
+signal player_is_out_of_bounds(player: RoboVac)
+signal player_home_dialog(player: RoboVac)
 
 
 func _ready() -> void:
@@ -69,7 +85,7 @@ func _ready() -> void:
 	respawn_transform = transform
 	current_dust = 0.0
 	current_charge = max_charge
-	respawn(false, true)
+	respawn(0.0, false, true)
 
 
 func exp_decay(a: float, b: float, decay: float, dt: float) -> float:
@@ -83,23 +99,26 @@ func go_to_sleep() -> void:
 
 func wake_up() -> void:
 	sleeping = false
-	respawn(false, false)
+	respawn(0.0, true, false)
 	sleep_changed.emit(self, false)
 
 
-func respawn(lose_half_dust := false, reset_storage := false) -> void:
+func respawn(penalty := 0.0, suppress_shop := true, reset_storage := false) -> void:
 	current_dock = null
+	air_jumps_used = 0
+	dialog_cooldown = 0.0
+	is_flying = false
 	transform = Transform3D(respawn_transform.basis, respawn_transform.origin + Vector3.UP * 0.1)
 	dead = false
 	dash_timer = 0.0
 	current_charge = max_charge
 	charge_changed.emit(current_charge, max_charge)
-	just_spawned = true # Block UI when just spawned
-	if lose_half_dust:
-		LevelManager.lost_dust += current_dust * 0.5
-		current_dust *= 0.5
+	just_spawned = suppress_shop # Block UI when just spawned
+	if penalty > 0.0:
+		var penalty_dust := clampi(floori(penalty * current_dust), 0, current_dust)
+		LevelManager.lost_dust += penalty_dust
+		current_dust -= penalty_dust
 		dust_changed.emit(current_dust, max_dust)
-		just_spawned = false # Show UI when you die and respawn
 	if reset_storage:
 		stored_dust = 0
 		current_dust = 0
@@ -122,6 +141,7 @@ func reset_stats() -> void:
 	fly_cost_rate = base_stats.fly_cost_rate
 	energy_efficiency = base_stats.energy_efficiency
 	energy_regen = base_stats.energy_regen
+	max_air_jumps = base_stats.max_air_jumps
 	stats_changed.emit()
 
 
@@ -179,6 +199,21 @@ func _physics_process(delta: float) -> void:
 			#var tip_angle := up.signed_angle_to(new_up, tip_axis)
 			#art.global_basis = art.global_basis.rotated(tip_axis, tip_angle * 0.05)
 	
+	if Input.is_action_just_pressed("home") and upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Teleport):
+		player_home_dialog.emit(self)
+	
+	var estimate_velocity := (position - last_position).length() / delta
+	last_position = position
+	if estimate_velocity < 0.1:
+		print("not moving")
+		not_moving_time += delta
+	else:
+		not_moving_time = 0.0
+		frustration_time_plus = 0.0
+		frustration_time_minus = 0.0
+	
+	dialog_cooldown = move_toward(dialog_cooldown, 0.0, delta)
+	
 	var query := PhysicsRayQueryParameters3D.create(main_camera.global_position, global_position)
 	query.hit_from_inside = true
 	query.hit_back_faces = true
@@ -186,13 +221,12 @@ func _physics_process(delta: float) -> void:
 	var result := space_state.intersect_ray(query)
 	if result:
 		if result.collider is CameraHide:
-			print("Obscure!")
 			var ch := result.collider as CameraHide
 			ch.do_hide()
 	
 	var old_charge := current_charge
 	
-	current_charge += delta * energy_regen
+	current_charge = move_toward(current_charge, max_charge, delta * energy_regen)
 	
 	if current_charge <= 0.0 and not dead and energy_regen == 0.0:
 		dead = true
@@ -235,20 +269,66 @@ func _physics_process(delta: float) -> void:
 		input_move = signf(input_move) * minf(max_input_move, absf(input_move))
 		walk_velocity = forward2d * input_move * move_speed
 		
+		if absf(input_move) > 0.5 and not_moving_time > 0.5:
+			if input_move > 0.5:
+				frustration_time_plus += delta
+			else:
+				frustration_time_minus += delta
+			if frustration_time_plus > 1.0 and frustration_time_minus > 1.0 and dialog_cooldown <= 0.0:
+				player_is_stuck.emit(self)
+				dialog_cooldown = DIALOG_COOLDOWN_MAX
+		
 		# Handle move charge drain
 		current_charge -= absf(input_move) * (move_cost_rate / energy_efficiency) * delta
 	
 	# Add the gravity.
 	if not is_on_floor():
-		vertical_velocity -= GRAVITY * delta
+		# Handle flying
+		var ascent_speed := 0.0
+		var ascent_accel := 1.0
+		
+		if upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Helicopter):
+			ascent_speed = 0.1
+			ascent_accel = 1.0
+		
+		if upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Jetpack):
+			ascent_speed = 1.0
+			ascent_accel = 4.0
+		
+		if ascent_speed > 0.0 and Input.is_action_pressed("jump") and vertical_velocity < ascent_speed:
+			var fly := minf(1.0, current_charge / ((fly_cost_rate / energy_efficiency) * delta))
+			vertical_velocity = move_toward(vertical_velocity, ascent_speed, ascent_accel * fly * delta)
+			current_charge -= fly * (fly_cost_rate / energy_efficiency) * delta
+			is_flying = true
+		else:
+			# Regular gravity
+			vertical_velocity -= GRAVITY * delta
+			is_flying = false
+	else:
+			is_flying = false
+	
+	ring_particles.emitting = is_flying
 	
 	if not sleeping:
 		# Handle jump.
+		if is_on_floor():
+			air_jumps_used = 0
+		
 		if upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Jump):
-			if Input.is_action_just_pressed("jump") and is_on_floor() and current_charge > (jump_cost / energy_efficiency):
-				print("Jump")
-				current_charge -= (jump_cost / energy_efficiency)
-				vertical_velocity = jump_speed
+			if Input.is_action_just_pressed("jump") and current_charge > (jump_cost / energy_efficiency):
+				print("try jump. " + ("on ground" if is_on_floor() else (str(air_jumps_used) + "/" + str(max_air_jumps) + " used")))
+				if is_on_floor() or air_jumps_used < max_air_jumps:
+					current_charge -= (jump_cost / energy_efficiency)
+					vertical_velocity += jump_speed
+					if not is_on_floor(): 
+						air_jumps_used += 1
+						animations.play("Double_Jump")
+					else:
+						animations.play("Jump_ani")
+	
+		if is_on_floor():
+			if not animations.is_playing():
+				animations.play("Walk_ani")
 	
 		# Handle dash.
 		if dash_timer <= 0.0:
@@ -289,6 +369,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_PAGEUP):
 		stored_dust += 100000
 	
+	# Pick up medium and large objects
 	for i in range(get_slide_collision_count()):
 		var collision := get_slide_collision(i)
 		var collider := collision.get_collider()
@@ -299,9 +380,19 @@ func _physics_process(delta: float) -> void:
 				(sbgp.size_class == 1 and upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Stuff_Collector_I)) or \
 				(sbgp.size_class == 2 and upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Stuff_Collector_II)) or \
 				(sbgp.size_class == 3 and upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Stuff_Pulveriser)):
+					var pay := 1
+					match sbgp.size_class:
+						1: pay = 15
+						2: pay = 50
+						3: pay = 350 
+					on_dust_collected(null, pay)
 					sbgp.queue_free()
 					pickup_static.emit(self, sbgp)
 					do_special_pickups(sbgp)
+		
+		if collider.name == "OutOfBounds" and dialog_cooldown <= 0.0:
+			player_is_out_of_bounds.emit(self)
+			dialog_cooldown = DIALOG_COOLDOWN_MAX
 
 
 func can_open_dock() -> bool:
