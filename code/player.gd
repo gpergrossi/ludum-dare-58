@@ -2,6 +2,7 @@ class_name RoboVac extends CharacterBody3D
 
 @onready var art: Node3D = %Art
 @onready var cat_hat: MeshInstance3D = %Cat_Hat
+@onready var main_camera: Camera3D = %"Main Camera"
 
 
 # Base Stats (Unmodified during game)
@@ -136,47 +137,58 @@ func do_upgrades_changed() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var time := Time.get_ticks_msec()
+	#var time := Time.get_ticks_msec()
+	#
+	#var up := global_basis.y
+	#var new_up := global_basis.y
+	#
+	#sample_angle += deg_to_rad(120)
+	#var sample_offset := global_basis.x.rotated(global_basis.y, sample_angle) * 0.15
+	#var query_a := PhysicsRayQueryParameters3D.create(global_position + sample_offset + up * 0.1, global_position + sample_offset - up * 0.25, ~4)
+	#var query_b := PhysicsRayQueryParameters3D.create(global_position - sample_offset + up * 0.1, global_position - sample_offset - up * 0.25, ~4)
+	#query_a.collide_with_areas = false
+	#query_a.collide_with_bodies = true
+	#query_a.hit_back_faces = false
+	#query_a.hit_from_inside = false
+	#query_b.collide_with_areas = false
+	#query_b.collide_with_bodies = true
+	#query_b.hit_back_faces = false
+	#query_b.hit_from_inside = false
+	#
+	#var space_state := get_world_3d().direct_space_state
+	#var result_a := space_state.intersect_ray(query_a)
+	#var result_b := space_state.intersect_ray(query_b)
+	#
+	#if result_a and result_b:
+		#var pos_a: Vector3 = result_a.position
+		#var pos_b: Vector3 = result_b.position
+		#var ray := (pos_a - pos_b).normalized()
+		#var perp_axis := sample_offset.rotated(global_basis.y, 0.5 * PI)
+		#new_up = ray.cross(perp_axis)
+		#if new_up.is_zero_approx():  new_up = Vector3.UP
+		#else:  new_up = new_up.normalized()
+		#last_hit = time
+	#
+	#art.basis = Basis()
+	#if (time - last_hit) > 500:
+		#new_up = Vector3.UP
+	#if new_up.dot(Vector3.UP) > cos(deg_to_rad(50)):
+		#var tip_axis := up.cross(new_up)
+		#if not tip_axis.is_zero_approx():
+			#tip_axis = tip_axis.normalized()
+			#var tip_angle := up.signed_angle_to(new_up, tip_axis)
+			#art.global_basis = art.global_basis.rotated(tip_axis, tip_angle * 0.05)
 	
-	var up := global_basis.y
-	var new_up := global_basis.y
-	
-	sample_angle += deg_to_rad(120)
-	var sample_offset := global_basis.x.rotated(global_basis.y, sample_angle) * 0.15
-	var query_a := PhysicsRayQueryParameters3D.create(global_position + sample_offset + up * 0.1, global_position + sample_offset - up * 0.25, ~4)
-	var query_b := PhysicsRayQueryParameters3D.create(global_position - sample_offset + up * 0.1, global_position - sample_offset - up * 0.25, ~4)
-	query_a.collide_with_areas = false
-	query_a.collide_with_bodies = true
-	query_a.hit_back_faces = false
-	query_a.hit_from_inside = false
-	query_b.collide_with_areas = false
-	query_b.collide_with_bodies = true
-	query_b.hit_back_faces = false
-	query_b.hit_from_inside = false
-	
+	var query := PhysicsRayQueryParameters3D.create(main_camera.global_position, global_position)
+	query.hit_from_inside = true
+	query.hit_back_faces = true
 	var space_state := get_world_3d().direct_space_state
-	var result_a := space_state.intersect_ray(query_a)
-	var result_b := space_state.intersect_ray(query_b)
-	
-	if result_a and result_b:
-		var pos_a: Vector3 = result_a.position
-		var pos_b: Vector3 = result_b.position
-		var ray := (pos_a - pos_b).normalized()
-		var perp_axis := sample_offset.rotated(global_basis.y, 0.5 * PI)
-		new_up = ray.cross(perp_axis)
-		if new_up.is_zero_approx():  new_up = Vector3.UP
-		else:  new_up = new_up.normalized()
-		last_hit = time
-	
-	art.basis = Basis()
-	if (time - last_hit) > 500:
-		new_up = Vector3.UP
-	if new_up.dot(Vector3.UP) > cos(deg_to_rad(50)):
-		var tip_axis := up.cross(new_up)
-		if not tip_axis.is_zero_approx():
-			tip_axis = tip_axis.normalized()
-			var tip_angle := up.signed_angle_to(new_up, tip_axis)
-			art.global_basis = art.global_basis.rotated(tip_axis, tip_angle * 0.05)
+	var result := space_state.intersect_ray(query)
+	if result:
+		if result.collider is CameraHide:
+			print("Obscure!")
+			var ch := result.collider as CameraHide
+			ch.do_hide()
 	
 	var old_charge := current_charge
 	
