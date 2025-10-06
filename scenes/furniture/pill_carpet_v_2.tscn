@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://t3mg5di4r7g5"]
+
+[ext_resource type="PackedScene" uid="uid://d4p0ghrh4jsw" path="res://scenes/FBX_imports/GLBS/pillCarpet_v2.glb" id="1_ou8xy"]
+
+[node name="PillCarpet_v2" type="Node3D"]
+
+[node name="pillCarpet_v2" parent="." instance=ExtResource("1_ou8xy")]
+
+[editable path="pillCarpet_v2"]
