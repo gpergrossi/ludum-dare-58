@@ -1,4 +1,4 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://bldurlo15sqjv"]
+[gd_resource type="StandardMaterial3D" load_steps=0 format=3 uid="uid://bldurlo15sqjv"]
 
 [resource]
 resource_name = "metalDark"

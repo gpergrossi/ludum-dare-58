@@ -53,44 +53,32 @@ func sort_prereqs_first(upgrade_a: StringName, upgrade_b: StringName) -> bool:
 const Upgrade_Speed_I: StringName = "Speed I"
 const Upgrade_Speed_II: StringName = "Speed II"
 const Upgrade_Speed_III: StringName = "Speed III"
-const Upgrade_Speed_IV: StringName = "Speed IV"
-const Upgrade_Speed_V: StringName = "Speed V"
 
 const Upgrade_Turning_I: StringName = "Turning I"
 const Upgrade_Turning_II: StringName = "Turning II"
 const Upgrade_Turning_III: StringName = "Turning III"
-const Upgrade_Turning_IV: StringName = "Turning IV"
-const Upgrade_Turning_V: StringName = "Turning V"
 
 const Upgrade_Battery_I: StringName = "Battery I"
 const Upgrade_Battery_II: StringName = "Battery II"
 const Upgrade_Battery_III: StringName = "Battery III"
-const Upgrade_Battery_IV: StringName = "Battery IV"
-const Upgrade_Battery_V: StringName = "Battery V"
 
-const Upgrade_Vacuum_Radius_I: StringName = "Vacuum Radius I"
-const Upgrade_Vacuum_Radius_II: StringName = "Vacuum Radius II"
-const Upgrade_Vacuum_Radius_III: StringName = "Vacuum Radius III"
-const Upgrade_Vacuum_Radius_IV: StringName = "Vacuum Radius IV"
-const Upgrade_Vacuum_Radius_V: StringName = "Vacuum Radius V"
+const Upgrade_Vacuum_Radius_I: StringName = "Vacuum Power I"
+const Upgrade_Vacuum_Radius_II: StringName = "Vacuum Power II"
+const Upgrade_Vacuum_Radius_III: StringName = "Vacuum Power III"
 
-const Upgrade_Vacuum_Capacity_I: StringName = "Vacuum Capacity I"
-const Upgrade_Vacuum_Capacity_II: StringName = "Vacuum Capacity II"
-const Upgrade_Vacuum_Capacity_III: StringName = "Vacuum Capacity III"
-const Upgrade_Vacuum_Capacity_IV: StringName = "Vacuum Capacity IV"
-const Upgrade_Vacuum_Capacity_V: StringName = "Vacuum Capacity V"
+const Upgrade_Vacuum_Capacity_I: StringName = "Dust Capacity I"
+const Upgrade_Vacuum_Capacity_II: StringName = "Dust Capacity II"
+const Upgrade_Vacuum_Capacity_III: StringName = "Dust Capacity III"
 
 const Upgrade_Efficiency_I: StringName = "Efficiency I"
 const Upgrade_Efficiency_II: StringName = "Efficiency II"
 const Upgrade_Efficiency_III: StringName = "Efficiency III"
-const Upgrade_Efficiency_IV: StringName = "Efficiency IV"
-const Upgrade_Efficiency_V: StringName = "Efficiency V"
 
 const Upgrade_Carpet_Speed: StringName = "Move Faster on Carpets"
 const Upgrade_Cat_Speed: StringName = "Move Faster when Cat"
 const Upgrade_Low_Rider: StringName = "Low Rider"
 const Upgrade_Stuff_Collector_I: StringName = "Vacuum Up Small Objects"
-const Upgrade_Stuff_Collector_II: StringName = "Vacuum Up Large Objects"
+const Upgrade_Stuff_Collector_II: StringName = "Vacuum Up Medium Objects"
 const Upgrade_Stuff_Pulveriser: StringName = "Pulverise Large Furniture"
 
 const Upgrade_Dash: StringName = "Unlock Dash"
@@ -119,8 +107,6 @@ func gen_upgrades_list():
 	all_upgrades.append(Upgrade_Speed_I)
 	all_upgrades.append(Upgrade_Speed_II)
 	all_upgrades.append(Upgrade_Speed_III)
-	all_upgrades.append(Upgrade_Speed_IV)
-	all_upgrades.append(Upgrade_Speed_V)
 
 	all_upgrades.append(Upgrade_Turning_I)
 	all_upgrades.append(Upgrade_Turning_II)
@@ -129,14 +115,10 @@ func gen_upgrades_list():
 	all_upgrades.append(Upgrade_Battery_I)
 	all_upgrades.append(Upgrade_Battery_II)
 	all_upgrades.append(Upgrade_Battery_III)
-	all_upgrades.append(Upgrade_Battery_IV)
-	all_upgrades.append(Upgrade_Battery_V)
 
 	all_upgrades.append(Upgrade_Vacuum_Radius_I)
 	all_upgrades.append(Upgrade_Vacuum_Radius_II)
 	all_upgrades.append(Upgrade_Vacuum_Radius_III)
-	all_upgrades.append(Upgrade_Vacuum_Radius_IV)
-	all_upgrades.append(Upgrade_Vacuum_Radius_V)
 
 	all_upgrades.append(Upgrade_Vacuum_Capacity_I)
 	all_upgrades.append(Upgrade_Vacuum_Capacity_II)
@@ -167,8 +149,6 @@ func get_upgrade_cost(upgrade: StringName) -> int:
 		Upgrade_Speed_I: return 200
 		Upgrade_Speed_II: return 500
 		Upgrade_Speed_III: return 1000
-		Upgrade_Speed_IV: return 2000
-		Upgrade_Speed_V: return 4000
 
 		Upgrade_Turning_I: return 150
 		Upgrade_Turning_II: return 300
@@ -177,29 +157,25 @@ func get_upgrade_cost(upgrade: StringName) -> int:
 		Upgrade_Battery_I: return 500
 		Upgrade_Battery_II: return 1000
 		Upgrade_Battery_III: return 2000
-		Upgrade_Battery_IV: return 4000
-		Upgrade_Battery_V: return 8000
 
 		Upgrade_Vacuum_Radius_I: return 750
 		Upgrade_Vacuum_Radius_II: return 1500
 		Upgrade_Vacuum_Radius_III: return 3000
-		Upgrade_Vacuum_Radius_IV: return 8000
-		Upgrade_Vacuum_Radius_V: return 12000
 
-		Upgrade_Vacuum_Capacity_I: return 1500
-		Upgrade_Vacuum_Capacity_II: return 3000
-		Upgrade_Vacuum_Capacity_III: return 6000
+		Upgrade_Vacuum_Capacity_I: return 1000
+		Upgrade_Vacuum_Capacity_II: return 2000
+		Upgrade_Vacuum_Capacity_III: return 4000
 
-		Upgrade_Efficiency_I: return 4000
-		Upgrade_Efficiency_II: return 8000
-		Upgrade_Efficiency_III: return 16000
+		Upgrade_Efficiency_I: return 2000
+		Upgrade_Efficiency_II: return 4000
+		Upgrade_Efficiency_III: return 8000
 
 		Upgrade_Carpet_Speed: return 750
 		Upgrade_Cat_Speed: return 2500
 		Upgrade_Low_Rider: return 1250
-		Upgrade_Stuff_Collector_I: return 1000
-		Upgrade_Stuff_Collector_II: return 5000
-		Upgrade_Stuff_Pulveriser: return 15000
+		Upgrade_Stuff_Collector_I: return 300
+		Upgrade_Stuff_Collector_II: return 2000
+		Upgrade_Stuff_Pulveriser: return 10000
 
 		Upgrade_Dash: return 500
 		Upgrade_Jump: return 1500
@@ -219,8 +195,6 @@ func get_upgrade_prereqs(upgrade: StringName) -> Array[StringName]:
 		Upgrade_Speed_I: return []
 		Upgrade_Speed_II: return [Upgrade_Speed_I]
 		Upgrade_Speed_III: return [Upgrade_Speed_II]
-		Upgrade_Speed_IV: return [Upgrade_Speed_III]
-		Upgrade_Speed_V: return [Upgrade_Speed_IV]
 
 		Upgrade_Turning_I: return []
 		Upgrade_Turning_II: return [Upgrade_Turning_I]
@@ -229,20 +203,14 @@ func get_upgrade_prereqs(upgrade: StringName) -> Array[StringName]:
 		Upgrade_Battery_I: return []
 		Upgrade_Battery_II: return [Upgrade_Battery_I]
 		Upgrade_Battery_III: return [Upgrade_Battery_II]
-		Upgrade_Battery_IV: return [Upgrade_Battery_III]
-		Upgrade_Battery_V: return [Upgrade_Battery_IV]
 
 		Upgrade_Vacuum_Radius_I: return []
 		Upgrade_Vacuum_Radius_II: return [Upgrade_Vacuum_Radius_I]
 		Upgrade_Vacuum_Radius_III: return [Upgrade_Vacuum_Radius_II]
-		Upgrade_Vacuum_Radius_IV: return [Upgrade_Vacuum_Radius_III]
-		Upgrade_Vacuum_Radius_V: return [Upgrade_Vacuum_Radius_IV]
 
 		Upgrade_Vacuum_Capacity_I: return []
 		Upgrade_Vacuum_Capacity_II: return [Upgrade_Vacuum_Capacity_I]
 		Upgrade_Vacuum_Capacity_III: return [Upgrade_Vacuum_Capacity_II]
-		Upgrade_Vacuum_Capacity_IV: return [Upgrade_Vacuum_Capacity_III]
-		Upgrade_Vacuum_Capacity_V: return [Upgrade_Vacuum_Capacity_IV]
 
 		Upgrade_Efficiency_I: return []
 		Upgrade_Efficiency_II: return [Upgrade_Efficiency_I]
@@ -273,37 +241,29 @@ func get_upgrade_prereqs(upgrade: StringName) -> Array[StringName]:
 
 func apply_upgrade(upgrade : StringName, player: RoboVac) -> void:
 	match upgrade:
-		Upgrade_Speed_I:  player.move_speed = player.base_stats.move_speed * (1.5 ** 1)
-		Upgrade_Speed_II:  player.move_speed = player.base_stats.move_speed * (1.5 ** 2)
-		Upgrade_Speed_III:  player.move_speed = player.base_stats.move_speed * (1.5 ** 3)
-		Upgrade_Speed_IV:  player.move_speed = player.base_stats.move_speed * (1.5 ** 4)
-		Upgrade_Speed_V:  player.move_speed = player.base_stats.move_speed * (1.5 ** 5)
+		Upgrade_Speed_I:  player.move_speed = player.base_stats.move_speed * 1.5
+		Upgrade_Speed_II:  player.move_speed = player.base_stats.move_speed * 1.75
+		Upgrade_Speed_III:  player.move_speed = player.base_stats.move_speed * 2.0
 
-		Upgrade_Turning_I:  player.turn_speed = player.base_stats.move_speed * (1.5 ** 1)
-		Upgrade_Turning_II:  player.turn_speed = player.base_stats.move_speed * (1.5 ** 2)
-		Upgrade_Turning_III:  player.turn_speed = player.base_stats.move_speed * (1.5 ** 3)
+		Upgrade_Turning_I:  player.turn_speed = player.base_stats.turn_speed * 1.25
+		Upgrade_Turning_II:  player.turn_speed = player.base_stats.turn_speed * 1.5
+		Upgrade_Turning_III:  player.turn_speed = player.base_stats.turn_speed * 1.75
 
-		Upgrade_Battery_I:  player.max_charge = player.base_stats.max_charge * (1.25 ** 1)
-		Upgrade_Battery_II:  player.max_charge = player.base_stats.max_charge * (1.25 ** 2)
-		Upgrade_Battery_III:  player.max_charge = player.base_stats.max_charge * (1.25 ** 3)
-		Upgrade_Battery_IV:  player.max_charge = player.base_stats.max_charge * (1.25 ** 4)
-		Upgrade_Battery_V:  player.max_charge = player.base_stats.max_charge * (1.25 ** 5)
+		Upgrade_Battery_I:  player.max_charge = player.base_stats.max_charge * 2.0
+		Upgrade_Battery_II:  player.max_charge = player.base_stats.max_charge * 4.0
+		Upgrade_Battery_III:  player.max_charge = player.base_stats.max_charge * 8.0
 
-		Upgrade_Vacuum_Radius_I:  player.vacuum_radius = player.base_stats.vacuum_radius * (1.25 ** 1)
-		Upgrade_Vacuum_Radius_II:  player.vacuum_radius = player.base_stats.vacuum_radius * (1.25 ** 2)
-		Upgrade_Vacuum_Radius_III:  player.vacuum_radius = player.base_stats.vacuum_radius * (1.25 ** 3)
-		Upgrade_Vacuum_Radius_IV:  player.vacuum_radius = player.base_stats.vacuum_radius * (1.25 ** 4)
-		Upgrade_Vacuum_Radius_V:  player.vacuum_radius = player.base_stats.vacuum_radius * (1.25 ** 5)
+		Upgrade_Vacuum_Radius_I:  player.vacuum_radius = player.base_stats.vacuum_radius * 1.25
+		Upgrade_Vacuum_Radius_II:  player.vacuum_radius = player.base_stats.vacuum_radius * 1.5
+		Upgrade_Vacuum_Radius_III:  player.vacuum_radius = player.base_stats.vacuum_radius * 2.0
 
-		Upgrade_Vacuum_Capacity_I:  player.max_dust = player.base_stats.max_dust * (1.25 ** 1)
-		Upgrade_Vacuum_Capacity_II:  player.max_dust = player.base_stats.max_dust * (1.25 ** 2)
-		Upgrade_Vacuum_Capacity_III:  player.max_dust = player.base_stats.max_dust * (1.25 ** 3)
-		Upgrade_Vacuum_Capacity_IV:  player.max_dust = player.base_stats.max_dust * (1.25 ** 4)
-		Upgrade_Vacuum_Capacity_V:  player.max_dust = player.base_stats.max_dust * (1.25 ** 5)
+		Upgrade_Vacuum_Capacity_I:  player.max_dust = player.base_stats.max_dust * 2.0
+		Upgrade_Vacuum_Capacity_II:  player.max_dust = player.base_stats.max_dust * 4.0
+		Upgrade_Vacuum_Capacity_III:  player.max_dust = player.base_stats.max_dust * 8.0
 
-		Upgrade_Efficiency_I: player.energy_efficiency = player.base_stats.energy_efficiency * (1.25 ** 1)
-		Upgrade_Efficiency_II: player.energy_efficiency = player.base_stats.energy_efficiency * (1.25 ** 2)
-		Upgrade_Efficiency_III: player.energy_efficiency = player.base_stats.energy_efficiency * (1.25 ** 3)
+		Upgrade_Efficiency_I: player.energy_efficiency = player.base_stats.energy_efficiency * 1.10
+		Upgrade_Efficiency_II: player.energy_efficiency = player.base_stats.energy_efficiency * 1.20
+		Upgrade_Efficiency_III: player.energy_efficiency = player.base_stats.energy_efficiency * 1.25
 
 		Upgrade_Carpet_Speed: return
 		Upgrade_Cat_Speed: return

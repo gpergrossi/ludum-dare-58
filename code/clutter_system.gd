@@ -1,184 +1,253 @@
+@tool
 class_name ClutterSystem extends Node3D
 
-@export var max_particles := 2000
-@export var player: RoboVac
-@export var clutter_planes: Array[ClutterPlane]
+const MIN_UPDATE_DELAY := 0.5
+const MAX_PARTICLES_PER_LOOP := 250
+const FRAME_SHARE := 2
 
-const DEFAULT_COLOR := Color(0.5, 0.5, 0.46)
-const FLAT_TRANSFORM := Basis(Vector3.RIGHT, PI * 0.5)
-const REST_Y := 0.01
-const MAX_TRIES := 100
+@export_tool_button("Force Update") var force_update_action: Callable = do_forced_update
+func do_forced_update() -> void:
+	for plane in clutter_planes:
+		_dirty_set[plane] = true
 
-@onready var particles: MultiMeshInstance3D = %Particles
-@onready var sprite3d_pattern: Sprite3D = %Pattern
+@export var max_particles := 20000
+@export var player: Variant
 
-var frame_share := 4
+var clutter_planes: Array[ClutterPlane] = []
+var update_delay := 0.0
+var current_particle_count := 0
+var desired_particle_count := 0
+var _dirty_set: Dictionary[ClutterPlane, bool] = {}
+var _working_sets: Dictionary[ClutterPlane, int] = {}
+var _mesh_sets: Dictionary[ClutterPlane, MultiMeshInstance3D] = {}
+var particle_density_scale := 1.0
 var frame_i := 0
 
-
-@export var pattern: Texture2D:
-	set(p):
-		pattern = p
-		if is_node_ready():
-			initialize_pattern()
-
-var placing_dust := false
-var dust_ready := false
-var dust_placed := 0
-
-var pattern_image: Image = null
-var alive_count := 0
-var dust_collected := 0
-var max_dust_collected := 0
-
-signal on_dust_ready(world: DirtWorld3D)
-signal on_dust_placement_progress(world: DirtWorld3D, value: int, max: int)
-signal on_dust_collected(world: DirtWorld3D, just_collected: int)
-
-
-func initialize_pattern():
-	sprite3d_pattern.texture = pattern
-	var world_size := bounds_shape_shape.size
-	var world_size_xz := Vector2(world_size.x, world_size.z)
-	if pattern != null:
-		var size_scale := world_size_xz / Vector2(pattern.get_image().get_size())
-		sprite3d_pattern.pixel_size = minf(size_scale.x, size_scale.y)
-
-
 func _ready() -> void:
-	if not Engine.is_editor_hint(): 
-		sprite3d_pattern.visible = false
-	reset()
+	for child in get_children(true):
+		if child is MultiMeshInstance3D:
+			child.name = "Garbage"
+			child.queue_free()
+		if child is ClutterPlane:
+			var plane := (child as ClutterPlane)
+			clutter_planes.append(plane)
+			_dirty_set[plane] = true
+			if not plane.clutter_plane_changed.is_connected(on_clutter_plane_changed):
+				plane.clutter_plane_changed.connect(on_clutter_plane_changed)
+	if not child_entered_tree.is_connected(on_child_added):
+		child_entered_tree.connect(on_child_added)
+	if not child_exiting_tree.is_connected(on_child_removed):
+		child_exiting_tree.connect(on_child_removed)
+	if Engine.is_editor_hint(): 
+		update_delay = MIN_UPDATE_DELAY
 
 
-func reset():
-	alive_count = 0
-	dust_collected = 0
-	max_dust_collected = 0
-	initialize_pattern()
-	particles.multimesh.instance_count = max_particles
-	particles.multimesh.visible_instance_count = 0
-	placing_dust = true
-	dust_ready = false
-	dust_placed = 0
-	if pattern != null:
-		pattern_image = pattern.get_image()
-		if pattern_image.is_compressed():
-			pattern_image.decompress()
+func on_child_added(child: Node) -> void:
+	if child is ClutterPlane:
+		var plane := (child as ClutterPlane)
+		clutter_planes.append(plane)
+		_dirty_set[plane] = true
+		if Engine.is_editor_hint(): 
+			if update_delay <= 0.0:
+				update_delay = MIN_UPDATE_DELAY
+		if not plane.clutter_plane_changed.is_connected(on_clutter_plane_changed):
+			plane.clutter_plane_changed.connect(on_clutter_plane_changed)
 
 
-func do_ready():
-	dust_ready = true
-	placing_dust = false
-	dust_collected = 0
-	max_dust_collected = alive_count
-	if not Engine.is_editor_hint():
-		on_dust_ready.emit(self)
-		player.on_dust_ready(self)
-		on_dust_collected.emit(self, 0)
+func on_child_removed(child: Node) -> void:
+	if child is ClutterPlane:
+		var plane := (child as ClutterPlane)
+		var index := clutter_planes.find(plane)
+		if index != -1:
+			if plane.clutter_plane_changed.is_connected(on_clutter_plane_changed):
+				plane.clutter_plane_changed.disconnect(on_clutter_plane_changed)
+			clutter_planes.remove_at(index)
+			_dirty_set[plane] = true
+			if Engine.is_editor_hint(): 
+				if update_delay <= 0.0:
+					update_delay = MIN_UPDATE_DELAY
+
+
+func on_clutter_plane_changed(clutter_plane: ClutterPlane) -> void:
+	_dirty_set[clutter_plane] = true
+	if Engine.is_editor_hint(): 
+		if update_delay <= 0.0:
+			update_delay = MIN_UPDATE_DELAY
+	
+	# Recompute desired particle count
+	desired_particle_count = 0
+	for plane in clutter_planes:
+		desired_particle_count += plane.item_count
+	
+	# Compute and potentially update global particle density
+	var old_scale := particle_density_scale
+	particle_density_scale = minf(1.0, float(max_particles) / float(desired_particle_count))
+	if particle_density_scale != old_scale:
+		for plane in clutter_planes:
+			_dirty_set[plane] = true
 
 
 func _process(delta: float) -> void:
-	if placing_dust:
-		for i in range(100):
-			if not placing_dust: break
-			place_dust()
-		particles.multimesh.visible_instance_count = dust_placed
-		if not Engine.is_editor_hint():
-			on_dust_placement_progress.emit(self, dust_placed, max_particles)
-		return
-	
-	if dust_ready and not Engine.is_editor_hint():
-		do_dust_collection(delta)
-
-
-func place_dust():
-	if dust_placed >= max_particles:
-		do_ready()
-		return
-	
-	var minX := (bounds_shape.position.x - bounds_shape_shape.size.x * 0.5)
-	var maxX := (bounds_shape.position.x + bounds_shape_shape.size.x * 0.5)
-	var minY := (bounds_shape.position.y - bounds_shape_shape.size.y * 0.5) + REST_Y
-	#var maxY := (bounds_shape.position.y + bounds_shape_shape.size.y * 0.5) - REST_Y
-	var minZ := (bounds_shape.position.z - bounds_shape_shape.size.z * 0.5)
-	var maxZ := (bounds_shape.position.z + bounds_shape_shape.size.z * 0.5)
-	
-	var pos2d: Vector2 = Vector2.ZERO
-	var size: float = dirt_min_size
-	var sample_color := DEFAULT_COLOR
-	var pos_chosen := false
-	var tries := 0
-	while not pos_chosen and tries < MAX_TRIES:
-		var param2d := Vector2(randf(), randf())
+	if not _dirty_set.is_empty():
+		if update_delay >= 0.0:
+			update_delay -= delta
 		
-		# Select a position that doesn't overlap the edge
-		size = dirt_min_size + randf() * (dirt_max_size - dirt_min_size)
-		var radius := 0.05 * size
-		pos2d = param2d * Vector2(maxX - minX - 2 * radius, maxZ - minZ - 2 * radius) + Vector2(minX + radius, minZ + radius)
-		
-		if pattern_image != null:
-			var pattern_size := pattern_image.get_size()
-			var pattern_coord := Vector2i(floori(param2d.x * pattern_size.x), floori(param2d.y * pattern_size.y))
-			var sample := pattern_image.get_pixelv(pattern_coord)
-			if randf() < sample.a:
-				pos_chosen = true
-				sample_color = sample
-				break
-			else:
-				tries += 1
+		if update_delay <= 0.0:
+			var plane: ClutterPlane = _dirty_set.keys()[0]
+			if not _working_sets.has(plane):
+				refresh_plane(plane)
+				_dirty_set.erase(plane)
+			
+				if Engine.is_editor_hint(): 
+					update_delay = MIN_UPDATE_DELAY
+	
+	if not _working_sets.is_empty():
+		var plane: ClutterPlane = _working_sets.keys()[0]
+		var target_count := _working_sets[plane]
+		var mesh_set := _mesh_sets[plane]
+		if mesh_set.multimesh.visible_instance_count < target_count:
+			add_particles(mesh_set, plane, mini(roundi(float(MAX_PARTICLES_PER_LOOP) / _working_sets.size()), target_count - mesh_set.multimesh.visible_instance_count))
 		else:
-			pos_chosen = true
-			break
+			_working_sets.erase(plane)
 	
-	if tries >= MAX_TRIES:
-		size = dirt_min_size
+	do_dust_collection(delta)
+
+
+func refresh_plane(plane: ClutterPlane) -> void:
+	print("Updating " + plane.name)
 	
-	var part_basis := FLAT_TRANSFORM.scaled(Vector3.ONE * size).rotated(Vector3.UP, randf() * TAU)
-	var part_position := Vector3(pos2d.x, minY, pos2d.y)
-	var index := dust_placed
-	particles.multimesh.set_instance_transform(index, Transform3D(part_basis, part_position))
-	particles.multimesh.set_instance_color(index, sample_color)
-	dust_placed += 1
-	alive_count += 1
+	if clutter_planes.find(plane) == -1:
+		cleanup_plane(plane)
+	
+	else:
+		var mesh_set: MultiMeshInstance3D = null
+		if _mesh_sets.has(plane):
+			mesh_set = _mesh_sets[plane]
+			if mesh_set.multimesh.mesh != plane.mesh:
+				cleanup_plane(plane)
+				mesh_set = null
+		
+		if mesh_set == null:
+			mesh_set = create_mesh_set(plane)
+			add_child(mesh_set)
+			mesh_set.owner = self.owner
+			_mesh_sets[plane] = mesh_set
+		
+		refresh_plane_set(plane, mesh_set)
+
+
+func cleanup_plane(plane: ClutterPlane) -> void:
+	if _mesh_sets.has(plane):
+		var mesh_set := _mesh_sets[plane]
+		mesh_set.queue_free()
+		_mesh_sets.erase(plane)
+
+
+func create_mesh_set(plane: ClutterPlane) -> MultiMeshInstance3D:
+	var mmi := MultiMeshInstance3D.new()
+	mmi.name = "MultiMesh_" + plane.name
+	mmi.multimesh = MultiMesh.new()
+	mmi.multimesh.transform_format = MultiMesh.TRANSFORM_3D
+	mmi.multimesh.use_colors = true
+	#var corners: PackedVector3Array = [
+		#plane.position + plane.basis.x * plane.bounds.size.x * 0.5 + plane.basis.z * plane.bounds.size.z * 0.5 + plane.basis.y * plane.bounds.size.y * 0.5,
+		#plane.position - plane.basis.x * plane.bounds.size.x * 0.5 + plane.basis.z * plane.bounds.size.z * 0.5 + plane.basis.y * plane.bounds.size.y * 0.5,
+		#plane.position + plane.basis.x * plane.bounds.size.x * 0.5 - plane.basis.z * plane.bounds.size.z * 0.5 + plane.basis.y * plane.bounds.size.y * 0.5,
+		#plane.position - plane.basis.x * plane.bounds.size.x * 0.5 - plane.basis.z * plane.bounds.size.z * 0.5 + plane.basis.y * plane.bounds.size.y * 0.5,
+		#plane.position + plane.basis.x * plane.bounds.size.x * 0.5 + plane.basis.z * plane.bounds.size.z * 0.5 - plane.basis.y * plane.bounds.size.y * 0.5,
+		#plane.position - plane.basis.x * plane.bounds.size.x * 0.5 + plane.basis.z * plane.bounds.size.z * 0.5 - plane.basis.y * plane.bounds.size.y * 0.5,
+		#plane.position + plane.basis.x * plane.bounds.size.x * 0.5 - plane.basis.z * plane.bounds.size.z * 0.5 - plane.basis.y * plane.bounds.size.y * 0.5,
+		#plane.position - plane.basis.x * plane.bounds.size.x * 0.5 - plane.basis.z * plane.bounds.size.z * 0.5 - plane.basis.y * plane.bounds.size.y * 0.5
+	#]
+	#mmi.custom_aabb = AABB(corners[0], Vector3.ZERO)
+	#for i in range(1, 8):
+		#mmi.custom_aabb = mmi.custom_aabb.expand(corners[i])
+	
+	mmi.multimesh.instance_count = plane.item_count
+	mmi.multimesh.visible_instance_count = 0
+	mmi.multimesh.mesh = plane.mesh
+	return mmi
+
+
+func refresh_plane_set(plane: ClutterPlane, mesh_set: MultiMeshInstance3D) -> void:
+	if not _working_sets.has(plane):
+		var target_items := roundi(plane.item_count * particle_density_scale)
+		mesh_set.multimesh.visible_instance_count = 0
+		_working_sets[plane] = target_items
+
+
+func add_particles(mesh_set: MultiMeshInstance3D, plane: ClutterPlane, amount: int) -> void:
+	var rand := RandomNumberGenerator.new()
+	rand.seed = plane.item_seed
+	rand.state = mesh_set.multimesh.visible_instance_count * 271
+	
+	var max_add := mesh_set.multimesh.instance_count - mesh_set.multimesh.visible_instance_count
+	amount = maxi(0, mini(amount, max_add))
+	
+	if amount > 0:
+		var index := mesh_set.multimesh.visible_instance_count
+		for i in range(amount):
+			var color := plane.get_random_color(rand)
+			var size := plane.get_random_size(rand)
+			var part_pos := plane.get_sample(rand, size)
+			var part_basis := plane.basis.rotated(plane.basis.y, rand.randf() * TAU).scaled(size * Vector3.ONE)
+			var xform := Transform3D(part_basis, part_pos)
+			mesh_set.multimesh.set_instance_color(index + i, color)
+			mesh_set.multimesh.set_instance_transform(index + i, xform)
+		mesh_set.multimesh.visible_instance_count += amount
 
 
 func do_dust_collection(delta: float):
-	if not player.can_vacuum(): return
+	if Engine.is_editor_hint(): return
+	if not player: return
 	
 	frame_i += 1
-	delta *= frame_share
+	delta *= FRAME_SHARE
 	
-	var batch_size := ceili(float(max_particles) / float(frame_share))
-	var begin := batch_size * (frame_i % frame_share)
+	var batch_size := ceili(float(max_particles) / float(FRAME_SHARE))
+	var begin := batch_size * (frame_i % FRAME_SHARE)
 	
-	for i in range(begin, minf(max_particles, begin + batch_size)):
-		var xform := particles.multimesh.get_instance_transform(i)
+	for plane in clutter_planes:
+		if not player.can_vacuum(plane): continue
+		if not _mesh_sets.has(plane): continue
+		var particles := _mesh_sets[plane]
 		
-		var ppos := xform.origin
-		var pscale := xform.basis.get_scale()
-		if pscale.is_zero_approx():
-			continue
-		
-		var diff := player.position - ppos
-		var dist := diff.length()
-		if dist < 0.2:
-			particles.multimesh.set_instance_transform(i, Transform3D(Basis.from_scale(Vector3.ZERO), ppos))
-			alive_count -= 1
-			dust_collected += 1
-			on_dust_collected.emit(self, 1)
-			player.on_dust_collected(self, 1)
-			continue
-		
-		if dist < 0.6:
-			pscale.lerp(Vector3.ONE * dirt_min_size, (0.6 - dist) / 0.6)
-		
-		var dir := Vector3(diff.x, 0, diff.z).normalized()
-		var pull := sqrt(maxf(0.0, 1.0 - dist / player.vacuum_radius)) * player.get_current_vacuum_power()
-		ppos += dir * pull * delta
-		ppos.y = move_toward(ppos.y, get_bottom_y(), delta)
-		particles.multimesh.set_instance_transform(i, Transform3D(FLAT_TRANSFORM.scaled(pscale), ppos))
-
-
-func get_bottom_y() -> float:
-	return bounds_shape.position.y - bounds_shape_shape.size.y * 0.5 + REST_Y
+		for i in range(begin, minf(plane.item_count, begin + batch_size)):
+			var xform := particles.multimesh.get_instance_transform(i)
+			
+			var ppos := xform.origin
+			var pscale := xform.basis.get_scale()
+			if pscale.is_zero_approx():
+				continue
+			
+			var diff: Vector3 = player.position - ppos
+			var dist2 := diff.length_squared()
+			
+			if dist2 < (player.vacuum_radius ** 2):
+				var dist := sqrt(dist2)
+				var pbasis := xform.basis
+			
+				if dist2 < 0.15:
+					particles.multimesh.set_instance_transform(i, Transform3D(Basis.from_scale(Vector3.ZERO), ppos))
+					if player:
+						player.on_dust_collected(plane, plane.points_per_item)
+					continue
+				
+				if dist2 < 0.3:
+					pscale.lerp(Vector3.ONE * plane.min_size, (0.6 - sqrt(dist2)) / 0.6)
+					
+					var descalar := pbasis.get_scale().inverse()
+					pbasis.x *= descalar.x
+					pbasis.y *= descalar.y
+					pbasis.z *= descalar.z
+					pbasis = pbasis.scaled(pscale)
+				
+				var dir := Vector3(diff.x, 0, diff.z).normalized()
+				var vac_radius: float = player.vacuum_radius
+				var vac_power: float = player.get_current_vacuum_power()
+				var pull := sqrt(maxf(0.0, 1.0 - dist / vac_radius)) * vac_power
+				ppos += dir * pull * delta
+				
+				# Project back onto plane
+				ppos = ppos.move_toward(ppos - (ppos - plane.position).dot(plane.basis.y) * plane.basis.y, delta)
+				particles.multimesh.set_instance_transform(i, Transform3D(pbasis, ppos))

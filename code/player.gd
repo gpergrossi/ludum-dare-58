@@ -5,23 +5,21 @@ class_name RoboVac extends CharacterBody3D
 @onready var art: Node3D = %Art
 
 # Current Stats (Modified during game)
-var vacuum_radius := 0.24
-var vacuum_power := 4.0
-var move_speed := 0.5
-var jump_speed := 2.5
-var turn_speed := 1.0
-var dash_speed := 3.0
-var dash_duration := 0.5
-var max_charge := 30.0
-var max_dust := 1000.0
-var dock_charge_rate := 10.0
-var dock_dust_rate := 100.0
-var move_cost_rate := 1.0     # Charge per second at max input
-var dash_cost := 5.0          # One time cost
-var jump_cost := 10.0         # One time cost
-var fly_cost_rate := 2.0      # Charge per second at max input (in addition to move cost)
-var energy_efficiency := 1.0
-var energy_regen := 0.0
+var vacuum_radius: float
+var vacuum_power: float
+var move_speed: float
+var jump_speed: float
+var turn_speed: float
+var dash_speed: float
+var dash_duration: float
+var max_charge: float
+var max_dust: float
+var move_cost_rate: float     # Charge per second at max input
+var dash_cost: float          # One time cost
+var jump_cost: float          # One time cost
+var fly_cost_rate: float      # Charge per second at max input (in addition to move cost)
+var energy_efficiency: float
+var energy_regen: float
 
 var upgrades := PlayerUpgrades.new()
 
@@ -34,7 +32,6 @@ var respawn_transform: Transform3D
 var ground_velocity := Vector2.ZERO
 var vertical_velocity := 0.0
 var dash_t := 0.0
-var dirt_worlds: Array[DirtWorld3D] = []
 var sample_angle := 0.0
 var last_hit := Time.get_ticks_msec()
 
@@ -61,9 +58,9 @@ signal sleep_changed(player: RoboVac, sleeping: bool)
 
 
 func _ready() -> void:
+	reset_stats()
 	upgrades.upgrades_changed.connect(do_upgrades_changed)
 	respawn_transform = transform
-	dirt_worlds.clear()
 	current_dust = 0.0
 	current_charge = max_charge
 	respawn(false, true)
@@ -113,8 +110,6 @@ func reset_stats() -> void:
 	dash_duration = base_stats.dash_duration
 	max_charge = base_stats.max_charge
 	max_dust = base_stats.max_dust
-	dock_charge_rate = base_stats.dock_charge_rate
-	dock_dust_rate = base_stats.dock_dust_rate
 	move_cost_rate = base_stats.move_cost_rate
 	dash_cost = base_stats.dash_cost
 	jump_cost = base_stats.jump_cost
@@ -141,11 +136,20 @@ func _physics_process(delta: float) -> void:
 	var up := global_basis.y
 	var new_up := global_basis.y
 	
-	sample_angle += deg_to_rad(137.507764)
-	var sample_offset := global_basis.x.rotated(global_basis.y, sample_angle) * 0.25
+	sample_angle += deg_to_rad(120)
+	var sample_offset := global_basis.x.rotated(global_basis.y, sample_angle) * 0.15
+	var query_a := PhysicsRayQueryParameters3D.create(global_position + sample_offset + up * 0.1, global_position + sample_offset - up * 0.25, ~4)
+	var query_b := PhysicsRayQueryParameters3D.create(global_position - sample_offset + up * 0.1, global_position - sample_offset - up * 0.25, ~4)
+	query_a.collide_with_areas = false
+	query_a.collide_with_bodies = true
+	query_a.hit_back_faces = false
+	query_a.hit_from_inside = false
+	query_b.collide_with_areas = false
+	query_b.collide_with_bodies = true
+	query_b.hit_back_faces = false
+	query_b.hit_from_inside = false
+	
 	var space_state := get_world_3d().direct_space_state
-	var query_a := PhysicsRayQueryParameters3D.create(global_position + sample_offset + up * 0.05, global_position - up, 9, [get_rid()])
-	var query_b := PhysicsRayQueryParameters3D.create(global_position - sample_offset + up * 0.05, global_position - up, 9, [get_rid()])
 	var result_a := space_state.intersect_ray(query_a)
 	var result_b := space_state.intersect_ray(query_b)
 	
@@ -154,10 +158,9 @@ func _physics_process(delta: float) -> void:
 		var pos_b: Vector3 = result_b.position
 		var ray := (pos_a - pos_b).normalized()
 		var perp_axis := sample_offset.rotated(global_basis.y, 0.5 * PI)
-		new_up = perp_axis.cross(ray)
+		new_up = ray.cross(perp_axis)
 		if new_up.is_zero_approx():  new_up = Vector3.UP
 		else:  new_up = new_up.normalized()
-		print("tilt sample! " + str(new_up))
 		last_hit = time
 	
 	art.basis = Basis()
@@ -168,7 +171,9 @@ func _physics_process(delta: float) -> void:
 		if not tip_axis.is_zero_approx():
 			tip_axis = tip_axis.normalized()
 			var tip_angle := up.signed_angle_to(new_up, tip_axis)
-			art.global_basis = art.global_basis.rotated(tip_axis, tip_angle)
+			art.global_basis = art.global_basis.rotated(tip_axis, tip_angle * 0.05)
+	
+	var old_charge := current_charge
 	
 	current_charge += delta * energy_regen
 	
@@ -176,7 +181,6 @@ func _physics_process(delta: float) -> void:
 		dead = true
 		battery_died.emit(self)
 	
-	var old_charge := current_charge
 	dash_timer = move_toward(maxf(0.0, dash_timer), 0.0, delta)
 	dash_t = sqrt(minf(1.0, dash_timer / dash_duration))
 	
@@ -185,8 +189,8 @@ func _physics_process(delta: float) -> void:
 	
 	# Handle dock.
 	if current_dock != null:
-		current_charge = move_toward(current_charge, max_charge, delta * dock_charge_rate)
-		var dust_collected := minf(current_dust, delta * dock_dust_rate)
+		current_charge = move_toward(current_charge, max_charge, delta * max_charge * 0.25)
+		var dust_collected := minf(current_dust, delta * max_dust * 0.25)
 		stored_dust += dust_collected
 		current_dust -= dust_collected
 		dust_changed.emit(current_dust, max_dust)
@@ -223,18 +227,20 @@ func _physics_process(delta: float) -> void:
 	
 	if not sleeping:
 		# Handle jump.
-		if Input.is_action_just_pressed("jump") and is_on_floor() and current_charge > (jump_cost / energy_efficiency):
-			print("Jump")
-			current_charge -= (jump_cost / energy_efficiency)
-			vertical_velocity = jump_speed
+		if upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Jump):
+			if Input.is_action_just_pressed("jump") and is_on_floor() and current_charge > (jump_cost / energy_efficiency):
+				print("Jump")
+				current_charge -= (jump_cost / energy_efficiency)
+				vertical_velocity = jump_speed
 	
 		# Handle dash.
 		if dash_timer <= 0.0:
-			if Input.is_action_just_pressed("dash") and input_move > 0.5 and is_on_floor() and current_charge > (dash_cost / energy_efficiency):
-				print("Dash")
-				current_charge -= (dash_cost / energy_efficiency)
-				dash_timer = dash_duration
-				dash_t = 1.0
+			if upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Dash):
+				if Input.is_action_just_pressed("dash") and input_move > 0.5 and is_on_floor() and current_charge > (dash_cost / energy_efficiency):
+					print("Dash")
+					current_charge -= (dash_cost / energy_efficiency)
+					dash_timer = dash_duration
+					dash_t = 1.0
 		if dash_timer > 0.0:
 			var target_dash := dash_speed * dash_t
 			var curr_dash := maxf(target_dash, ground_velocity.dot(forward2d))
@@ -270,8 +276,11 @@ func can_open_dock() -> bool:
 	return true
 
 
-func can_vacuum() -> bool:
-	return current_dust < max_dust
+func can_vacuum(plane: ClutterPlane) -> bool:
+	if current_dust >= max_dust: return false
+	if plane.size_class >= 1 and not upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Stuff_Collector_I): return false
+	if plane.size_class >= 2 and not upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Stuff_Collector_II): return false
+	return true
 
 
 func get_current_vacuum_radius() -> float:
@@ -282,20 +291,11 @@ func get_current_vacuum_power() -> float:
 	return vacuum_power * (1.0 + dash_t)
 
 
-func on_dust_ready(world: DirtWorld3D) -> void:
-	dirt_worlds.append(world)
-	print("Loaded dirt surface (" + str(len(dirt_worlds)) + " total)")
-
-
-func on_dust_collected(world: DirtWorld3D, just_added: int) -> void:
-	if not dirt_worlds.has(world):
-		dirt_worlds.append(world)
-	
-	current_dust += just_added
-	if dust_changed:
-		# Note: you are allowed to pick up more dust, but at this point the vacuum should turn off
-		# We will HIDE the fact that you are holding more than max from the player.
-		dust_changed.emit(minf(current_dust, max_dust), max_dust)
+func on_dust_collected(_plane: ClutterPlane, amount: int) -> void:
+	current_dust += amount
+	# Note: you are allowed to pick up more dust, but at this point the vacuum should turn off
+	# We will HIDE the fact that you are holding more than max from the player.
+	dust_changed.emit(minf(current_dust, max_dust), max_dust)
 
 
 func notify_enter_dock(dock: Dock):

@@ -5,3 +5,4 @@
 [resource]
 material = ExtResource("1_d4q6v")
 size = Vector2(0.1, 0.1)
+orientation = 1

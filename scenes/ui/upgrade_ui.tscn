@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cvnlxf8mywvy4"]
 
-[ext_resource type="Script" uid="uid://d1k02qjmht0mm" path="res://scenes/upgrade_ui.gd" id="1_mki6m"]
+[ext_resource type="Script" uid="uid://d1k02qjmht0mm" path="res://code/upgrade_ui.gd" id="1_mki6m"]
 [ext_resource type="Texture2D" uid="uid://cnvjc4tfasicn" path="res://assets/images/icon.svg" id="2_3hdy0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dp3eg"]
@@ -87,12 +87,13 @@ corner_radius_bottom_left = 8
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dp3eg"]
 
 [node name="UpgradeUI" type="PanelContainer"]
+custom_minimum_size = Vector2(320, 100)
 theme_override_styles/panel = SubResource("StyleBoxFlat_dp3eg")
 script = ExtResource("1_mki6m")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 24
+theme_override_constants/separation = 16
 
 [node name="Icon" type="TextureRect" parent="HBoxContainer"]
 unique_name_in_owner = true
@@ -101,25 +102,34 @@ layout_mode = 2
 texture = ExtResource("2_3hdy0")
 expand_mode = 1
 
-[node name="LabelName" type="Label" parent="HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LabelName" type="Label" parent="HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
 text = "Example Upgrade Name"
 
-[node name="Empty Space" type="Control" parent="HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
+alignment = 2
 
-[node name="LabelPrice" type="Label" parent="HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-text = "100"
-
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="LabelPrice" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Price: 100"
+
+[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_gqmmt")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_yc10j")
@@ -128,4 +138,4 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_pm3ni")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dp3eg")
 text = "Buy"
 
-[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer2/Button" to="." method="_on_button_pressed"]

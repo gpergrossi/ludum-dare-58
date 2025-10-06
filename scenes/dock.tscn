@@ -30,6 +30,8 @@ script = ExtResource("1_pi7v4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.019424766, 0)
 
 [node name="Detector" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 4
 
 [node name="CylinderCollider" type="CollisionShape3D" parent="Detector"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03258055, 0)

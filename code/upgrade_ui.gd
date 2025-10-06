@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 	price = shop.upgrades.get_upgrade_cost(upgrade)
 	
 	label_name.text = upgrade
-	label_price.text = str(roundi(price * LabelDust.display_scale))
+	label_price.text = "Price: " + str(roundi(price * LabelDust.display_scale))
 	
 	if purchased:
 		button.text = "Bought"

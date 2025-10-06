@@ -1,8 +1,9 @@
 class_name PopupShop extends PanelContainer
 
 const UPGRADE_UI = preload("uid://cvnlxf8mywvy4")
-@onready var upgrade_list: VBoxContainer = %UpgradeList
+@onready var upgrade_list: GridContainer = %UpgradeList
 @onready var label_stored_dust: Label = %LabelStoredDust
+@onready var panel_container_upgr_list: PanelContainer = %PanelContainerUpgrList
 
 @export var player: RoboVac
 
@@ -42,6 +43,7 @@ func _process(delta: float) -> void:
 	if prev != opacity:
 		self.self_modulate = Color(Color.WHITE, opacity)
 		visible = (opacity != 0.0)
+	upgrade_list.columns = maxi(1, floori((panel_container_upgr_list.size.x - 40) / 337))
 
 
 func _on_button_next_day_pressed() -> void:
