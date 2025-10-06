@@ -2,8 +2,10 @@ class_name RoboVac extends CharacterBody3D
 
 @onready var art: Node3D = %Art
 @onready var cat_hat: MeshInstance3D = %Cat_Hat
+@onready var coppter_hat_v_1: Node3D = %CoppterHat_v1
 @onready var main_camera: Camera3D = %"Main Camera"
 @onready var ring_particles: CPUParticles3D = %RingParticles
+@onready var collider_main_body: CollisionShape3D = %ColliderMainBody
 
 const DIALOG_COOLDOWN_MAX := 10.0
 
@@ -202,10 +204,24 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("home") and upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Teleport):
 		player_home_dialog.emit(self)
 	
+	if upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Helicopter):
+		coppter_hat_v_1.visible = true
+		cat_hat.visible = false
+	else:
+		coppter_hat_v_1.visible = false
+	
+	var collider_body := collider_main_body as CollisionShape3D
+	var collider_cylinder := collider_main_body.shape as CylinderShape3D
+	if upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Low_Rider):
+		collider_body.position.y = 0.069
+		collider_cylinder.height = 0.059
+	else:
+		collider_body.position.y = 0.103
+		collider_cylinder.height = 0.127
+	
 	var estimate_velocity := (position - last_position).length() / delta
 	last_position = position
 	if estimate_velocity < 0.1:
-		print("not moving")
 		not_moving_time += delta
 	else:
 		not_moving_time = 0.0

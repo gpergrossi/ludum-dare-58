@@ -1,10 +1,13 @@
 @tool
 class_name ClutterPlane extends CollisionShape3D
 
+const DEFAULT_COLOR := Color.BLACK
+
 var _dirty := false
 
 @onready var bounds := self.shape as BoxShape3D
 @onready var sprite_3d: Sprite3D = %Sprite3D
+@onready var collider_main_body: CollisionShape3D = %ColliderMainBody
 
 @export_tool_button("Force Update") var force_update_action: Callable = do_forced_update
 func do_forced_update() -> void:
@@ -81,24 +84,26 @@ func _process(_delta: float) -> void:
 
 
 func refresh() -> void:
-	sprite_3d.visible = show_pattern_in_editor and Engine.is_editor_hint()
-	sprite_3d.texture = pattern
-	
-	var pattern_size := pattern.get_size()
-	var bounds_size := Vector2(bounds.size.x, bounds.size.z)
-	
-	var scale_by_w := bounds_size.x / pattern_size.x
-	var scale_by_h := bounds_size.y / pattern_size.y
-	
-	sprite_3d.pixel_size = maxf(scale_by_w, scale_by_h)
-	if scale_by_w > scale_by_h:
-		var extra_h := (pattern_size.y * scale_by_w - bounds_size.y) / scale_by_w
-		if extra_h > 1.0:
-			sprite_3d.region_rect = Rect2(0, extra_h * 0.5, pattern_size.x, pattern_size.y - extra_h)
+	if pattern:
+		sprite_3d.visible = show_pattern_in_editor and Engine.is_editor_hint()
+		sprite_3d.texture = pattern
+		var pattern_size := pattern.get_size()
+		var bounds_size := Vector2(bounds.size.x, bounds.size.z)
+		
+		var scale_by_w := bounds_size.x / pattern_size.x
+		var scale_by_h := bounds_size.y / pattern_size.y
+		
+		sprite_3d.pixel_size = maxf(scale_by_w, scale_by_h)
+		if scale_by_w > scale_by_h:
+			var extra_h := (pattern_size.y * scale_by_w - bounds_size.y) / scale_by_w
+			if extra_h > 1.0:
+				sprite_3d.region_rect = Rect2(0, extra_h * 0.5, pattern_size.x, pattern_size.y - extra_h)
+		else:
+			var extra_w := (pattern_size.x * scale_by_h - bounds_size.x) / scale_by_h
+			if extra_w > 1.0:
+				sprite_3d.region_rect = Rect2(extra_w * 0.5, 0, pattern_size.x - extra_w, pattern_size.y)
 	else:
-		var extra_w := (pattern_size.x * scale_by_h - bounds_size.x) / scale_by_h
-		if extra_w > 1.0:
-			sprite_3d.region_rect = Rect2(extra_w * 0.5, 0, pattern_size.x - extra_w, pattern_size.y)
+		sprite_3d.visible = false
 	
 	print("Refreshing self: " + str(name))
 	clutter_plane_changed.emit(self)
@@ -133,7 +138,10 @@ func get_sample(rand: RandomNumberGenerator, item_scale: float) -> Vector3:
 
 
 func get_random_color(rand: RandomNumberGenerator) -> Color:
-	return colors.gradient.sample(rand.randf())
+	if colors and colors.gradient:
+		return colors.gradient.sample(rand.randf())
+	else:
+		return DEFAULT_COLOR
 
 
 func get_random_size(rand: RandomNumberGenerator) -> float:
@@ -164,14 +172,17 @@ func _get_sample_pt_internal(rand: RandomNumberGenerator, item_scale: float) -> 
 	# Convert to pixel space
 	var pixel := Vector2i(sprite_3d.region_rect.position + params * sprite_3d.region_rect.size)
 	
-	if decompressed_image == null:
+	if decompressed_image == null and pattern:
 		decompressed_image = pattern.get_image()
 		if decompressed_image.is_compressed():
 			decompressed_image.decompress()
 	
-	var pixel_color := decompressed_image.get_pixelv(pixel)
 	var pos3 := position + basis.x * pos_model.x + basis.z * pos_model.y
-	return Vector4(
-		pos3.x, pos3.y, pos3.z,
-		minf(1.0, pixel_color.a + 0.001)
-	)
+	if decompressed_image == null:
+		return Vector4(pos3.x, pos3.y, pos3.z, 1.0)
+	else:
+		var pixel_color := decompressed_image.get_pixelv(pixel)
+		return Vector4(
+			pos3.x, pos3.y, pos3.z,
+			minf(1.0, pixel_color.a + 0.001)
+		)

@@ -87,7 +87,7 @@ const Upgrade_Double_Jump: StringName = "Unlock Double Jump"
 const Upgrade_Helicopter: StringName = "Unlock Helicopter"
 const Upgrade_Jetpack: StringName = "Unlock Jetpack"
 const Upgrade_Quick_Turn: StringName = "Quick Turn"
-const Upgrade_Teleport: StringName = "Teleport Home (Esc)"
+const Upgrade_Teleport: StringName = "Teleport Home (Press H)"
 const Upgrade_Generator: StringName = "Unlock Slow Energy Regen"
 
 class UpgradeData extends RefCounted:
@@ -128,18 +128,15 @@ func gen_upgrades_list():
 	all_upgrades.append(Upgrade_Efficiency_II)
 	all_upgrades.append(Upgrade_Efficiency_III)
 
-	all_upgrades.append(Upgrade_Carpet_Speed)
 	all_upgrades.append(Upgrade_Low_Rider)
 	all_upgrades.append(Upgrade_Stuff_Collector_I)
 	all_upgrades.append(Upgrade_Stuff_Collector_II)
-	all_upgrades.append(Upgrade_Stuff_Pulveriser)
 
 	all_upgrades.append(Upgrade_Dash)
 	all_upgrades.append(Upgrade_Jump)
 	all_upgrades.append(Upgrade_Double_Jump)
 	all_upgrades.append(Upgrade_Helicopter)
 	all_upgrades.append(Upgrade_Jetpack)
-	all_upgrades.append(Upgrade_Quick_Turn)
 	all_upgrades.append(Upgrade_Teleport)
 	all_upgrades.append(Upgrade_Generator)
 
@@ -175,16 +172,15 @@ func get_upgrade_cost(upgrade: StringName) -> int:
 		Upgrade_Low_Rider: return 1250
 		Upgrade_Stuff_Collector_I: return 300
 		Upgrade_Stuff_Collector_II: return 2000
-		Upgrade_Stuff_Pulveriser: return 10000
 
 		Upgrade_Dash: return 500
 		Upgrade_Jump: return 1500
+		Upgrade_Helicopter: return 3000
 		Upgrade_Double_Jump: return 3000
-		Upgrade_Helicopter: return -1   # Found in the level
-		Upgrade_Jetpack: return 8000
+		Upgrade_Jetpack: return 6000
 		Upgrade_Quick_Turn: return 750
 		Upgrade_Teleport: return 2750
-		Upgrade_Generator: return -1   # Found in the level
+		Upgrade_Generator: return 8000
 	
 	push_warning("No such upgrade \"" + upgrade + "\"!")
 	return -1
@@ -226,14 +222,14 @@ func get_upgrade_prereqs(upgrade: StringName) -> Array[StringName]:
 
 		Upgrade_Dash: return []
 		Upgrade_Jump: return []
-		Upgrade_Double_Jump: return []
-		Upgrade_Quick_Turn: return []
-		
-		Upgrade_Helicopter: return []
+		Upgrade_Double_Jump: return [Upgrade_Jump]
+		Upgrade_Helicopter: return [Upgrade_Double_Jump]
 		Upgrade_Jetpack: return [Upgrade_Helicopter]
 		
+		Upgrade_Quick_Turn: return []
+		
 		Upgrade_Generator: return []
-		Upgrade_Teleport: return [Upgrade_Generator]
+		Upgrade_Teleport: return []
 	
 	push_warning("No such upgrade \"" + upgrade + "\"!")
 	return []

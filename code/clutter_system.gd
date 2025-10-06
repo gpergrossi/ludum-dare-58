@@ -38,8 +38,7 @@ func _ready() -> void:
 		child_entered_tree.connect(on_child_added)
 	if not child_exiting_tree.is_connected(on_child_removed):
 		child_exiting_tree.connect(on_child_removed)
-	if Engine.is_editor_hint(): 
-		update_delay = MIN_UPDATE_DELAY
+	update_delay = MIN_UPDATE_DELAY
 
 
 func on_child_added(child: Node) -> void:
@@ -47,9 +46,8 @@ func on_child_added(child: Node) -> void:
 		var plane := (child as ClutterPlane)
 		clutter_planes.append(plane)
 		_dirty_set[plane] = true
-		if Engine.is_editor_hint(): 
-			if update_delay <= 0.0:
-				update_delay = MIN_UPDATE_DELAY
+		if update_delay <= 0.0:
+			update_delay = MIN_UPDATE_DELAY
 		if not plane.clutter_plane_changed.is_connected(on_clutter_plane_changed):
 			plane.clutter_plane_changed.connect(on_clutter_plane_changed)
 
@@ -63,28 +61,27 @@ func on_child_removed(child: Node) -> void:
 				plane.clutter_plane_changed.disconnect(on_clutter_plane_changed)
 			clutter_planes.remove_at(index)
 			_dirty_set[plane] = true
-			if Engine.is_editor_hint(): 
-				if update_delay <= 0.0:
-					update_delay = MIN_UPDATE_DELAY
+			if update_delay <= 0.0:
+				update_delay = MIN_UPDATE_DELAY
 
 
 func on_clutter_plane_changed(clutter_plane: ClutterPlane) -> void:
 	_dirty_set[clutter_plane] = true
-	if Engine.is_editor_hint(): 
-		if update_delay <= 0.0:
-			update_delay = MIN_UPDATE_DELAY
+	if update_delay <= 0.0:
+		update_delay = MIN_UPDATE_DELAY
 	
 	# Recompute desired particle count
 	desired_particle_count = 0
 	for plane in clutter_planes:
 		desired_particle_count += plane.item_count
+	print("Currently need " + str(desired_particle_count) + " particles")
 	
-	# Compute and potentially update global particle density
-	var old_scale := particle_density_scale
-	particle_density_scale = minf(1.0, float(max_particles) / float(desired_particle_count))
-	if particle_density_scale != old_scale:
-		for plane in clutter_planes:
-			_dirty_set[plane] = true
+	## Compute and potentially update global particle density
+	#var old_scale := particle_density_scale
+	#particle_density_scale = minf(1.0, float(max_particles) / float(desired_particle_count))
+	#if particle_density_scale != old_scale:
+		#for plane in clutter_planes:
+			#_dirty_set[plane] = true
 
 
 func _process(delta: float) -> void:
@@ -98,8 +95,7 @@ func _process(delta: float) -> void:
 				refresh_plane(plane)
 				_dirty_set.erase(plane)
 			
-				if Engine.is_editor_hint(): 
-					update_delay = MIN_UPDATE_DELAY
+				update_delay = MIN_UPDATE_DELAY
 	
 	if not _working_sets.is_empty():
 		var plane: ClutterPlane = _working_sets.keys()[0]
@@ -108,6 +104,7 @@ func _process(delta: float) -> void:
 		if mesh_set.multimesh.visible_instance_count < target_count:
 			add_particles(mesh_set, plane, mini(roundi(float(MAX_PARTICLES_PER_LOOP) / _working_sets.size()), target_count - mesh_set.multimesh.visible_instance_count))
 		else:
+			print("Populated" + plane.name + "!")
 			_working_sets.erase(plane)
 	
 	do_dust_collection(delta)

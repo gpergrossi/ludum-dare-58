@@ -1,9 +1,10 @@
-[gd_scene load_steps=87 format=3 uid="uid://dhq2bna7oyra4"]
+[gd_scene load_steps=90 format=3 uid="uid://dhq2bna7oyra4"]
 
 [ext_resource type="Script" uid="uid://c45o4rirqh8r0" path="res://code/clutter_system.gd" id="1_mpcbd"]
 [ext_resource type="PackedScene" uid="uid://k3u5xcvedbjc" path="res://scenes/clutter_plane.tscn" id="2_gwx86"]
 [ext_resource type="QuadMesh" uid="uid://deklg6rj0sj1r" path="res://assets/models/clutter/particle_mesh.tres" id="3_u6dng"]
 [ext_resource type="ArrayMesh" uid="uid://dbf3hxewrxllw" path="res://assets/models/clutter/chip_broken.res" id="4_g5q62"]
+[ext_resource type="Texture2D" uid="uid://nmm1mof6krer" path="res://assets/images/noise_grain_inv.png" id="4_tjn31"]
 [ext_resource type="ArrayMesh" uid="uid://bhkumiojjr5g5" path="res://assets/models/clutter/paper_crinkle.res" id="5_v5p7r"]
 [ext_resource type="ArrayMesh" uid="uid://bl6d0qlwcnju7" path="res://assets/models/clutter/lego2x2.res" id="6_tjn31"]
 [ext_resource type="ArrayMesh" uid="uid://b5r00yc5j1ieo" path="res://assets/models/clutter/lego2x4.res" id="7_yfw72"]
@@ -27,6 +28,13 @@ gradient = SubResource("Gradient_2wyq8")
 [sub_resource type="BoxShape3D" id="BoxShape3D_yfw72"]
 resource_local_to_scene = true
 size = Vector3(9.662052, 0.008544922, 4.1822433)
+
+[sub_resource type="Gradient" id="Gradient_ejqpx"]
+offsets = PackedFloat32Array(0.20127796, 0.50479233, 1)
+colors = PackedColorArray(0.08729745, 0.07904642, 0.074268915, 1, 0.17, 0.15708001, 0.1496, 1, 0.19, 0.19, 0.19, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_byvkq"]
+gradient = SubResource("Gradient_ejqpx")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_byvkq"]
 resource_local_to_scene = true
@@ -350,8 +358,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.062275648, 3.098961, -5.61
 shape = SubResource("BoxShape3D_yfw72")
 show_pattern_in_editor = false
 mesh = ExtResource("3_u6dng")
-colors = SubResource("GradientTexture1D_figyt")
+colors = SubResource("GradientTexture1D_byvkq")
 item_count = 3000
+pattern = ExtResource("4_tjn31")
 min_size = 3.0
 max_size = 5.0
 size_class = 0
@@ -628,6 +637,10 @@ points_per_item = 10
 visible = false
 
 [node name="RoomWallsT01" parent="REF_ONLY_DELETE_AFTER" instance=ExtResource("10_g5q62")]
+
+[node name="Wall_S2" parent="REF_ONLY_DELETE_AFTER/RoomWallsT01/room_layout_walls_v4/Level" index="2"]
+surface_material_override/0 = null
+surface_material_override/1 = null
 
 [node name="FurnitureLayout01" parent="REF_ONLY_DELETE_AFTER" instance=ExtResource("11_v5p7r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0026097298, 0, -7.522106e-05)

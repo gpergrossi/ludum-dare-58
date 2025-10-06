@@ -1,100 +1,15 @@
-[gd_scene load_steps=34 format=3 uid="uid://cahfo4lc3ufi6"]
+[gd_scene load_steps=11 format=3 uid="uid://cahfo4lc3ufi6"]
 
+[ext_resource type="PackedScene" uid="uid://ttle2gx3ns1h" path="res://scenes/ui/game_ui.tscn" id="1_tipki"]
 [ext_resource type="PackedScene" uid="uid://djefabn5cbvf0" path="res://scenes/environment.tscn" id="1_ya4ey"]
-[ext_resource type="Script" uid="uid://bpsvkjcb822ad" path="res://code/ui/progress_bar_dust.gd" id="2_jyhfs"]
-[ext_resource type="Texture2D" uid="uid://cmh8dch3fefrd" path="res://assets/images/UI/Dust_ui/dust_icon.png" id="2_vxglm"]
-[ext_resource type="Script" uid="uid://cgdaov6841ifx" path="res://code/ui/progress_bar_battery.gd" id="3_85g3d"]
-[ext_resource type="Script" uid="uid://bxotqlnrj5vex" path="res://code/ui/label_dust.gd" id="3_tbgi4"]
-[ext_resource type="Texture2D" uid="uid://xca7eq8p5omv" path="res://assets/images/UI/Dust_ui/dust_overlay.png" id="3_vxglm"]
-[ext_resource type="Texture2D" uid="uid://cuy81m5ei4bxs" path="res://assets/images/UI/Dust_ui/dust_fill.png" id="4_2f3dj"]
-[ext_resource type="Script" uid="uid://bl78r2iibvsco" path="res://code/ui/label_battery.gd" id="4_choun"]
-[ext_resource type="Theme" uid="uid://do0lbre163efj" path="res://assets/data/ui_theme.tres" id="4_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://cr3833ido0so1" path="res://scenes/player.tscn" id="4_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://3j15a5i12y2c" path="res://scenes/dock.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://ckhaa76vvgbwy" path="res://scenes/room/room_walls_t01.tscn" id="7_o6xl0"]
-[ext_resource type="Script" uid="uid://c5gde2jetgtt0" path="res://code/ui/popup_respawn.gd" id="8_eb6dy"]
-[ext_resource type="Script" uid="uid://cvqyrpvp84up1" path="res://code/ui/popup_docking_station.gd" id="9_trceg"]
-[ext_resource type="Script" uid="uid://dgtsfdncydm43" path="res://code/button_highlight.gd" id="10_a8y0u"]
-[ext_resource type="Script" uid="uid://bytb6rn3npm0o" path="res://code/ui/popup_shop.gd" id="12_jbj1t"]
-[ext_resource type="PackedScene" uid="uid://cvnlxf8mywvy4" path="res://scenes/ui/upgrade_ui.tscn" id="13_muem4"]
-[ext_resource type="Script" uid="uid://bqr5dpjkanqyo" path="res://code/player_base_stats.gd" id="15_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://bx6wo5s48pcm1" path="res://scenes/room/furnitureLayout_01.tscn" id="16_2wyq8"]
 [ext_resource type="PackedScene" uid="uid://crspbokqxy40t" path="res://scenes/room/med_PropPlacement_01.tscn" id="17_yc10j"]
 [ext_resource type="PackedScene" uid="uid://dhq2bna7oyra4" path="res://scenes/clutter_system.tscn" id="19_yc10j"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sugp2"]
-
-[sub_resource type="GDScript" id="GDScript_tefeu"]
-script/source = "extends Label
-
-func _process(_delta: float) -> void:
-	text = \"FPS \" + str(Engine.get_frames_per_second())
-"
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2wyq8"]
-content_margin_left = 48.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.06879827, 0.06879828, 0.06879828, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 32
-corner_radius_top_right = 32
-corner_radius_bottom_right = 32
-corner_radius_bottom_left = 32
-corner_detail = 16
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gqmmt"]
-content_margin_left = 16.0
-content_margin_top = 8.0
-content_margin_right = 16.0
-content_margin_bottom = 8.0
-bg_color = Color(0, 0, 0, 0.22352941)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dp3eg"]
-content_margin_left = 24.0
-content_margin_top = 16.0
-content_margin_right = 24.0
-content_margin_bottom = 16.0
-bg_color = Color(0.26657522, 0.2665752, 0.2665752, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eb6dy"]
-content_margin_left = 8.0
-content_margin_top = 8.0
-content_margin_right = 8.0
-content_margin_bottom = 8.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trceg"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85g3d"]
 resource_local_to_scene = true
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -107,34 +22,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jbj1t"]
-bg_color = Color(0.20784314, 0.14117648, 0.1764706, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jkv2x"]
-content_margin_left = 24.0
-content_margin_top = 24.0
-content_margin_right = 24.0
-content_margin_bottom = 24.0
-bg_color = Color(0.26657522, 0.2665752, 0.2665752, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_muem4"]
-bg_color = Color(0.6, 0.6, 0.6, 0.1764706)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ld40"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_choun"]
 resource_local_to_scene = true
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -147,370 +35,20 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[sub_resource type="Resource" id="Resource_2wyq8"]
-script = ExtResource("15_dp3eg")
-metadata/_custom_type_script = "uid://bqr5dpjkanqyo"
-
 [node name="Main" type="Node3D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="WholeWindow" type="PanelContainer" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("4_jkv2x")
-theme_override_styles/panel = SubResource("StyleBoxEmpty_sugp2")
+[node name="GameUI" parent="CanvasLayer" instance=ExtResource("1_tipki")]
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/WholeWindow"]
-layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+[node name="ButtonHighlight" parent="CanvasLayer/GameUI/PopupDockingStation/VBoxContainer/HBoxContainer/ButtonSleep" index="0"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_85g3d")
 
-[node name="FPS" type="Label" parent="CanvasLayer/WholeWindow/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "FPS: 2"
-script = SubResource("GDScript_tefeu")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/WholeWindow/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/WholeWindow/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = -5
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/WholeWindow/MarginContainer/VBoxContainer/MarginContainer"]
-layout_mode = 2
-texture = ExtResource("2_vxglm")
-stretch_mode = 5
-
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/WholeWindow/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-theme_override_styles/panel = SubResource("StyleBoxFlat_2wyq8")
-
-[node name="Control" type="Control" parent="CanvasLayer/WholeWindow/MarginContainer/VBoxContainer/PanelContainer"]
-custom_minimum_size = Vector2(20, 413.61)
-layout_mode = 2
-
-[node name="ProgressBarDust" type="TextureProgressBar" parent="CanvasLayer/WholeWindow/MarginContainer/VBoxContainer/PanelContainer/Control"]
-layout_mode = 0
-offset_left = -42.0
-offset_top = 6.0
-offset_right = 14.0
-offset_bottom = 409.0
-min_value = 100.0
-value = 100.0
-fill_mode = 3
-stretch_margin_left = 155
-stretch_margin_top = 545
-stretch_margin_right = 200
-stretch_margin_bottom = 615
-texture_progress = ExtResource("4_2f3dj")
-script = ExtResource("2_jyhfs")
-
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/WholeWindow/MarginContainer/VBoxContainer/PanelContainer/Control"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_top = -3.6950073
-offset_right = 74.0
-offset_bottom = 3.6950073
-grow_vertical = 2
-theme_override_constants/margin_left = -45
-theme_override_constants/margin_top = -15
-theme_override_constants/margin_right = 60
-theme_override_constants/margin_bottom = -30
-
-[node name="Overlay Ticks" type="TextureRect" parent="CanvasLayer/WholeWindow/MarginContainer/VBoxContainer/PanelContainer/Control/MarginContainer2"]
-layout_mode = 2
-texture = ExtResource("3_vxglm")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/WholeWindow/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = -14
-
-[node name="LabelDust" type="Label" parent="CanvasLayer/WholeWindow/MarginContainer/VBoxContainer/MarginContainer2"]
-layout_mode = 2
-theme_override_constants/outline_size = 6
-text = "1000 / 1000"
-horizontal_alignment = 1
-script = ExtResource("3_tbgi4")
-
-[node name="Bottom Panel" type="PanelContainer" parent="CanvasLayer/WholeWindow/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme_override_styles/panel = SubResource("StyleBoxFlat_gqmmt")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/WholeWindow/MarginContainer/Bottom Panel"]
-layout_mode = 2
-
-[node name="LabelBattery" type="Label" parent="CanvasLayer/WholeWindow/MarginContainer/Bottom Panel/VBoxContainer"]
-layout_mode = 2
-text = "Battery:"
-
-[node name="ProgressBarBattery" type="ProgressBar" parent="CanvasLayer/WholeWindow/MarginContainer/Bottom Panel/VBoxContainer"]
-custom_minimum_size = Vector2(400, 20)
-layout_mode = 2
-value = 100.0
-show_percentage = false
-script = ExtResource("3_85g3d")
-
-[node name="Label" type="Label" parent="CanvasLayer/WholeWindow/MarginContainer/Bottom Panel/VBoxContainer/ProgressBarBattery"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "100%"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("4_choun")
-
-[node name="PopupRespawn" type="PanelContainer" parent="CanvasLayer/WholeWindow"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_dp3eg")
-script = ExtResource("8_eb6dy")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/WholeWindow/PopupRespawn"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="Label" type="Label" parent="CanvasLayer/WholeWindow/PopupRespawn/VBoxContainer"]
-layout_mode = 2
-text = "Battery dead.
-Lose half of your dust and respawn?"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/WholeWindow/PopupRespawn/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 16
-alignment = 1
-
-[node name="Button" type="Button" parent="CanvasLayer/WholeWindow/PopupRespawn/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Okay."
-
-[node name="Button2" type="Button" parent="CanvasLayer/WholeWindow/PopupRespawn/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Yeah, I guess..."
-
-[node name="PopupDockingStation" type="PanelContainer" parent="CanvasLayer/WholeWindow"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_dp3eg")
-script = ExtResource("9_trceg")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/WholeWindow/PopupDockingStation"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="LabelTitle" type="Label" parent="CanvasLayer/WholeWindow/PopupDockingStation/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 30
-text = "Docking Station"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/WholeWindow/PopupDockingStation/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_eb6dy")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/WholeWindow/PopupDockingStation/VBoxContainer/PanelContainer"]
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="LabelGoal" type="Label" parent="CanvasLayer/WholeWindow/PopupDockingStation/VBoxContainer/PanelContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Deposit 1000 Dust"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/WholeWindow/PopupDockingStation/VBoxContainer/PanelContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 20)
-layout_mode = 2
-size_flags_vertical = 4
-show_percentage = false
-
-[node name="LabelProgress" type="Label" parent="CanvasLayer/WholeWindow/PopupDockingStation/VBoxContainer/PanelContainer/VBoxContainer/ProgressBar"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "0 / 1000"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="LabelInstructions" type="Label" parent="CanvasLayer/WholeWindow/PopupDockingStation/VBoxContainer"]
-custom_minimum_size = Vector2(80, 20)
-layout_mode = 2
-text = "Finish the objective and end the day to purchase upgrades for tomorrow."
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/WholeWindow/PopupDockingStation/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 16
-alignment = 1
-
-[node name="ButtonSleep" type="Button" parent="CanvasLayer/WholeWindow/PopupDockingStation/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-disabled = true
-text = " End Day "
-
-[node name="ButtonHighlight" type="Panel" parent="CanvasLayer/WholeWindow/PopupDockingStation/VBoxContainer/HBoxContainer/ButtonSleep"]
-unique_name_in_owner = true
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_trceg")
-script = ExtResource("10_a8y0u")
-
-[node name="ButtonClose" type="Button" parent="CanvasLayer/WholeWindow/PopupDockingStation/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = " Close "
-
-[node name="PopupShop" type="PanelContainer" parent="CanvasLayer/WholeWindow" node_paths=PackedStringArray("player")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_jbj1t")
-script = ExtResource("12_jbj1t")
+[node name="PopupShop" parent="CanvasLayer/GameUI" index="3" node_paths=PackedStringArray("player")]
 player = NodePath("../../../Player")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/WholeWindow/PopupShop"]
-layout_mode = 2
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
-
-[node name="PopupWindow" type="PanelContainer" parent="CanvasLayer/WholeWindow/PopupShop/MarginContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_jkv2x")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/WholeWindow/PopupShop/MarginContainer/PopupWindow"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="LabelTitle" type="Label" parent="CanvasLayer/WholeWindow/PopupShop/MarginContainer/PopupWindow/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 30
-text = "Upgrades"
-horizontal_alignment = 1
-
-[node name="PanelContainerUpgrList" type="PanelContainer" parent="CanvasLayer/WholeWindow/PopupShop/MarginContainer/PopupWindow/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_muem4")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/WholeWindow/PopupShop/MarginContainer/PopupWindow/VBoxContainer/PanelContainerUpgrList"]
-custom_minimum_size = Vector2(0, 400)
-layout_mode = 2
-size_flags_vertical = 3
-horizontal_scroll_mode = 0
-vertical_scroll_mode = 4
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/WholeWindow/PopupShop/MarginContainer/PopupWindow/VBoxContainer/PanelContainerUpgrList/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 8
-
-[node name="UpgradeList" type="GridContainer" parent="CanvasLayer/WholeWindow/PopupShop/MarginContainer/PopupWindow/VBoxContainer/PanelContainerUpgrList/ScrollContainer/MarginContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/h_separation = 12
-theme_override_constants/v_separation = 12
-columns = 3
-
-[node name="UpgradeUI" parent="CanvasLayer/WholeWindow/PopupShop/MarginContainer/PopupWindow/VBoxContainer/PanelContainerUpgrList/ScrollContainer/MarginContainer/UpgradeList" instance=ExtResource("13_muem4")]
-layout_mode = 2
-
-[node name="UpgradeUI2" parent="CanvasLayer/WholeWindow/PopupShop/MarginContainer/PopupWindow/VBoxContainer/PanelContainerUpgrList/ScrollContainer/MarginContainer/UpgradeList" instance=ExtResource("13_muem4")]
-layout_mode = 2
-
-[node name="UpgradeUI3" parent="CanvasLayer/WholeWindow/PopupShop/MarginContainer/PopupWindow/VBoxContainer/PanelContainerUpgrList/ScrollContainer/MarginContainer/UpgradeList" instance=ExtResource("13_muem4")]
-layout_mode = 2
-
-[node name="UpgradeUI4" parent="CanvasLayer/WholeWindow/PopupShop/MarginContainer/PopupWindow/VBoxContainer/PanelContainerUpgrList/ScrollContainer/MarginContainer/UpgradeList" instance=ExtResource("13_muem4")]
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/WholeWindow/PopupShop/MarginContainer/PopupWindow/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="LabelStoredDust" type="Label" parent="CanvasLayer/WholeWindow/PopupShop/MarginContainer/PopupWindow/VBoxContainer/HBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 20
-text = "Stored Dust:  300"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/WholeWindow/PopupShop/MarginContainer/PopupWindow/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="Button" type="Button" parent="CanvasLayer/WholeWindow/PopupShop/MarginContainer/PopupWindow/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "   Start Next Day   "
-
-[node name="Highlight" type="Panel" parent="CanvasLayer/WholeWindow/PopupShop/MarginContainer/PopupWindow/VBoxContainer/HBoxContainer/Button"]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_0ld40")
+[node name="Highlight" parent="CanvasLayer/GameUI/PopupShop/MarginContainer/PopupWindow/VBoxContainer/HBoxContainer/Button" index="0"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_choun")
 
 [node name="Environment" parent="." instance=ExtResource("1_ya4ey")]
 
@@ -525,7 +63,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0026097298, 0, -7.522106e-0
 
 [node name="Player" parent="." instance=ExtResource("4_tbgi4")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.20769292, 0.050397113, 4.353485)
-base_stats = SubResource("Resource_2wyq8")
 
 [node name="Dock" parent="." instance=ExtResource("6_tefeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2028451, -0.0063302293, 4.338443)
@@ -533,19 +70,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2028451, -0.0063302293, 4.3
 [node name="ClutterSystem" parent="." node_paths=PackedStringArray("player") instance=ExtResource("19_yc10j")]
 player = NodePath("../Player")
 
-[connection signal="pressed" from="CanvasLayer/WholeWindow/PopupRespawn/VBoxContainer/HBoxContainer/Button" to="CanvasLayer/WholeWindow/PopupRespawn" method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/WholeWindow/PopupRespawn/VBoxContainer/HBoxContainer/Button2" to="CanvasLayer/WholeWindow/PopupRespawn" method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/WholeWindow/PopupDockingStation/VBoxContainer/HBoxContainer/ButtonSleep" to="CanvasLayer/WholeWindow/PopupDockingStation" method="_on_button_sleep_pressed"]
-[connection signal="pressed" from="CanvasLayer/WholeWindow/PopupDockingStation/VBoxContainer/HBoxContainer/ButtonClose" to="CanvasLayer/WholeWindow/PopupDockingStation" method="_on_button_close_pressed"]
-[connection signal="pressed" from="CanvasLayer/WholeWindow/PopupShop/MarginContainer/PopupWindow/VBoxContainer/HBoxContainer/Button" to="CanvasLayer/WholeWindow/PopupShop" method="_on_button_next_day_pressed"]
-[connection signal="battery_died" from="Player" to="CanvasLayer/WholeWindow/PopupRespawn" method="_on_player_battery_died"]
-[connection signal="charge_changed" from="Player" to="CanvasLayer/WholeWindow/MarginContainer/Bottom Panel/VBoxContainer/ProgressBarBattery" method="_on_player_charge_changed"]
-[connection signal="charge_changed" from="Player" to="CanvasLayer/WholeWindow/MarginContainer/Bottom Panel/VBoxContainer/ProgressBarBattery/Label" method="_on_player_charge_changed"]
-[connection signal="dust_changed" from="Player" to="CanvasLayer/WholeWindow/MarginContainer/VBoxContainer/PanelContainer/Control/ProgressBarDust" method="_on_player_dust_changed"]
-[connection signal="dust_changed" from="Player" to="CanvasLayer/WholeWindow/MarginContainer/VBoxContainer/MarginContainer2/LabelDust" method="_on_player_dust_changed"]
-[connection signal="dust_storage_changed" from="Player" to="CanvasLayer/WholeWindow/PopupDockingStation" method="_on_player_dust_storage_changed"]
-[connection signal="dust_storage_changed" from="Player" to="CanvasLayer/WholeWindow/PopupShop" method="_on_player_dust_storage_changed"]
-[connection signal="enter_dock" from="Player" to="CanvasLayer/WholeWindow/PopupDockingStation" method="_on_player_enter_dock"]
-[connection signal="exit_dock" from="Player" to="CanvasLayer/WholeWindow/PopupDockingStation" method="_on_player_exit_dock"]
-[connection signal="respawned" from="Player" to="CanvasLayer/WholeWindow/PopupRespawn" method="_on_player_respawned"]
-[connection signal="sleep_changed" from="Player" to="CanvasLayer/WholeWindow/PopupShop" method="_on_player_sleep_changed"]
+[connection signal="battery_died" from="Player" to="CanvasLayer/GameUI/PopupRespawn" method="_on_player_battery_died"]
+[connection signal="charge_changed" from="Player" to="CanvasLayer/GameUI/MarginContainer/Bottom Panel/VBoxContainer/ProgressBarBattery" method="_on_player_charge_changed"]
+[connection signal="charge_changed" from="Player" to="CanvasLayer/GameUI/MarginContainer/Bottom Panel/VBoxContainer/ProgressBarBattery/Label" method="_on_player_charge_changed"]
+[connection signal="dust_changed" from="Player" to="CanvasLayer/GameUI/MarginContainer/VBoxContainer/PanelContainer/Control/ProgressBarDust" method="_on_player_dust_changed"]
+[connection signal="dust_changed" from="Player" to="CanvasLayer/GameUI/MarginContainer/VBoxContainer/MarginContainer2/LabelDust" method="_on_player_dust_changed"]
+[connection signal="dust_changed" from="Player" to="CanvasLayer/GameUI/PopupDockingStation" method="_on_player_dust_changed"]
+[connection signal="dust_storage_changed" from="Player" to="CanvasLayer/GameUI/PopupDockingStation" method="_on_player_dust_storage_changed"]
+[connection signal="dust_storage_changed" from="Player" to="CanvasLayer/GameUI/PopupShop" method="_on_player_dust_storage_changed"]
+[connection signal="enter_dock" from="Player" to="CanvasLayer/GameUI/PopupDockingStation" method="_on_player_enter_dock"]
+[connection signal="exit_dock" from="Player" to="CanvasLayer/GameUI/PopupDockingStation" method="_on_player_exit_dock"]
+[connection signal="player_home_dialog" from="Player" to="CanvasLayer/GameUI/PopupRespawn" method="_on_player_player_home_dialog"]
+[connection signal="player_is_out_of_bounds" from="Player" to="CanvasLayer/GameUI/PopupRespawn" method="_on_player_player_is_out_of_bounds"]
+[connection signal="player_is_stuck" from="Player" to="CanvasLayer/GameUI/PopupRespawn" method="_on_player_player_is_stuck"]
+[connection signal="respawned" from="Player" to="CanvasLayer/GameUI/PopupRespawn" method="_on_player_respawned"]
+[connection signal="sleep_changed" from="Player" to="CanvasLayer/GameUI/PopupShop" method="_on_player_sleep_changed"]
+
+[editable path="CanvasLayer/GameUI"]
