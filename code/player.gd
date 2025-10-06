@@ -5,7 +5,7 @@ class_name RoboVac extends CharacterBody3D
 @onready var art: Node3D = %Art
 
 # Current Stats (Modified during game)
-var vacuum_radius := 0.4
+var vacuum_radius := 0.24
 var vacuum_power := 4.0
 var move_speed := 0.5
 var jump_speed := 2.5
@@ -35,6 +35,8 @@ var ground_velocity := Vector2.ZERO
 var vertical_velocity := 0.0
 var dash_t := 0.0
 var dirt_worlds: Array[DirtWorld3D] = []
+var sample_angle := 0.0
+var last_hit := Time.get_ticks_msec()
 
 # Runtime respawn might reset
 var dead := false
@@ -134,21 +136,39 @@ func do_upgrades_changed() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	var time := Time.get_ticks_msec()
+	
+	var up := global_basis.y
+	var new_up := global_basis.y
+	
+	sample_angle += deg_to_rad(137.507764)
+	var sample_offset := global_basis.x.rotated(global_basis.y, sample_angle) * 0.25
 	var space_state := get_world_3d().direct_space_state
-	var query := PhysicsRayQueryParameters3D.create(self.global_position, self.global_position - self.global_basis.y, 9, [get_rid()])
-	var result := space_state.intersect_ray(query)
-	var up := art.global_basis.y
-	var new_up := Vector3.UP
-	if result:
-		new_up = result.normal
-		
-	if new_up.dot(Vector3.UP) > cos(deg_to_rad(40)):
-		var axis := up.cross(new_up)
-		if not axis.is_zero_approx():
-			axis = axis.normalized()
-			var angle := up.signed_angle_to(new_up, axis)
-			art.global_basis = art.global_basis.rotated(axis, angle)
-		
+	var query_a := PhysicsRayQueryParameters3D.create(global_position + sample_offset + up * 0.05, global_position - up, 9, [get_rid()])
+	var query_b := PhysicsRayQueryParameters3D.create(global_position - sample_offset + up * 0.05, global_position - up, 9, [get_rid()])
+	var result_a := space_state.intersect_ray(query_a)
+	var result_b := space_state.intersect_ray(query_b)
+	
+	if result_a and result_b:
+		var pos_a: Vector3 = result_a.position
+		var pos_b: Vector3 = result_b.position
+		var ray := (pos_a - pos_b).normalized()
+		var perp_axis := sample_offset.rotated(global_basis.y, 0.5 * PI)
+		new_up = perp_axis.cross(ray)
+		if new_up.is_zero_approx():  new_up = Vector3.UP
+		else:  new_up = new_up.normalized()
+		print("tilt sample! " + str(new_up))
+		last_hit = time
+	
+	art.basis = Basis()
+	if (time - last_hit) > 500:
+		new_up = Vector3.UP
+	if new_up.dot(Vector3.UP) > cos(deg_to_rad(50)):
+		var tip_axis := up.cross(new_up)
+		if not tip_axis.is_zero_approx():
+			tip_axis = tip_axis.normalized()
+			var tip_angle := up.signed_angle_to(new_up, tip_axis)
+			art.global_basis = art.global_basis.rotated(tip_axis, tip_angle)
 	
 	current_charge += delta * energy_regen
 	

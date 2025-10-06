@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bdjrsigh8ajkn"]
 
 [ext_resource type="Script" uid="uid://cem2aix0bfsgk" path="res://code/dirt_world_3d.gd" id="1_d3fdd"]
-[ext_resource type="QuadMesh" uid="uid://deklg6rj0sj1r" path="res://assets/data/particle_mesh.tres" id="2_3cdfs"]
+[ext_resource type="QuadMesh" uid="uid://deklg6rj0sj1r" path="res://assets/models/clutter/particle_mesh.tres" id="2_3cdfs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d3fdd"]
 resource_local_to_scene = true

@@ -99,7 +99,7 @@ const Upgrade_Double_Jump: StringName = "Unlock Double Jump"
 const Upgrade_Helicopter: StringName = "Unlock Helicopter"
 const Upgrade_Jetpack: StringName = "Unlock Jetpack"
 const Upgrade_Quick_Turn: StringName = "Quick Turn"
-const Upgrade_Teleport: StringName = "Teleport Home"
+const Upgrade_Teleport: StringName = "Teleport Home (Esc)"
 const Upgrade_Generator: StringName = "Unlock Slow Energy Regen"
 
 class UpgradeData extends RefCounted:

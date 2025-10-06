@@ -1,27 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://3j15a5i12y2c"]
+[gd_scene load_steps=7 format=3 uid="uid://3j15a5i12y2c"]
 
 [ext_resource type="Script" uid="uid://dvddy7iifqfhb" path="res://code/dock.gd" id="1_pi7v4"]
+[ext_resource type="PackedScene" uid="uid://yta2n5njkuhi" path="res://scenes/furniture/charger_v1.tscn" id="2_uvgon"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tbgi4"]
-height = 0.016022138
-radius = 0.20751953
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pi7v4"]
-albedo_color = Color(0.30323282, 0.30323282, 0.30323282, 1)
-metallic = 0.36
-metallic_specular = 0.57
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_tbgi4"]
-material = SubResource("StandardMaterial3D_pi7v4")
-top_radius = 0.35
-bottom_radius = 0.4
-height = 0.02
-
-[sub_resource type="BoxMesh" id="BoxMesh_tefeu"]
-size = Vector3(0.1, 0.14, 0.05)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_o6xl0"]
-size = Vector3(0.100250244, 0.14123535, 0.053222656)
+height = 0.05991374
+radius = 0.26708984
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bo6mv"]
 transparency = 1
@@ -30,43 +14,31 @@ vertex_color_use_as_albedo = true
 
 [sub_resource type="TorusMesh" id="TorusMesh_pi7v4"]
 material = SubResource("StandardMaterial3D_bo6mv")
-inner_radius = 0.38
-outer_radius = 0.41
+inner_radius = 0.25
+outer_radius = 0.28
 rings = 32
 ring_segments = 8
 
 [sub_resource type="Gradient" id="Gradient_uvgon"]
-offsets = PackedFloat32Array(0, 0.05147059, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0, 0.32258064, 0.7311828, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Dock" type="Node3D"]
 script = ExtResource("1_pi7v4")
 
+[node name="Node3D" parent="." instance=ExtResource("2_uvgon")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.019424766, 0)
+
 [node name="Detector" type="Area3D" parent="."]
 
 [node name="CylinderCollider" type="CollisionShape3D" parent="Detector"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01063475, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03258055, 0)
 shape = SubResource("CylinderShape3D_tbgi4")
-
-[node name="MeshBottom" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0042426735, 0)
-mesh = SubResource("CylinderMesh_tbgi4")
-
-[node name="Pillar" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.061010912)
-
-[node name="MeshPillar" type="MeshInstance3D" parent="Pillar"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.067260996, 0.37602812)
-mesh = SubResource("BoxMesh_tefeu")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pillar"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00010681152, 0.06707764, 0.37670898)
-shape = SubResource("BoxShape3D_o6xl0")
 
 [node name="RingParticles" type="CPUParticles3D" parent="."]
 unique_name_in_owner = true
-amount = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018943697, 0)
+amount = 3
 lifetime = 2.0
 draw_order = 1
 mesh = SubResource("TorusMesh_pi7v4")
@@ -75,7 +47,7 @@ spread = 0.0
 gravity = Vector3(0, 0, 0)
 initial_velocity_min = 0.1
 initial_velocity_max = 0.1
-color = Color(1.92523e-07, 0, 0.75383127, 1)
+color = Color(0.13313854, 0.36490756, 0.9999886, 1)
 color_ramp = SubResource("Gradient_uvgon")
 
 [connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]

@@ -1,16 +1,13 @@
-@tool
-class_name DirtWorld3D extends Node3D
+class_name ClutterSystem extends Node3D
+
+@export var max_particles := 2000
+@export var player: RoboVac
+@export var clutter_planes: Array[ClutterPlane]
 
 const DEFAULT_COLOR := Color(0.5, 0.5, 0.46)
 const FLAT_TRANSFORM := Basis(Vector3.RIGHT, PI * 0.5)
 const REST_Y := 0.01
 const MAX_TRIES := 100
-
-@onready var bounds: Area3D = %Bounds
-@onready var bounds_shape := %BoundsShape as CollisionShape3D
-@onready var bounds_shape_shape := %BoundsShape.shape as BoxShape3D
-
-
 
 @onready var particles: MultiMeshInstance3D = %Particles
 @onready var sprite3d_pattern: Sprite3D = %Pattern
@@ -18,12 +15,6 @@ const MAX_TRIES := 100
 var frame_share := 4
 var frame_i := 0
 
-@export var max_particles := 2000
-
-@export var player: RoboVac
-
-@export var dirt_min_size := 3.0
-@export var dirt_max_size := 7.0
 
 @export var pattern: Texture2D:
 	set(p):
@@ -171,7 +162,7 @@ func do_dust_collection(delta: float):
 		
 		var diff := player.position - ppos
 		var dist := diff.length()
-		if dist < 0.15:
+		if dist < 0.2:
 			particles.multimesh.set_instance_transform(i, Transform3D(Basis.from_scale(Vector3.ZERO), ppos))
 			alive_count -= 1
 			dust_collected += 1
@@ -179,7 +170,7 @@ func do_dust_collection(delta: float):
 			player.on_dust_collected(self, 1)
 			continue
 		
-		if dist < 0.30:
+		if dist < 0.6:
 			pscale.lerp(Vector3.ONE * dirt_min_size, (0.6 - dist) / 0.6)
 		
 		var dir := Vector3(diff.x, 0, diff.z).normalized()
