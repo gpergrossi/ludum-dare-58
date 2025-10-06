@@ -17,7 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://c52ukjpvf7vry" path="res://scenes/furniture/nightstand01_v1.tscn" id="17_rllof"]
 [ext_resource type="PackedScene" uid="uid://b3axl5s1uxnai" path="res://scenes/furniture/nightstand02_v1.tscn" id="18_iayyx"]
 [ext_resource type="PackedScene" uid="uid://cdrqmhuy60do0" path="res://scenes/furniture/ovenVent_v1.tscn" id="19_yfp7j"]
-[ext_resource type="PackedScene" uid="uid://cp5yie0de6ppn" path="res://scenes/furniture/pillCarpet_V1.tscn" id="20_1dn7j"]
 [ext_resource type="PackedScene" uid="uid://edm6cutuysas" path="res://scenes/furniture/reclinerChair_v1.tscn" id="21_kbtfo"]
 [ext_resource type="PackedScene" uid="uid://bbuyv62gcovgu" path="res://scenes/furniture/reclinerFootrest_v1.tscn" id="22_gw2al"]
 [ext_resource type="PackedScene" uid="uid://unfikx7qexhk" path="res://scenes/furniture/roundCarpet_v1.tscn" id="23_ljnk4"]
@@ -34,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://bqx4pvfyu8l5l" path="res://scenes/furniture/cornerCabinets.tscn" id="34_ugvml"]
 [ext_resource type="PackedScene" uid="uid://come4ya705nnu" path="res://scenes/furniture/BackSplash_v1.tscn" id="35_eal65"]
 [ext_resource type="PackedScene" uid="uid://fhc8fuykhd2l" path="res://scenes/furniture/backCupboard_v1.tscn" id="36_s8m1k"]
+[ext_resource type="PackedScene" uid="uid://t3mg5di4r7g5" path="res://scenes/furniture/pill_carpet_v_2.tscn" id="36_wvog6"]
 [ext_resource type="PackedScene" uid="uid://digmnky1e1vv2" path="res://scenes/furniture/Corner_desk_v1.tscn" id="37_707lp"]
 
 [node name="FurnitureLayout01" type="Node3D"]
@@ -48,7 +48,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9660585, 3.3763638, 2.19765
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2090755, 5.8745103, -5.4965544)
 
 [node name="Node3D5" parent="." instance=ExtResource("3_fyahg")]
-transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, -1.6547755, 3.051293, -6.3669357)
+transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, -1.6547755, 3.070908, -6.3669357)
 
 [node name="Node3D6" parent="." instance=ExtResource("4_n0ll8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5372985, 1.2193955e-06, -4.540864)
@@ -110,12 +110,6 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.3
 [node name="Node3D20" parent="." instance=ExtResource("19_yfp7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1042113, 1.7013117, -4.59705)
 
-[node name="Node3D21" parent="." instance=ExtResource("20_1dn7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.021, -0.06, 0.637)
-
-[node name="Node3D37" parent="." instance=ExtResource("20_1dn7j")]
-transform = Transform3D(-2.1855694e-08, 0, -1, 0, 1, 0, 0.5, 0, -4.371139e-08, 0.7817246, 3.0286527, -5.5180182)
-
 [node name="Node3D23" parent="." instance=ExtResource("21_kbtfo")]
 transform = Transform3D(0.6406458, 0, -0.76783645, 0, 1, 0, 0.76783645, 0, 0.6406458, -3.910176, 0.051785458, -0.9969702)
 
@@ -175,3 +169,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5161157, 1.710845, -7.37639
 
 [node name="Node3D45" parent="." instance=ExtResource("37_707lp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.476283, 3.1386266, -7.8092685)
+
+[node name="PillCarpet_v2" parent="." instance=ExtResource("36_wvog6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0458667, -0.06182456, 0.635154)
+
+[node name="PillCarpet_v3" parent="." instance=ExtResource("36_wvog6")]
+transform = Transform3D(-2.2339389e-08, 0, 1, 0, 1, 0, -0.51106566, 0, -4.371139e-08, 0.7775593, 3.0318234, -5.537315)

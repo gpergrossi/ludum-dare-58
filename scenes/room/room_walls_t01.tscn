@@ -3,10 +3,10 @@
 [ext_resource type="Material" uid="uid://bcmpqa3gjn4sx" path="res://scenes/room/_mats/m_Wall_Paint.tres" id="2_r5bxg"]
 [ext_resource type="Material" uid="uid://cgl53pyostltp" path="res://scenes/room/_mats/glass.tres" id="4_1rug8"]
 [ext_resource type="Material" uid="uid://s520vloid4ew" path="res://scenes/room/_mats/m_Black.tres" id="5_a3mfd"]
+[ext_resource type="Material" uid="uid://dvcddciyg75o1" path="res://assets/materials/instances/o_Wood_Stairs.tres" id="5_alscn"]
 [ext_resource type="PackedScene" uid="uid://dfql1xj2ltlg5" path="res://scenes/room/_meshs/Balcony_Rail_02.fbx" id="7_2eywg"]
 [ext_resource type="PackedScene" uid="uid://bw2tetcuymned" path="res://scenes/room/_meshs/room_layout_walls_v4.fbx" id="7_60jeq"]
 [ext_resource type="Material" uid="uid://lknoxuy32nh8" path="res://scenes/room/_mats/m_Floor_Base.tres" id="7_em6lu"]
-[ext_resource type="Material" uid="uid://dxeuxvglvgwyl" path="res://assets/materials/instances/o_Wood_lite.tres" id="8_mh54u"]
 [ext_resource type="Material" uid="uid://ccq8262w36q2l" path="res://scenes/room/_mats/m_BLACKOUT.tres" id="8_rxxr2"]
 [ext_resource type="Material" uid="uid://chsstmwdi4lod" path="res://assets/materials/instances/o_Kitchen_Metal_BLK.tres" id="9_em6lu"]
 [ext_resource type="Material" uid="uid://bldurlo15sqjv" path="res://scenes/room/_mats/m_Wall_Paint2.tres" id="10_7yjce"]
@@ -86,7 +86,7 @@ data = PackedVector3Array(5.3486, 2.6606, -0.4969, 5.3486, 2.6606, 0.4969, 5.348
 [node name="Balcony_Rail_02" parent="." instance=ExtResource("7_2eywg")]
 
 [node name="Balcony_Rail" parent="Balcony_Rail_02" index="0"]
-material_override = ExtResource("8_mh54u")
+material_override = ExtResource("5_alscn")
 
 [node name="metal_railing" parent="Balcony_Rail_02/Balcony_Rail" index="0"]
 material_override = ExtResource("9_em6lu")
@@ -104,10 +104,12 @@ shape = SubResource("ConcavePolygonShape3D_7yjce")
 [node name="Stair_02" parent="." instance=ExtResource("10_rtts7")]
 
 [node name="Steps" parent="Stair_02" index="0"]
-material_override = ExtResource("8_mh54u")
+material_override = ExtResource("5_alscn")
+surface_material_override/0 = ExtResource("5_alscn")
 
 [node name="Stair_Rail1" parent="Stair_02/Steps" index="0"]
-material_override = ExtResource("8_mh54u")
+material_override = ExtResource("5_alscn")
+surface_material_override/0 = ExtResource("5_alscn")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Stair_02/Steps/Stair_Rail1" index="0"]
 
