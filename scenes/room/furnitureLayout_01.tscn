@@ -84,7 +84,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2985098, -2.1580823e-07, -5
 transform = Transform3D(0.0020070816, 0, 0.999998, 0, 1, 0, -0.999998, 0, 0.0020070816, 1.668051, 3.0853865, -6.8660436)
 
 [node name="Node3D14" parent="." instance=ExtResource("12_tbko1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5229856, 1.1015912e-07, -7.54016)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5229856, 1.1015912e-07, -7.9461617)
 
 [node name="Node3D15" parent="." instance=ExtResource("13_ha7kq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5615386, 5.650278e-07, -4.544824)
@@ -174,4 +174,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.476283, 3.1386266, -7.80926
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0458667, -0.06182456, 0.635154)
 
 [node name="PillCarpet_v3" parent="." instance=ExtResource("36_wvog6")]
-transform = Transform3D(-2.2339389e-08, 0, 1, 0, 1, 0, -0.51106566, 0, -4.371139e-08, 0.7775593, 3.0318234, -5.537315)
+transform = Transform3D(-2.2339389e-08, 0, 1, 0, 1, 0, -0.51106566, 0, -4.371139e-08, 0.7775593, 3.0132413, -5.537315)
