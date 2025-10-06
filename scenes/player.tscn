@@ -130,6 +130,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -0.16)
 shape = SubResource("SphereShape3D_g2els")
 
 [node name="Main Camera" type="Camera3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.991216, 0.132256, 0, -0.132256, 0.991216, 0, 0.420815, 0.978399)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
