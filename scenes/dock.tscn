@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://3j15a5i12y2c"]
 
 [ext_resource type="Script" uid="uid://dvddy7iifqfhb" path="res://code/dock.gd" id="1_pi7v4"]
-[ext_resource type="PackedScene" uid="uid://yta2n5njkuhi" path="res://scenes/furniture/charger_v1.tscn" id="2_uvgon"]
+[ext_resource type="PackedScene" uid="uid://dq7ssm6bkx1tn" path="res://scenes/FBX_imports/BT_Imports/Roomba_Charger_v2.fbx" id="2_uvgon"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tbgi4"]
 height = 0.05991374
@@ -26,9 +26,6 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 [node name="Dock" type="Node3D"]
 script = ExtResource("1_pi7v4")
 
-[node name="Node3D" parent="." instance=ExtResource("2_uvgon")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.019424766, 0)
-
 [node name="Detector" type="Area3D" parent="."]
 collision_layer = 2
 collision_mask = 4
@@ -51,6 +48,9 @@ initial_velocity_min = 0.1
 initial_velocity_max = 0.1
 color = Color(0.13313854, 0.36490756, 0.9999886, 1)
 color_ramp = SubResource("Gradient_uvgon")
+
+[node name="Roomba_Charger_v2" parent="." instance=ExtResource("2_uvgon")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.03056842)
 
 [connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]
 [connection signal="body_exited" from="Detector" to="." method="_on_detector_body_exited"]
