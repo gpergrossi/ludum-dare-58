@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://cahfo4lc3ufi6"]
+[gd_scene load_steps=64 format=3 uid="uid://cahfo4lc3ufi6"]
 
 [ext_resource type="PackedScene" uid="uid://djefabn5cbvf0" path="res://scenes/environment.tscn" id="1_ya4ey"]
 [ext_resource type="Script" uid="uid://bpsvkjcb822ad" path="res://code/ui/progress_bar_dust.gd" id="2_jyhfs"]
@@ -26,6 +26,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bhkumiojjr5g5" path="res://assets/models/clutter/paper_crinkle.res" id="22_jscy8"]
 [ext_resource type="ArrayMesh" uid="uid://bl6d0qlwcnju7" path="res://assets/models/clutter/lego2x2.res" id="23_pm3ni"]
 [ext_resource type="ArrayMesh" uid="uid://b5r00yc5j1ieo" path="res://assets/models/clutter/lego2x4.res" id="24_y6deb"]
+[ext_resource type="ArrayMesh" uid="uid://d4gujsdotthxb" path="res://assets/models/clutter/coin_ld58.res" id="27_vxglm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sugp2"]
 
@@ -231,6 +232,32 @@ colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.6
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_fuf3a"]
 resource_local_to_scene = true
 gradient = SubResource("Gradient_kmb1v")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2f3dj"]
+resource_local_to_scene = true
+size = Vector3(0.825212, 0.008544922, 1.4949465)
+
+[sub_resource type="Gradient" id="Gradient_yq6so"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.34628975, 1)
+colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fv21b"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_yq6so")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vxglm"]
+resource_local_to_scene = true
+size = Vector3(0.6376381, 0.008544922, 1.712822)
+
+[sub_resource type="Gradient" id="Gradient_tel4y"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.34628975, 1)
+colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qkpxi"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_tel4y")
 
 [node name="Main" type="Node3D"]
 
@@ -681,6 +708,27 @@ min_size = 2.0
 max_size = 2.0
 size_class = 1
 points_per_item = 20
+
+[node name="ClutterPlaneCoins" parent="ClutterSystem" instance=ExtResource("20_jscy8")]
+transform = Transform3D(0.852193, 0, -0.5232276, 0, 1, 0, 0.5232276, 0, 0.852193, 1.7214298, 0.8865329, -5.4084773)
+shape = SubResource("BoxShape3D_2f3dj")
+show_pattern_in_editor = false
+mesh = ExtResource("27_vxglm")
+colors = SubResource("GradientTexture1D_fv21b")
+item_count = 50
+max_size = 1.0
+size_class = 1
+
+[node name="ClutterPlaneChips2" parent="ClutterSystem" instance=ExtResource("20_jscy8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.31479, 0.49596125, -0.6729456)
+shape = SubResource("BoxShape3D_vxglm")
+show_pattern_in_editor = false
+mesh = ExtResource("21_yc10j")
+colors = SubResource("GradientTexture1D_qkpxi")
+item_count = 50
+min_size = 3.0
+max_size = 3.0
+size_class = 0
 
 [connection signal="pressed" from="CanvasLayer/WholeWindow/PopupRespawn/VBoxContainer/HBoxContainer/Button" to="CanvasLayer/WholeWindow/PopupRespawn" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/WholeWindow/PopupRespawn/VBoxContainer/HBoxContainer/Button2" to="CanvasLayer/WholeWindow/PopupRespawn" method="_on_button_pressed"]
