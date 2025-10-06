@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://djefabn5cbvf0" path="res://scenes/environment.tscn" id="1_ya4ey"]
 [ext_resource type="Script" uid="uid://bpsvkjcb822ad" path="res://code/ui/progress_bar_dust.gd" id="2_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://c5q64rxaprg2" path="res://scenes/room/props_TESTONLY.tscn" id="2_tipki"]
 [ext_resource type="Texture2D" uid="uid://cmh8dch3fefrd" path="res://assets/images/UI/Dust_ui/dust_icon.png" id="2_vxglm"]
 [ext_resource type="Script" uid="uid://cgdaov6841ifx" path="res://code/ui/progress_bar_battery.gd" id="3_85g3d"]
 [ext_resource type="Script" uid="uid://bxotqlnrj5vex" path="res://code/ui/label_dust.gd" id="3_tbgi4"]
@@ -20,6 +19,7 @@
 [ext_resource type="Script" uid="uid://bytb6rn3npm0o" path="res://code/ui/popup_shop.gd" id="12_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://cvnlxf8mywvy4" path="res://scenes/ui/upgrade_ui.tscn" id="13_muem4"]
 [ext_resource type="Script" uid="uid://bqr5dpjkanqyo" path="res://code/player_base_stats.gd" id="15_dp3eg"]
+[ext_resource type="PackedScene" uid="uid://bx6wo5s48pcm1" path="res://scenes/room/furnitureLayout_01.tscn" id="16_2wyq8"]
 [ext_resource type="PackedScene" uid="uid://dhq2bna7oyra4" path="res://scenes/clutter_system.tscn" id="19_yc10j"]
 [ext_resource type="PackedScene" uid="uid://k3u5xcvedbjc" path="res://scenes/clutter_plane.tscn" id="20_jscy8"]
 [ext_resource type="ArrayMesh" uid="uid://dbf3hxewrxllw" path="res://assets/models/clutter/chip_broken.res" id="21_yc10j"]
@@ -599,7 +599,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_0ld40")
 
 [node name="RoomWallsT01" parent="Room" instance=ExtResource("7_o6xl0")]
 
-[node name="PropsTestonly" parent="Room" instance=ExtResource("2_tipki")]
+[node name="FurnitureLayout01" parent="Room" instance=ExtResource("16_2wyq8")]
 
 [node name="Player" parent="." instance=ExtResource("4_tbgi4")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.20769292, 0.050397113, 4.353485)
