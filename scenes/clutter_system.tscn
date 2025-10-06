@@ -8,7 +8,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bl6d0qlwcnju7" path="res://assets/models/clutter/lego2x2.res" id="6_tjn31"]
 [ext_resource type="ArrayMesh" uid="uid://b5r00yc5j1ieo" path="res://assets/models/clutter/lego2x4.res" id="7_yfw72"]
 [ext_resource type="ArrayMesh" uid="uid://d4gujsdotthxb" path="res://assets/models/clutter/coin_ld58.res" id="8_ejqpx"]
-[ext_resource type="ArrayMesh" uid="uid://cojbepgntmt3h" path="res://assets/models/clutter/pawPrint.res" id="9_byvkq"]
+[ext_resource type="ArrayMesh" uid="uid://b4e1ab6tqploq" path="res://assets/models/clutter/pawPrint.res" id="9_byvkq"]
 [ext_resource type="PackedScene" uid="uid://ckhaa76vvgbwy" path="res://scenes/room/room_walls_t01.tscn" id="10_g5q62"]
 [ext_resource type="PackedScene" uid="uid://bx6wo5s48pcm1" path="res://scenes/room/furnitureLayout_01.tscn" id="11_v5p7r"]
 
@@ -237,3 +237,10 @@ visible = false
 [node name="FurnitureLayout01" parent="." instance=ExtResource("11_v5p7r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0026097298, 0, -7.522106e-05)
 visible = false
+
+[node name="REF_ONLY_DELETE_AFTER" type="Node3D" parent="."]
+
+[node name="RoomWallsT01" parent="REF_ONLY_DELETE_AFTER" instance=ExtResource("10_g5q62")]
+
+[node name="FurnitureLayout01" parent="REF_ONLY_DELETE_AFTER" instance=ExtResource("11_v5p7r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0026097298, 0, -7.522106e-05)
