@@ -90,7 +90,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5229856, 1.1015912e-07, -7
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5615386, 5.650278e-07, -4.544824)
 
 [node name="Laptop2" parent="." instance=ExtResource("14_sglq0")]
-transform = Transform3D(0.73363495, 0, 0.67954373, 0, 1, 0, -0.67954373, 0, 0.73363495, -2.0052829, 0.6260946, 0.4311577)
+transform = Transform3D(0.73363495, 0, 0.67954373, 0, 1, 0, -0.67954373, 0, 0.73363495, -2.0052829, 0.5699729, 0.4311577)
 
 [node name="Node3D16" parent="." instance=ExtResource("15_b6blu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1304274, 1.668659e-07, 3.1112356)
