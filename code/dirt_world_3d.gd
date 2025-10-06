@@ -9,6 +9,9 @@ const MAX_TRIES := 100
 @onready var bounds: Area3D = %Bounds
 @onready var bounds_shape := %BoundsShape as CollisionShape3D
 @onready var bounds_shape_shape := %BoundsShape.shape as BoxShape3D
+
+
+
 @onready var particles: MultiMeshInstance3D = %Particles
 @onready var sprite3d_pattern: Sprite3D = %Pattern
 

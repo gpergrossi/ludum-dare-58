@@ -135,17 +135,20 @@ func do_upgrades_changed() -> void:
 
 func _physics_process(delta: float) -> void:
 	var space_state := get_world_3d().direct_space_state
-	var query := PhysicsRayQueryParameters3D.create(self.global_position, self.global_position - self.global_basis.y, 9, [])
+	var query := PhysicsRayQueryParameters3D.create(self.global_position, self.global_position - self.global_basis.y, 9, [get_rid()])
 	var result := space_state.intersect_ray(query)
+	var up := art.global_basis.y
+	var new_up := Vector3.UP
 	if result:
-		var up := art.global_basis.y
-		var new_up: Vector3 = result.normal
-		if new_up.dot(Vector3.UP) > cos(deg_to_rad(40)):
-			var axis := up.cross(new_up)
-			if not axis.is_zero_approx():
-				axis = axis.normalized()
-				var angle := up.signed_angle_to(new_up, axis)
-				art.global_basis = art.global_basis.rotated(axis, angle)
+		new_up = result.normal
+		
+	if new_up.dot(Vector3.UP) > cos(deg_to_rad(40)):
+		var axis := up.cross(new_up)
+		if not axis.is_zero_approx():
+			axis = axis.normalized()
+			var angle := up.signed_angle_to(new_up, axis)
+			art.global_basis = art.global_basis.rotated(axis, angle)
+		
 	
 	current_charge += delta * energy_regen
 	
