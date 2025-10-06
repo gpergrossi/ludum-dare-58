@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cahfo4lc3ufi6"]
+[gd_scene load_steps=67 format=3 uid="uid://cahfo4lc3ufi6"]
 
 [ext_resource type="PackedScene" uid="uid://djefabn5cbvf0" path="res://scenes/environment.tscn" id="1_ya4ey"]
 [ext_resource type="Script" uid="uid://bpsvkjcb822ad" path="res://code/ui/progress_bar_dust.gd" id="2_jyhfs"]
@@ -19,7 +19,16 @@
 [ext_resource type="PackedScene" uid="uid://cvnlxf8mywvy4" path="res://scenes/ui/upgrade_ui.tscn" id="13_muem4"]
 [ext_resource type="Script" uid="uid://bqr5dpjkanqyo" path="res://code/player_base_stats.gd" id="15_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://bx6wo5s48pcm1" path="res://scenes/room/furnitureLayout_01.tscn" id="16_2wyq8"]
+[ext_resource type="PackedScene" uid="uid://cvv0yrmh56yx3" path="res://scenes/furniture/MEDIUM_PROPS/Vent.tscn" id="17_vxglm"]
+[ext_resource type="PackedScene" uid="uid://buvpsmhl1bd8m" path="res://scenes/furniture/MEDIUM_PROPS/cat_bowl.tscn" id="19_2f3dj"]
 [ext_resource type="PackedScene" uid="uid://dhq2bna7oyra4" path="res://scenes/clutter_system.tscn" id="19_yc10j"]
+[ext_resource type="PackedScene" uid="uid://dk5fck1jf6l4s" path="res://scenes/furniture/MEDIUM_PROPS/pizza_slice_2.tscn" id="20_yq6so"]
+[ext_resource type="PackedScene" uid="uid://boalb6fv71toe" path="res://scenes/furniture/MEDIUM_PROPS/pizza_box.tscn" id="21_yc10j"]
+[ext_resource type="PackedScene" uid="uid://boeag0lr6jr1e" path="res://scenes/furniture/MEDIUM_PROPS/pillow_3.tscn" id="22_fv21b"]
+[ext_resource type="PackedScene" uid="uid://33s11lq11nwr" path="res://scenes/furniture/MEDIUM_PROPS/pizza_slice.tscn" id="24_yq6so"]
+[ext_resource type="PackedScene" uid="uid://cbupwg7nqnp7m" path="res://scenes/furniture/MEDIUM_PROPS/pillow_01.tscn" id="25_fv21b"]
+[ext_resource type="PackedScene" uid="uid://of1cgxuvraiv" path="res://scenes/furniture/MEDIUM_PROPS/pillow_02.tscn" id="26_tel4y"]
+[ext_resource type="PackedScene" uid="uid://bypcgdx245vcd" path="res://scenes/furniture/MEDIUM_PROPS/robo_box.tscn" id="27_qkpxi"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sugp2"]
 
@@ -149,6 +158,114 @@ corner_detail = 5
 [sub_resource type="Resource" id="Resource_2wyq8"]
 script = ExtResource("15_dp3eg")
 metadata/_custom_type_script = "uid://bqr5dpjkanqyo"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ks51d"]
+resource_local_to_scene = true
+size = Vector3(9.634736, 0.008544922, 12.374626)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bjbia"]
+resource_local_to_scene = true
+size = Vector3(9.425175, 0.008544922, 12.350643)
+
+[sub_resource type="Gradient" id="Gradient_2f3dj"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.34628975, 1)
+colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5hkhr"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_2f3dj")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g2jyp"]
+resource_local_to_scene = true
+size = Vector3(2.2043917, 0.008544922, 3.2109213)
+
+[sub_resource type="Gradient" id="Gradient_fv21b"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.34628975, 1)
+colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mgku7"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_fv21b")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uawbi"]
+resource_local_to_scene = true
+size = Vector3(3.9304237, 0.008544922, 7.14904)
+
+[sub_resource type="Gradient" id="Gradient_qkpxi"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.34628975, 1)
+colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jwdwh"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_qkpxi")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h6xto"]
+resource_local_to_scene = true
+size = Vector3(2.2741776, 0.008544922, 5.34239)
+
+[sub_resource type="Gradient" id="Gradient_dgi5k"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.34628975, 1)
+colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7wu01"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_dgi5k")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_17pqh"]
+resource_local_to_scene = true
+size = Vector3(2.5683022, 0.008544922, 5.0316696)
+
+[sub_resource type="Gradient" id="Gradient_kmb1v"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.34628975, 1)
+colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qhvxn"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_kmb1v")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_indl7"]
+resource_local_to_scene = true
+size = Vector3(0.825212, 0.008544922, 1.4949465)
+
+[sub_resource type="Gradient" id="Gradient_yq6so"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.34628975, 1)
+colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uytov"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_yq6so")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mh7h8"]
+resource_local_to_scene = true
+size = Vector3(0.825212, 0.008544922, 1.4949465)
+
+[sub_resource type="Gradient" id="Gradient_3vqod"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.34628975, 1)
+colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lh2qt"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_3vqod")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xderr"]
+resource_local_to_scene = true
+size = Vector3(0.6376381, 0.008544922, 1.712822)
+
+[sub_resource type="Gradient" id="Gradient_tel4y"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.34628975, 1)
+colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_povu3"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_tel4y")
 
 [node name="Main" type="Node3D"]
 
@@ -520,6 +637,42 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_0ld40")
 [node name="FurnitureLayout01" parent="Room" instance=ExtResource("16_2wyq8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0026097298, 0, -7.522106e-05)
 
+[node name="Vent_cover" parent="Room" instance=ExtResource("17_vxglm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8089237, -0.026804212, 4.1401386)
+
+[node name="Pizza_Box" parent="Room" instance=ExtResource("21_yc10j")]
+transform = Transform3D(0.6055996, 0, -0.7957695, 0, 1, 0, 0.7957695, 0, 0.6055996, -0.9537498, 0.78009284, -4.616455)
+
+[node name="catBowl" parent="Room" instance=ExtResource("19_2f3dj")]
+transform = Transform3D(2.4016035, 0, 2.6480436, 0, 2.4155738, 0, -2.6035953, 0, 2.442603, -4.418231, 0.7800004, -4.7186775)
+
+[node name="Pizza_Slice_2" parent="Room" instance=ExtResource("20_yq6so")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1420937, 0.78000015, -6.9323025)
+
+[node name="pizzaSlice" parent="Room" instance=ExtResource("24_yq6so")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7368536, 0.7800001, -7.4089484)
+
+[node name="pizzaSlice2" parent="Room" instance=ExtResource("24_yq6so")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.166051, 0.7800005, -4.7766623)
+
+[node name="Pizza_Slice_3" parent="Room" instance=ExtResource("20_yq6so")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.907868, 0.78000045, -4.525439)
+
+[node name="pillow3" parent="Room" instance=ExtResource("22_fv21b")]
+transform = Transform3D(0.46482664, -0.5500259, -0.69383556, 0, 0.78363925, -0.6212162, 0.8854017, 0.28875783, 0.3642564, -0.19431373, 0.6075081, 0.7827738)
+
+[node name="pillow4" parent="Room" instance=ExtResource("22_fv21b")]
+transform = Transform3D(0.74205774, 0.67033595, 0, -0.67033595, 0.74205774, 0, 0, 0, 1, -4.0199533, 0.6474515, -1.0392116)
+
+[node name="Vent_cover2" parent="Room" instance=ExtResource("17_vxglm")]
+transform = Transform3D(-0.034219183, 0, 0.9994143, 0, 1, 0, -0.9994143, 0, -0.034219183, -3.488356, 2.6661456, -7.6864877)
+
+[node name="Vent_cover3" parent="Room" instance=ExtResource("17_vxglm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7964253, 2.6710422, -4.502132)
+
+[node name="Vent_cover4" parent="Room" instance=ExtResource("17_vxglm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.710357, -0.022580214, 4.138958)
+
 [node name="Player" parent="." instance=ExtResource("4_tbgi4")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.20769292, 0.050397113, 4.353485)
 base_stats = SubResource("Resource_2wyq8")
@@ -529,6 +682,77 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2028451, -0.0063302293, 4.3
 
 [node name="ClutterSystem" parent="." node_paths=PackedStringArray("player") instance=ExtResource("19_yc10j")]
 player = NodePath("../Player")
+
+[node name="ClutterPlaneDust" parent="ClutterSystem" index="0"]
+shape = SubResource("BoxShape3D_ks51d")
+
+[node name="ClutterPlaneTacks" parent="ClutterSystem" index="1"]
+shape = SubResource("BoxShape3D_bjbia")
+colors = SubResource("GradientTexture1D_5hkhr")
+
+[node name="ClutterPlaneChips" parent="ClutterSystem" index="2"]
+shape = SubResource("BoxShape3D_g2jyp")
+colors = SubResource("GradientTexture1D_mgku7")
+
+[node name="ClutterPlanePaper" parent="ClutterSystem" index="3"]
+shape = SubResource("BoxShape3D_uawbi")
+colors = SubResource("GradientTexture1D_jwdwh")
+
+[node name="ClutterPlaneLego2x2" parent="ClutterSystem" index="4"]
+shape = SubResource("BoxShape3D_h6xto")
+colors = SubResource("GradientTexture1D_7wu01")
+
+[node name="ClutterPlaneLego4x2" parent="ClutterSystem" index="5"]
+shape = SubResource("BoxShape3D_17pqh")
+colors = SubResource("GradientTexture1D_qhvxn")
+
+[node name="ClutterPlaneCoins" parent="ClutterSystem" index="6"]
+shape = SubResource("BoxShape3D_indl7")
+colors = SubResource("GradientTexture1D_uytov")
+
+[node name="ClutterPlanePawprints" parent="ClutterSystem" index="7"]
+shape = SubResource("BoxShape3D_mh7h8")
+colors = SubResource("GradientTexture1D_lh2qt")
+
+[node name="ClutterPlaneChips2" parent="ClutterSystem" index="8"]
+shape = SubResource("BoxShape3D_xderr")
+colors = SubResource("GradientTexture1D_povu3")
+
+[node name="Pizza_Box" parent="." instance=ExtResource("21_yc10j")]
+transform = Transform3D(0.84360707, 0, 0.536961, 0, 1, 0, -0.536961, 0, 0.84360707, 0.67354655, 0.7125346, -0.00219059)
+
+[node name="Pizza_Box2" parent="." instance=ExtResource("21_yc10j")]
+transform = Transform3D(0.7126997, 0, -0.70146924, 0, 1, 0, 0.70146924, 0, 0.7126997, -1.8651035, 0.5700921, 1.8480284)
+
+[node name="Pizza_Box3" parent="." instance=ExtResource("21_yc10j")]
+transform = Transform3D(0.6323539, 0, -0.77467966, 0, 1, 0, 0.77467966, 0, 0.6323539, 2.0646935, 0.8800918, -5.1137877)
+
+[node name="pizzaSlice" parent="." instance=ExtResource("24_yq6so")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7166138, 0.56999975, 1.2101506)
+
+[node name="pizzaSlice2" parent="." instance=ExtResource("24_yq6so")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0511875, 5.7841683e-09, -0.4580146)
+
+[node name="pizzaSlice3" parent="." instance=ExtResource("24_yq6so")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7673974, 1.1931907e-07, -1.9698647)
+
+[node name="pizzaSlice4" parent="." instance=ExtResource("24_yq6so")]
+transform = Transform3D(0.24093951, 0, -0.9705401, 0, 1, 0, 0.9705401, 0, 0.24093951, 1.4612176, 4.2355687e-08, -0.6799483)
+
+[node name="Node3D" parent="." instance=ExtResource("25_fv21b")]
+transform = Transform3D(0.4246188, -0.7628747, 0.48756647, 0.036224995, 0.55241036, 0.832785, -0.9046473, -0.33595413, 0.26219893, -0.041726142, 0.69719344, 2.325011)
+
+[node name="pillow02" parent="." instance=ExtResource("26_tel4y")]
+transform = Transform3D(1, 0, 0, 0, 0.5310141, -0.847363, 0, 0.847363, 0.5310141, -1.4022025, 0.69149524, -2.0853918)
+
+[node name="pillow03" parent="." instance=ExtResource("26_tel4y")]
+transform = Transform3D(0.7637735, 0, -0.6454844, 0, 1, 0, 0.6454844, 0, 0.7637735, -0.6031697, 0.59728837, -1.7051384)
+
+[node name="Node3D2" parent="." instance=ExtResource("25_fv21b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.069526, 0.5972883, -0.34626603)
+
+[node name="robo_Box" parent="." instance=ExtResource("27_qkpxi")]
+transform = Transform3D(0.2410959, -0.9568565, 0.16216797, 0.7292577, 0.06836407, -0.6808154, 0.6403561, 0.282404, 0.71427727, 4.6415443, 0.26463315, -1.9568586)
 
 [connection signal="pressed" from="CanvasLayer/WholeWindow/PopupRespawn/VBoxContainer/HBoxContainer/Button" to="CanvasLayer/WholeWindow/PopupRespawn" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/WholeWindow/PopupRespawn/VBoxContainer/HBoxContainer/Button2" to="CanvasLayer/WholeWindow/PopupRespawn" method="_on_button_pressed"]
@@ -546,3 +770,5 @@ player = NodePath("../Player")
 [connection signal="exit_dock" from="Player" to="CanvasLayer/WholeWindow/PopupDockingStation" method="_on_player_exit_dock"]
 [connection signal="respawned" from="Player" to="CanvasLayer/WholeWindow/PopupRespawn" method="_on_player_respawned"]
 [connection signal="sleep_changed" from="Player" to="CanvasLayer/WholeWindow/PopupShop" method="_on_player_sleep_changed"]
+
+[editable path="ClutterSystem"]
