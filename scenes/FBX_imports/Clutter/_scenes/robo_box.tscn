@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cu711kbl3qqkk"]
+
+[ext_resource type="PackedScene" uid="uid://1plknbu15y4b" path="res://scenes/FBX_imports/Clutter/_mesh/ROBO_Box_v1.glb" id="1_uatw4"]
+
+[node name="RoboBox" type="Node3D"]
+
+[node name="ROBO_Box_v1" parent="." instance=ExtResource("1_uatw4")]
+
+[editable path="ROBO_Box_v1"]
