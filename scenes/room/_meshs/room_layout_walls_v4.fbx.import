@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://vvkb8ggqlwlm"
-path="res://.godot/imported/wall.fbx-d774140f9bbe465d3142345f796ef211.scn"
+uid="uid://bw2tetcuymned"
+path="res://.godot/imported/room_layout_walls_v4.fbx-561b5e502b8515532594d9567d2d1198.scn"
 
 [deps]
 
-source_file="res://scenes/room/_meshs/wall.fbx"
-dest_files=["res://.godot/imported/wall.fbx-d774140f9bbe465d3142345f796ef211.scn"]
+source_file="res://scenes/room/_meshs/room_layout_walls_v4.fbx"
+dest_files=["res://.godot/imported/room_layout_walls_v4.fbx-561b5e502b8515532594d9567d2d1198.scn"]
 
 [params]
 
@@ -37,25 +37,7 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={
-"materials": {
-"_defaultMat": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://scenes/room/_mats/_defaultMat.tres",
-"use_external/path": "uid://7v76lyrbbyn4"
-},
-"metalDark": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://scenes/room/_mats/metalDark.tres",
-"use_external/path": "uid://coofsw0l7ob80"
-},
-"wood": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://scenes/room/_mats/wood.tres",
-"use_external/path": "uid://lhy0wufyrn48"
-}
-}
-}
+_subresources={}
 fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1
