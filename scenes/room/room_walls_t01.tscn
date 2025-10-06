@@ -8,7 +8,7 @@
 [ext_resource type="Material" uid="uid://lknoxuy32nh8" path="res://scenes/room/_mats/m_Floor_Base.tres" id="7_em6lu"]
 [ext_resource type="Material" uid="uid://dxeuxvglvgwyl" path="res://assets/materials/instances/o_Wood_lite.tres" id="8_mh54u"]
 [ext_resource type="Material" uid="uid://ccq8262w36q2l" path="res://scenes/room/_mats/m_BLACKOUT.tres" id="8_rxxr2"]
-[ext_resource type="Material" uid="uid://chsstmwdi4lod" path="res://assets/materials/instances/o_Metal_BLK.tres" id="9_em6lu"]
+[ext_resource type="Material" uid="uid://chsstmwdi4lod" path="res://assets/materials/instances/o_Kitchen_Metal_BLK.tres" id="9_em6lu"]
 [ext_resource type="Material" uid="uid://bldurlo15sqjv" path="res://scenes/room/_mats/m_Wall_Paint2.tres" id="10_7yjce"]
 [ext_resource type="PackedScene" uid="uid://ds0amt0ndk14b" path="res://scenes/room/_meshs/Stair_02.fbx" id="10_rtts7"]
 [ext_resource type="Material" uid="uid://d0082ndnjoqik" path="res://scenes/room/_mats/sky_color.tres" id="11_mh54u"]

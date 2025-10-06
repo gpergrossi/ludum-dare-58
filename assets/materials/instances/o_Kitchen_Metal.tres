@@ -1,10 +1,10 @@
-[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://cexx2elibijte"]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://b6dbcb61fyoi7"]
 
-[ext_resource type="Shader" uid="uid://de6a47dter4t2" path="res://code/shaders/outline/pixelperfect_outline.gdshader" id="1_qlsoa"]
+[ext_resource type="Shader" uid="uid://de6a47dter4t2" path="res://code/shaders/outline/pixelperfect_outline.gdshader" id="1_fkrat"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vn30l"]
 render_priority = 0
-shader = ExtResource("1_qlsoa")
+shader = ExtResource("1_fkrat")
 shader_parameter/outline_color = Color(0, 0, 0, 1)
 shader_parameter/outline_width = 2.5
 
@@ -13,7 +13,7 @@ next_pass = SubResource("ShaderMaterial_vn30l")
 diffuse_mode = 3
 specular_mode = 1
 vertex_color_use_as_albedo = true
-albedo_color = Color(0.24356923, 0.24356923, 0.24356923, 1)
+albedo_color = Color(0.7, 0.7, 0.7, 1)
 metallic = 0.5
 metallic_specular = 0.05
 roughness = 0.2

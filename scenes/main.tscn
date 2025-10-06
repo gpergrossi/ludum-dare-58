@@ -600,6 +600,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_0ld40")
 [node name="RoomWallsT01" parent="Room" instance=ExtResource("7_o6xl0")]
 
 [node name="FurnitureLayout01" parent="Room" instance=ExtResource("16_2wyq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0026097298, 0, -7.522106e-05)
 
 [node name="Player" parent="." instance=ExtResource("4_tbgi4")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.20769292, 0.050397113, 4.353485)

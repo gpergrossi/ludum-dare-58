@@ -11,5 +11,5 @@ shader_parameter/outline_width = 2.5
 [resource]
 next_pass = SubResource("ShaderMaterial_vn30l")
 vertex_color_use_as_albedo = true
-albedo_color = Color(0.8, 0.5666667, 0.4, 1)
+albedo_color = Color(0.9717389, 0.9117932, 0.8711389, 1)
 metallic_specular = 0.0
