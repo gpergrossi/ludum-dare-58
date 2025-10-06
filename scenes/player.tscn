@@ -44,3 +44,8 @@ unique_name_in_owner = true
 
 [node name="roomba_v2" parent="Art" instance=ExtResource("2_g2els")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Boosters_2" parent="Art/roomba_v2/Robo_armature/Skeleton3D" index="2"]
+visible = false
+
+[editable path="Art/roomba_v2"]
