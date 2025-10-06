@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://buwwiahwcnmu3"]
-
-[ext_resource type="PackedScene" uid="uid://ddmldaua47wry" path="res://scenes/furniture/_mesh/loungeChair.fbx" id="1_yg3u5"]
-
-[node name="loungeChair" instance=ExtResource("1_yg3u5")]
