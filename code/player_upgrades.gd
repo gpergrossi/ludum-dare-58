@@ -15,6 +15,11 @@ func grant_upgrade(name: StringName) -> void:
 		purchases[name] = true
 		upgrades_changed.emit()
 
+func grant_all_upgrades() -> void:
+	for upgrade in all_upgrades:
+		purchases[upgrade] = true
+	upgrades_changed.emit()
+
 func is_upgrade_purchased(name: StringName) -> bool:
 	return purchases.has(name)
 

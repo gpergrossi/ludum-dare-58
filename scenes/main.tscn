@@ -57,10 +57,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_choun")
 
 [node name="Room" type="Node3D" parent="."]
 
+[node name="UnderLoft" parent="Room" instance=ExtResource("9_85g3d")]
+
 [node name="RoomWallsT01" parent="Room" instance=ExtResource("7_o6xl0")]
 
 [node name="FurnitureLayout01" parent="Room" instance=ExtResource("16_2wyq8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0026097298, 0, -7.522106e-05)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004729748, -1.1920929e-07, -0.0027264357)
 
 [node name="Med_Props" parent="Room" instance=ExtResource("17_yc10j")]
 
@@ -79,14 +81,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4403428, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="OutOfBounds"]
 shape = SubResource("WorldBoundaryShape3D_tipki")
 
-[node name="UnderLoft" parent="." instance=ExtResource("9_85g3d")]
-
 [connection signal="battery_died" from="Player" to="CanvasLayer/GameUI/PopupRespawn" method="_on_player_battery_died"]
 [connection signal="charge_changed" from="Player" to="CanvasLayer/GameUI/MarginContainer/Bottom Panel/VBoxContainer/ProgressBarBattery" method="_on_player_charge_changed"]
 [connection signal="charge_changed" from="Player" to="CanvasLayer/GameUI/MarginContainer/Bottom Panel/VBoxContainer/ProgressBarBattery/Label" method="_on_player_charge_changed"]
-[connection signal="dust_changed" from="Player" to="CanvasLayer/GameUI/MarginContainer/VBoxContainer/PanelContainer/Control/ProgressBarDust" method="_on_player_dust_changed"]
-[connection signal="dust_changed" from="Player" to="CanvasLayer/GameUI/MarginContainer/VBoxContainer/MarginContainer2/LabelDust" method="_on_player_dust_changed"]
-[connection signal="dust_changed" from="Player" to="CanvasLayer/GameUI/PopupDockingStation" method="_on_player_dust_changed"]
+[connection signal="dust_changed" from="Player" to="CanvasLayer/GameUI/MarginContainer/VBoxDust/PanelContainer/Control/ProgressBarDust" method="_on_player_dust_changed"]
+[connection signal="dust_changed" from="Player" to="CanvasLayer/GameUI/MarginContainer/VBoxDust/MarginContainer2/LabelDust" method="_on_player_dust_changed"]
 [connection signal="dust_storage_changed" from="Player" to="CanvasLayer/GameUI/PopupDockingStation" method="_on_player_dust_storage_changed"]
 [connection signal="dust_storage_changed" from="Player" to="CanvasLayer/GameUI/PopupShop" method="_on_player_dust_storage_changed"]
 [connection signal="enter_dock" from="Player" to="CanvasLayer/GameUI/PopupDockingStation" method="_on_player_enter_dock"]

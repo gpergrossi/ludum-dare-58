@@ -6,7 +6,7 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vsvut"]
 height = 0.6164484
-radius = 0.09277344
+radius = 0.033203125
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n16w7"]
 size = Vector3(1.7092285, 5.60437, 0.18811798)
@@ -21,23 +21,23 @@ surface_material_override/1 = ExtResource("3_n16w7")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="CouchRunner_v1/Couch runner" index="0"]
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="CouchRunner_v1/Couch runner/StaticBody3D"]
-transform = Transform3D(0.0050430098, 0, 0, 0, -0.000850815, 0.0050380826, 0, -0.010609362, -0.0004040274, 0.0057102675, 0.00025306933, 0.0028212233)
+[node name="Leg1" type="CollisionShape3D" parent="CouchRunner_v1/Couch runner/StaticBody3D"]
+transform = Transform3D(0.0050430098, 0, 0, 0, -4.6524062e-10, 0.0050542587, 0, -0.010643426, -2.2092861e-10, 0.005745167, 5.337034e-05, 0.0028212238)
 shape = SubResource("CylinderShape3D_vsvut")
 
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="CouchRunner_v1/Couch runner/StaticBody3D"]
-transform = Transform3D(0.0050430098, 0, 0, 0, -0.000850815, 0.0050380826, 0, -0.010609362, -0.0004040274, 0.005811797, 0.024703803, 0.0028115755)
+[node name="Leg2" type="CollisionShape3D" parent="CouchRunner_v1/Couch runner/StaticBody3D"]
+transform = Transform3D(0.0050430098, 0, 0, 0, -4.6524062e-10, 0.0050542587, 0, -0.010643426, -2.2092861e-10, 0.00018977141, 5.337034e-05, 0.0028212238)
 shape = SubResource("CylinderShape3D_vsvut")
 
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="CouchRunner_v1/Couch runner/StaticBody3D"]
-transform = Transform3D(0.0050430098, 0, 0, 0, -0.000850815, 0.0050380826, 0, -0.010609362, -0.0004040274, 0.0001841778, 0.024850864, 0.0032232355)
+[node name="Leg3" type="CollisionShape3D" parent="CouchRunner_v1/Couch runner/StaticBody3D"]
+transform = Transform3D(0.0050430098, 0, 0, 0, -4.6524062e-10, 0.0050542587, 0, -0.010643426, -2.2092861e-10, 0.005745167, 0.024597391, 0.0028212229)
 shape = SubResource("CylinderShape3D_vsvut")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="CouchRunner_v1/Couch runner/StaticBody3D"]
-transform = Transform3D(0.0050430098, 0, 0, 0, -0.000850815, 0.0050380826, 0, -0.010609362, -0.0004040274, 0.00013728857, 0.00027175268, 0.0028355527)
+[node name="Leg4" type="CollisionShape3D" parent="CouchRunner_v1/Couch runner/StaticBody3D"]
+transform = Transform3D(0.0050430098, 0, 0, 0, -4.6524062e-10, 0.0050542587, 0, -0.010643426, -2.2092861e-10, 0.00018977141, 0.024597391, 0.0028212229)
 shape = SubResource("CylinderShape3D_vsvut")
 
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="CouchRunner_v1/Couch runner/StaticBody3D"]
+[node name="TableTop" type="CollisionShape3D" parent="CouchRunner_v1/Couch runner/StaticBody3D"]
 transform = Transform3D(0.005000001, 0, 0, 0, 0.0050000036, -3.330669e-16, 0, 3.330669e-16, 0.0050000036, 0.0031414805, 0.012311767, 0.006730445)
 shape = SubResource("BoxShape3D_n16w7")
 

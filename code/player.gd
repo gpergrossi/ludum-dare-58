@@ -204,9 +204,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("home") and upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Teleport):
 		player_home_dialog.emit(self)
 	
-	if upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Helicopter):
+	if upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Helicopter) and not cat_hat.visible:
 		coppter_hat_v_1.visible = true
-		cat_hat.visible = false
 	else:
 		coppter_hat_v_1.visible = false
 	
@@ -230,13 +229,15 @@ func _physics_process(delta: float) -> void:
 	
 	dialog_cooldown = move_toward(dialog_cooldown, 0.0, delta)
 	
-	var query := PhysicsRayQueryParameters3D.create(main_camera.global_position, global_position)
+	var query := PhysicsRayQueryParameters3D.create(main_camera.global_position, global_position - global_basis.y * 0.05)
 	query.hit_from_inside = true
 	query.hit_back_faces = true
 	var space_state := get_world_3d().direct_space_state
 	var result := space_state.intersect_ray(query)
 	if result:
-		if result.collider is CameraHide:
+		print("Camera ray hit " + result.collider.name)
+		if result.collider as CameraHide != null:
+			print("Camera ray hit a hidable object")
 			var ch := result.collider as CameraHide
 			ch.do_hide()
 	
@@ -384,6 +385,9 @@ func _physics_process(delta: float) -> void:
 	# Cheats
 	if Input.is_key_pressed(KEY_PAGEUP):
 		stored_dust += 100000
+	
+	if Input.is_key_pressed(KEY_PAGEDOWN):
+		upgrades.grant_all_upgrades()
 	
 	# Pick up medium and large objects
 	for i in range(get_slide_collision_count()):

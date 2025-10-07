@@ -8,6 +8,7 @@ data = PackedVector3Array(0, 0.1087, -0.0894, 0.0106, 0.107999995, -0.0535, 0, 0
 
 [node name="copptorHat" type="StaticBody3D"]
 script = ExtResource("1_l3d8q")
+size_class = 1
 metadata/_custom_type_script = "uid://dyd3v0ic217sq"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

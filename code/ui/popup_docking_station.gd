@@ -1,6 +1,6 @@
 extends PanelContainer
 
-@export var current_objective := 1:
+@export var current_objective := 500:
 	set(target):
 		current_objective = target
 		if is_node_ready():

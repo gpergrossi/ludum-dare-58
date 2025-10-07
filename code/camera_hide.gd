@@ -4,17 +4,26 @@ var hidden := false
 var last_hide := 0
 
 @export var the_mesh: MeshInstance3D
+@export var another_mesh: MeshInstance3D
 
 func do_hide() -> void:
-	the_mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY
+	print("hide")
+	if the_mesh:
+		the_mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY
+	if another_mesh:
+		another_mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY
 	last_hide = Time.get_ticks_msec()
 	hidden = true
 
 func do_show() -> void:
-	the_mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON
+	print("show")
+	if the_mesh:
+		the_mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON
+	if another_mesh:
+		another_mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON
 	hidden = false
 
 func _process(_delta: float) -> void:
 	var time := Time.get_ticks_msec()
-	if hidden and time - last_hide > 1000:
+	if hidden and ((time - last_hide) > 1000):
 		do_show()

@@ -1,6 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://ci0otp7w64sbf"]
+[gd_scene load_steps=11 format=4 uid="uid://ci0otp7w64sbf"]
 
 [ext_resource type="Script" uid="uid://dyd3v0ic217sq" path="res://code/static_body_game_piece.gd" id="1_mjy5y"]
+[ext_resource type="Material" uid="uid://e1pkx0m8wdfc" path="res://assets/materials/instances/o_Cat_Wiskers.tres" id="2_upnmo"]
+[ext_resource type="Material" uid="uid://3nkim1p2i52u" path="res://assets/materials/instances/o_Cat_Fur.tres" id="3_omodu"]
+[ext_resource type="Material" uid="uid://eogo7si4dwea" path="res://assets/materials/instances/o_Cat_Ears.tres" id="4_o0grg"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_p2m5x"]
 height = 0.13303375
@@ -117,3 +120,6 @@ shape = SubResource("CylinderShape3D_p2m5x")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0094328495, 0.06110731, -0.0038421869)
 mesh = SubResource("ArrayMesh_q8kgp")
 skeleton = NodePath("")
+surface_material_override/0 = ExtResource("2_upnmo")
+surface_material_override/1 = ExtResource("3_omodu")
+surface_material_override/2 = ExtResource("4_o0grg")
