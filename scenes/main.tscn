@@ -44,11 +44,19 @@ corner_detail = 5
 
 [node name="GameUI" parent="CanvasLayer" instance=ExtResource("1_tipki")]
 
+[node name="ProgressBarDust" parent="CanvasLayer/GameUI/MarginContainer/VBoxDust/PanelContainer/Control" index="0"]
+step = 0.1
+
+[node name="ProgressBarBattery" parent="CanvasLayer/GameUI/MarginContainer/VBoxBattery/PanelContainer/Control" index="0"]
+step = 0.1
+
+[node name="PopupDockingStation" parent="CanvasLayer/GameUI" index="2"]
+visible = false
+
 [node name="ButtonHighlight" parent="CanvasLayer/GameUI/PopupDockingStation/VBoxContainer/HBoxContainer/ButtonSleep" index="0"]
 theme_override_styles/panel = SubResource("StyleBoxFlat_85g3d")
 
 [node name="PopupShop" parent="CanvasLayer/GameUI" index="3" node_paths=PackedStringArray("player")]
-visible = true
 player = NodePath("../../../Player")
 
 [node name="Button" parent="CanvasLayer/GameUI/PopupShop/MarginContainer/PopupWindow/VBoxContainer/HBoxContainer" index="0"]
@@ -70,14 +78,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004729748, -1.1920929e-07, 
 
 [node name="Med_Props" parent="Room" instance=ExtResource("17_yc10j")]
 
+[node name="ClutterSystem" parent="Room" node_paths=PackedStringArray("player") instance=ExtResource("19_yc10j")]
+player = NodePath("../../Player")
+
 [node name="Player" parent="." instance=ExtResource("4_tbgi4")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.20769292, 0.050397113, 4.353485)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20769292, 0.050397113, 4.353485)
 
 [node name="Dock" parent="." instance=ExtResource("6_tefeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2028451, -0.0063302293, 4.338443)
-
-[node name="ClutterSystem" parent="." node_paths=PackedStringArray("player") instance=ExtResource("19_yc10j")]
-player = NodePath("../Player")
 
 [node name="OutOfBounds" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4403428, 0)

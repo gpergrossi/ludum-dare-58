@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://cunkl22fnmk22"]
+[gd_scene load_steps=30 format=3 uid="uid://cunkl22fnmk22"]
 
 [ext_resource type="PackedScene" uid="uid://csosnw2no8hss" path="res://scenes/FBX_imports/KitchenCounter_v1.fbx" id="1_vl1m7"]
 [ext_resource type="Material" uid="uid://ccj5moo4g0aqr" path="res://assets/materials/instances/o_Kitchen_Wood_lite.tres" id="2_j2bb7"]
 [ext_resource type="Material" uid="uid://nug6p4ss5kyj" path="res://assets/materials/instances/o_Wood_dark.tres" id="3_aa8kc"]
 [ext_resource type="Material" uid="uid://b6dbcb61fyoi7" path="res://assets/materials/instances/o_Kitchen_Metal.tres" id="5_j2bb7"]
 [ext_resource type="Material" uid="uid://chsstmwdi4lod" path="res://assets/materials/instances/o_Kitchen_Metal_BLK.tres" id="6_2lm8d"]
+[ext_resource type="Script" uid="uid://cjxcdp8vt4n3e" path="res://code/camera_hide.gd" id="6_20nh3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j2bb7"]
 size = Vector3(0.041894197, 0.0066719055, 0.005540371)
@@ -65,6 +66,15 @@ size = Vector3(0.00428418, 0.0011625977, 0.0019648438)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ym8sd"]
 size = Vector3(0.011216675, 0.0064203185, 0.001)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qokvm"]
+size = Vector3(4.198181, 0.48278046, 0.5860596)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wofj6"]
+size = Vector3(0.8427429, 0.5030441, 3.3730774)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_113e4"]
+size = Vector3(5.2031097, 0.5030441, 0.6289215)
 
 [node name="Node3D" type="Node3D"]
 
@@ -163,5 +173,23 @@ shape = SubResource("BoxShape3D_l6j22")
 [node name="Spout4" type="CollisionShape3D" parent="KitchenCounter_v1/Cube_002/StaticBody3D"]
 transform = Transform3D(1.0000005, 0, 0, 0, 1.0000007, -2.842171e-14, 0, 2.842171e-14, 1.0000007, -0.015764883, 0.0011135554, 0.007829853)
 shape = SubResource("BoxShape3D_ym8sd")
+
+[node name="CameraHider" type="StaticBody3D" parent="KitchenCounter_v1" node_paths=PackedStringArray("the_mesh")]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("6_20nh3")
+the_mesh = NodePath("../Cube_002")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KitchenCounter_v1/CameraHider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.098236, 0.23936081, -0.15863037)
+shape = SubResource("BoxShape3D_qokvm")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="KitchenCounter_v1/CameraHider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7759552, 0.25216293, -1.5521393)
+shape = SubResource("BoxShape3D_wofj6")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="KitchenCounter_v1/CameraHider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5957718, 0.25216293, -2.9242172)
+shape = SubResource("BoxShape3D_113e4")
 
 [editable path="KitchenCounter_v1"]

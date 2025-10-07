@@ -3,24 +3,22 @@
 [ext_resource type="PackedScene" uid="uid://dc7rgpuxf84r1" path="res://scenes/FBX_imports/BT_Imports/TV_Stand.fbx" id="1_fvqq5"]
 [ext_resource type="Material" uid="uid://nug6p4ss5kyj" path="res://assets/materials/instances/o_Wood_dark.tres" id="2_23np3"]
 [ext_resource type="Material" uid="uid://d3pfpx0guvfaa" path="res://assets/materials/instances/o_Wood.tres" id="2_jb6kb"]
+[ext_resource type="Script" uid="uid://cjxcdp8vt4n3e" path="res://code/camera_hide.gd" id="4_e3s8w"]
 [ext_resource type="Material" uid="uid://cog2hbktwod5w" path="res://assets/materials/instances/o_Rubber_BLACK.tres" id="4_gu05i"]
 [ext_resource type="Material" uid="uid://cexx2elibijte" path="res://assets/materials/instances/o_Metal_DRK.tres" id="5_e3s8w"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gu05i"]
-size = Vector3(0.2649536, 0.5080261, 1.4838867)
+size = Vector3(0.2649536, 0.52052116, 1.4838867)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e3s8w"]
-size = Vector3(0.23951721, 0.5023651, 1.0507202)
+size = Vector3(0.23951721, 0.5174818, 1.0507202)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gu05i"]
-height = 0.50305176
+height = 0.51667976
 radius = 0.21728516
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_skiq7"]
-size = Vector3(0.34780884, 0.09643555, 0.052246094)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_3hd2n"]
-size = Vector3(0.34780884, 0.10443115, 0.052246094)
+size = Vector3(0.0448761, 0.09643555, 0.052246094)
 
 [node name="Node3D" type="Node3D"]
 
@@ -31,22 +29,24 @@ surface_material_override/0 = ExtResource("2_jb6kb")
 surface_material_override/1 = ExtResource("2_jb6kb")
 surface_material_override/2 = ExtResource("2_23np3")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="TV_Stand/TV_Stand/TV_Stand_Body" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="TV_Stand/TV_Stand/TV_Stand_Body" index="0" node_paths=PackedStringArray("the_mesh")]
+script = ExtResource("4_e3s8w")
+the_mesh = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TV_Stand/TV_Stand/TV_Stand_Body/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.121917725, 0.00032043457, 0.0012207031)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.121917725, -0.005927086, 0.0012207031)
 shape = SubResource("BoxShape3D_gu05i")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="TV_Stand/TV_Stand/TV_Stand_Body/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10488129, 0.0001449585, -0.002532959)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10488129, -0.0074133873, -0.002532959)
 shape = SubResource("BoxShape3D_e3s8w")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="TV_Stand/TV_Stand/TV_Stand_Body/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0055298815, -0.0010375977, 0.5235081)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0055298815, -0.0076961517, 0.5235081)
 shape = SubResource("CylinderShape3D_gu05i")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="TV_Stand/TV_Stand/TV_Stand_Body/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0055298815, -0.0010375977, -0.522251)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0055298815, -0.00707525, -0.522251)
 shape = SubResource("CylinderShape3D_gu05i")
 
 [node name="TV_Stand_Feet" parent="TV_Stand/TV_Stand" index="1"]
@@ -55,12 +55,20 @@ surface_material_override/1 = ExtResource("5_e3s8w")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="TV_Stand/TV_Stand/TV_Stand_Feet" index="0"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TV_Stand/TV_Stand/TV_Stand_Feet" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0013275183, 0.0020751953, -0.6125488)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TV_Stand/TV_Stand/TV_Stand_Feet/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15013885, 0.0020751953, -0.6125488)
 shape = SubResource("BoxShape3D_skiq7")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="TV_Stand/TV_Stand/TV_Stand_Feet" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0013275183, 0.0062561035, 0.61065555)
-shape = SubResource("BoxShape3D_3hd2n")
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="TV_Stand/TV_Stand/TV_Stand_Feet/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14994428, 0.0062561035, 0.61065555)
+shape = SubResource("BoxShape3D_skiq7")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="TV_Stand/TV_Stand/TV_Stand_Feet/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14740145, 0.0020751953, -0.6125488)
+shape = SubResource("BoxShape3D_skiq7")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="TV_Stand/TV_Stand/TV_Stand_Feet/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14759603, 0.0062561035, 0.61065555)
+shape = SubResource("BoxShape3D_skiq7")
 
 [editable path="TV_Stand"]

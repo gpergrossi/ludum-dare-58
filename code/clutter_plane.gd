@@ -4,6 +4,8 @@ class_name ClutterPlane extends CollisionShape3D
 const DEFAULT_COLOR := Color.BLACK
 
 var _dirty := false
+var aabb := AABB()
+var expanded_aabb := AABB()
 
 @onready var bounds := self.shape as BoxShape3D
 @onready var sprite_3d: Sprite3D = %Sprite3D
@@ -104,7 +106,6 @@ func refresh() -> void:
 	else:
 		sprite_3d.visible = false
 	
-	print("Refreshing self: " + str(name))
 	clutter_plane_changed.emit(self)
 
 
@@ -185,3 +186,100 @@ func _get_sample_pt_internal(rand: RandomNumberGenerator, item_scale: float) -> 
 			pos3.x, pos3.y, pos3.z,
 			minf(1.0, pixel_color.a + 0.001)
 		)
+
+
+func compute_bounds():
+	aabb = aabb_from_corners(generate_corners())
+	expanded_aabb = aabb.grow(0.2)
+
+
+static func aabb_from_corners(corners: PackedVector3Array) -> AABB:
+	var local_aabb := AABB(corners[0], Vector3.ZERO)
+	for i in range(1, corners.size()):
+		local_aabb = local_aabb.expand(corners[i])
+	return local_aabb
+
+
+func generate_corners(xform := Transform3D.IDENTITY) -> PackedVector3Array:
+	var corners: PackedVector3Array = [
+		+ Vector3.RIGHT * bounds.size.x * 0.5 + Vector3.BACK * bounds.size.z * 0.5 + Vector3.UP * bounds.size.y * 0.5,
+		- Vector3.RIGHT * bounds.size.x * 0.5 + Vector3.BACK * bounds.size.z * 0.5 + Vector3.UP * bounds.size.y * 0.5,
+		+ Vector3.RIGHT * bounds.size.x * 0.5 - Vector3.BACK * bounds.size.z * 0.5 + Vector3.UP * bounds.size.y * 0.5,
+		- Vector3.RIGHT * bounds.size.x * 0.5 - Vector3.BACK * bounds.size.z * 0.5 + Vector3.UP * bounds.size.y * 0.5,
+		+ Vector3.RIGHT * bounds.size.x * 0.5 + Vector3.BACK * bounds.size.z * 0.5 - Vector3.UP * bounds.size.y * 0.5,
+		- Vector3.RIGHT * bounds.size.x * 0.5 + Vector3.BACK * bounds.size.z * 0.5 - Vector3.UP * bounds.size.y * 0.5,
+		+ Vector3.RIGHT * bounds.size.x * 0.5 - Vector3.BACK * bounds.size.z * 0.5 - Vector3.UP * bounds.size.y * 0.5,
+		- Vector3.RIGHT * bounds.size.x * 0.5 - Vector3.BACK * bounds.size.z * 0.5 - Vector3.UP * bounds.size.y * 0.5
+	]
+	if not xform.is_equal_approx(Transform3D.IDENTITY):
+		for i in range(8):
+			corners[i] = xform * corners[i]
+	return corners
+
+
+func create_debug_mesh() -> MeshInstance3D:
+	var debug_mesh := create_bounds_debug_mesh(expanded_aabb)
+	debug_mesh.transform = self.transform
+	return debug_mesh
+
+
+func create_global_aabb() -> AABB:
+	var local_aabb := aabb_from_corners(generate_corners(global_transform))
+	return local_aabb.grow(0.2)
+
+
+func create_bounds_debug_mesh(arg_bounds: AABB) -> MeshInstance3D:
+	var corners: PackedVector3Array = [
+		+ Vector3.RIGHT * arg_bounds.size.x * 0.5 + Vector3.BACK * arg_bounds.size.z * 0.5 + Vector3.UP * arg_bounds.size.y * 0.5,
+		- Vector3.RIGHT * arg_bounds.size.x * 0.5 + Vector3.BACK * arg_bounds.size.z * 0.5 + Vector3.UP * arg_bounds.size.y * 0.5,
+		+ Vector3.RIGHT * arg_bounds.size.x * 0.5 - Vector3.BACK * arg_bounds.size.z * 0.5 + Vector3.UP * arg_bounds.size.y * 0.5,
+		- Vector3.RIGHT * arg_bounds.size.x * 0.5 - Vector3.BACK * arg_bounds.size.z * 0.5 + Vector3.UP * arg_bounds.size.y * 0.5,
+		+ Vector3.RIGHT * arg_bounds.size.x * 0.5 + Vector3.BACK * arg_bounds.size.z * 0.5 - Vector3.UP * arg_bounds.size.y * 0.5,
+		- Vector3.RIGHT * arg_bounds.size.x * 0.5 + Vector3.BACK * arg_bounds.size.z * 0.5 - Vector3.UP * arg_bounds.size.y * 0.5,
+		+ Vector3.RIGHT * arg_bounds.size.x * 0.5 - Vector3.BACK * arg_bounds.size.z * 0.5 - Vector3.UP * arg_bounds.size.y * 0.5,
+		- Vector3.RIGHT * arg_bounds.size.x * 0.5 - Vector3.BACK * arg_bounds.size.z * 0.5 - Vector3.UP * arg_bounds.size.y * 0.5
+	]
+	
+	var mesh_inst := MeshInstance3D.new()
+	var lines_mesh := ImmediateMesh.new()
+	var matr := StandardMaterial3D.new()
+	matr.vertex_color_use_as_albedo = true
+	matr.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	matr.no_depth_test = true
+	lines_mesh.surface_begin(Mesh.PRIMITIVE_LINES, matr)
+	lines_mesh.surface_set_color(Color.MAGENTA)
+	lines_mesh.surface_add_vertex(corners[0])
+	lines_mesh.surface_add_vertex(corners[1])
+	lines_mesh.surface_add_vertex(corners[0])
+	lines_mesh.surface_add_vertex(corners[2])
+	lines_mesh.surface_add_vertex(corners[0])
+	lines_mesh.surface_add_vertex(corners[4])
+	lines_mesh.surface_add_vertex(corners[1])
+	lines_mesh.surface_add_vertex(corners[3])
+	lines_mesh.surface_add_vertex(corners[1])
+	lines_mesh.surface_add_vertex(corners[5])
+	lines_mesh.surface_add_vertex(corners[2])
+	lines_mesh.surface_add_vertex(corners[3])
+	lines_mesh.surface_add_vertex(corners[2])
+	lines_mesh.surface_add_vertex(corners[6])
+	lines_mesh.surface_add_vertex(corners[7])
+	lines_mesh.surface_add_vertex(corners[6])
+	lines_mesh.surface_add_vertex(corners[7])
+	lines_mesh.surface_add_vertex(corners[5])
+	lines_mesh.surface_add_vertex(corners[7])
+	lines_mesh.surface_add_vertex(corners[3])
+	lines_mesh.surface_add_vertex(corners[4])
+	lines_mesh.surface_add_vertex(corners[5])
+	lines_mesh.surface_add_vertex(corners[4])
+	lines_mesh.surface_add_vertex(corners[6])
+	lines_mesh.surface_end()
+	mesh_inst.mesh = lines_mesh
+	return mesh_inst
+
+
+func is_cardinal_approx(vec: Vector3) -> bool:
+	var count := 0
+	if is_zero_approx(vec.x): count += 1
+	if is_zero_approx(vec.y): count += 1
+	if is_zero_approx(vec.z): count += 1
+	return count >= 2

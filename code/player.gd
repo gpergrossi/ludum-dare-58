@@ -229,17 +229,27 @@ func _physics_process(delta: float) -> void:
 	
 	dialog_cooldown = move_toward(dialog_cooldown, 0.0, delta)
 	
-	var query := PhysicsRayQueryParameters3D.create(main_camera.global_position, global_position - global_basis.y * 0.05)
+	var ray_origin := main_camera.global_position
+	var ray_target := global_position - global_basis.y * 0.05
+	var ignore_list: Array[RID] = []
+	var query := PhysicsRayQueryParameters3D.create(ray_origin, ray_target, 0xFFFFFFFF, ignore_list)
 	query.hit_from_inside = true
 	query.hit_back_faces = true
 	var space_state := get_world_3d().direct_space_state
-	var result := space_state.intersect_ray(query)
-	if result:
-		print("Camera ray hit " + result.collider.name)
-		if result.collider as CameraHide != null:
-			print("Camera ray hit a hidable object")
-			var ch := result.collider as CameraHide
-			ch.do_hide()
+	for i in range(3):
+		var result := space_state.intersect_ray(query)
+		if result:
+			if result.collider as CameraHide != null:
+				var ch := result.collider as CameraHide
+				ch.do_hide()
+			if not result.position.is_equal_approx(ray_target):
+				query.from = result.position
+				ignore_list.append(result.rid)
+				query.exclude = ignore_list
+				result = space_state.intersect_ray(query)
+			else:
+				break
+		
 	
 	var old_charge := current_charge
 	

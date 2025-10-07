@@ -1,7 +1,7 @@
 @tool
 class_name ClutterSystem extends Node3D
 
-const MIN_UPDATE_DELAY := 0.5
+const MIN_UPDATE_DELAY := 0.25
 const MAX_PARTICLES_PER_LOOP := 250
 const FRAME_SHARE := 2
 
@@ -25,7 +25,7 @@ var frame_i := 0
 
 func _ready() -> void:
 	for child in get_children(true):
-		if child is MultiMeshInstance3D:
+		if child is MultiMeshInstance3D or child is MeshInstance3D:
 			child.name = "Garbage"
 			child.queue_free()
 		if child is ClutterPlane:
@@ -74,7 +74,7 @@ func on_clutter_plane_changed(clutter_plane: ClutterPlane) -> void:
 	desired_particle_count = 0
 	for plane in clutter_planes:
 		desired_particle_count += plane.item_count
-	print("Currently need " + str(desired_particle_count) + " particles")
+	#print("Currently need " + str(desired_particle_count) + " particles")
 	
 	## Compute and potentially update global particle density
 	#var old_scale := particle_density_scale
@@ -104,15 +104,12 @@ func _process(delta: float) -> void:
 		if mesh_set.multimesh.visible_instance_count < target_count:
 			add_particles(mesh_set, plane, mini(roundi(float(MAX_PARTICLES_PER_LOOP) / _working_sets.size()), target_count - mesh_set.multimesh.visible_instance_count))
 		else:
-			print("Populated" + plane.name + "!")
 			_working_sets.erase(plane)
 	
 	do_dust_collection(delta)
 
 
 func refresh_plane(plane: ClutterPlane) -> void:
-	print("Updating " + plane.name)
-	
 	if clutter_planes.find(plane) == -1:
 		cleanup_plane(plane)
 	
@@ -145,19 +142,10 @@ func create_mesh_set(plane: ClutterPlane) -> MultiMeshInstance3D:
 	mmi.multimesh = MultiMesh.new()
 	mmi.multimesh.transform_format = MultiMesh.TRANSFORM_3D
 	mmi.multimesh.use_colors = true
-	#var corners: PackedVector3Array = [
-		#plane.position + plane.basis.x * plane.bounds.size.x * 0.5 + plane.basis.z * plane.bounds.size.z * 0.5 + plane.basis.y * plane.bounds.size.y * 0.5,
-		#plane.position - plane.basis.x * plane.bounds.size.x * 0.5 + plane.basis.z * plane.bounds.size.z * 0.5 + plane.basis.y * plane.bounds.size.y * 0.5,
-		#plane.position + plane.basis.x * plane.bounds.size.x * 0.5 - plane.basis.z * plane.bounds.size.z * 0.5 + plane.basis.y * plane.bounds.size.y * 0.5,
-		#plane.position - plane.basis.x * plane.bounds.size.x * 0.5 - plane.basis.z * plane.bounds.size.z * 0.5 + plane.basis.y * plane.bounds.size.y * 0.5,
-		#plane.position + plane.basis.x * plane.bounds.size.x * 0.5 + plane.basis.z * plane.bounds.size.z * 0.5 - plane.basis.y * plane.bounds.size.y * 0.5,
-		#plane.position - plane.basis.x * plane.bounds.size.x * 0.5 + plane.basis.z * plane.bounds.size.z * 0.5 - plane.basis.y * plane.bounds.size.y * 0.5,
-		#plane.position + plane.basis.x * plane.bounds.size.x * 0.5 - plane.basis.z * plane.bounds.size.z * 0.5 - plane.basis.y * plane.bounds.size.y * 0.5,
-		#plane.position - plane.basis.x * plane.bounds.size.x * 0.5 - plane.basis.z * plane.bounds.size.z * 0.5 - plane.basis.y * plane.bounds.size.y * 0.5
-	#]
-	#mmi.custom_aabb = AABB(corners[0], Vector3.ZERO)
-	#for i in range(1, 8):
-		#mmi.custom_aabb = mmi.custom_aabb.expand(corners[i])
+	
+	plane.compute_bounds()
+	mmi.custom_aabb = plane.create_global_aabb()
+	#mmi.add_child(plane.create_debug_mesh())
 	
 	mmi.multimesh.instance_count = plane.item_count
 	mmi.multimesh.visible_instance_count = 0
@@ -202,10 +190,16 @@ func do_dust_collection(delta: float):
 	
 	var batch_size := ceili(float(max_particles) / float(FRAME_SHARE))
 	var begin := batch_size * (frame_i % FRAME_SHARE)
+	var player_pos := player.global_position + player.global_basis.y * 0.05
 	
 	for plane in clutter_planes:
 		if not player.can_vacuum(plane): continue
 		if not _mesh_sets.has(plane): continue
+		
+		var local_pos := plane.to_local(player_pos)
+		if not plane.expanded_aabb.has_point(local_pos):
+			continue
+		
 		var particles := _mesh_sets[plane]
 		
 		for i in range(begin, minf(plane.item_count, begin + batch_size)):

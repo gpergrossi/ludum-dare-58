@@ -296,7 +296,7 @@ func apply_upgrade(upgrade : StringName, player: RoboVac) -> void:
 		Upgrade_Helicopter: return
 		Upgrade_Jetpack: return
 		
-		Upgrade_Generator: player.energy_regen = 2.0
+		Upgrade_Generator: player.energy_regen = 1.5
 		Upgrade_Teleport: return
 
 
