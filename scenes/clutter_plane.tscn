@@ -26,7 +26,6 @@ item_count = 500
 pattern = ExtResource("2_33r6d")
 min_size = 1.0
 max_size = 10.0
-size_class = null
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 unique_name_in_owner = true

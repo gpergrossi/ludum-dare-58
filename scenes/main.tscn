@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cahfo4lc3ufi6"]
+[gd_scene load_steps=13 format=3 uid="uid://cahfo4lc3ufi6"]
 
 [ext_resource type="PackedScene" uid="uid://ttle2gx3ns1h" path="res://scenes/ui/game_ui.tscn" id="1_tipki"]
 [ext_resource type="PackedScene" uid="uid://djefabn5cbvf0" path="res://scenes/environment.tscn" id="1_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://cr3833ido0so1" path="res://scenes/player.tscn" id="4_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://3j15a5i12y2c" path="res://scenes/dock.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://ckhaa76vvgbwy" path="res://scenes/room/room_walls_t01.tscn" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://bvumm3jk5at8n" path="res://scenes/under_loft.tscn" id="9_85g3d"]
 [ext_resource type="PackedScene" uid="uid://bx6wo5s48pcm1" path="res://scenes/room/furnitureLayout_01.tscn" id="16_2wyq8"]
 [ext_resource type="PackedScene" uid="uid://crspbokqxy40t" path="res://scenes/room/med_PropPlacement_01.tscn" id="17_yc10j"]
 [ext_resource type="PackedScene" uid="uid://dhq2bna7oyra4" path="res://scenes/clutter_system.tscn" id="19_yc10j"]
@@ -34,6 +35,8 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_tipki"]
 
 [node name="Main" type="Node3D"]
 
@@ -69,6 +72,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2028451, -0.0063302293, 4.3
 
 [node name="ClutterSystem" parent="." node_paths=PackedStringArray("player") instance=ExtResource("19_yc10j")]
 player = NodePath("../Player")
+
+[node name="OutOfBounds" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4403428, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OutOfBounds"]
+shape = SubResource("WorldBoundaryShape3D_tipki")
+
+[node name="UnderLoft" parent="." instance=ExtResource("9_85g3d")]
 
 [connection signal="battery_died" from="Player" to="CanvasLayer/GameUI/PopupRespawn" method="_on_player_battery_died"]
 [connection signal="charge_changed" from="Player" to="CanvasLayer/GameUI/MarginContainer/Bottom Panel/VBoxContainer/ProgressBarBattery" method="_on_player_charge_changed"]

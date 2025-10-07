@@ -7,7 +7,6 @@ var _dirty := false
 
 @onready var bounds := self.shape as BoxShape3D
 @onready var sprite_3d: Sprite3D = %Sprite3D
-@onready var collider_main_body: CollisionShape3D = %ColliderMainBody
 
 @export_tool_button("Force Update") var force_update_action: Callable = do_forced_update
 func do_forced_update() -> void:

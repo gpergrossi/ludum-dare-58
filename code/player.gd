@@ -392,10 +392,9 @@ func _physics_process(delta: float) -> void:
 		if collider is StaticBodyGamePiece:
 			var sbgp := collider as StaticBodyGamePiece
 			if sbgp.is_queued_for_deletion(): continue
-			if (sbgp.size_class == 0) or \
-				(sbgp.size_class == 1 and upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Stuff_Collector_I)) or \
-				(sbgp.size_class == 2 and upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Stuff_Collector_II)) or \
-				(sbgp.size_class == 3 and upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Stuff_Pulveriser)):
+			if (sbgp.size_class == 0 and upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Stuff_Collector_I)) or \
+			   (sbgp.size_class == 1 and upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Stuff_Collector_II)) or \
+			   (sbgp.size_class == 2 and upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Stuff_Pulveriser)):
 					var pay := 1
 					match sbgp.size_class:
 						1: pay = 15
