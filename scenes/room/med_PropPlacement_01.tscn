@@ -98,6 +98,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.710357, -0.022580214, 4.13
 [node name="Plate" parent="Medium" instance=ExtResource("11_hsk1u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.76048, 0.78000045, -7.209025)
 
+[node name="Plate12" parent="Medium" instance=ExtResource("11_hsk1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2166486, 2.5567005, -7.52419)
+
+[node name="Plate13" parent="Medium" instance=ExtResource("11_hsk1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2166486, 2.614116, -7.52419)
+
+[node name="Plate15" parent="Medium" instance=ExtResource("11_hsk1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2166486, 2.6426253, -7.52419)
+
+[node name="Plate14" parent="Medium" instance=ExtResource("11_hsk1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2166486, 2.5857818, -7.52419)
+
+[node name="Plate16" parent="Medium" instance=ExtResource("11_hsk1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.570378, 2.5567005, -6.989532)
+
+[node name="Plate17" parent="Medium" instance=ExtResource("11_hsk1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.570378, 2.614116, -6.989532)
+
+[node name="Plate18" parent="Medium" instance=ExtResource("11_hsk1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.570378, 2.6426253, -6.989532)
+
+[node name="Plate19" parent="Medium" instance=ExtResource("11_hsk1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.570378, 2.5857818, -6.989532)
+
 [node name="Plate2" parent="Medium" instance=ExtResource("11_hsk1u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4920018, 0.88315696, -5.609689)
 
@@ -142,6 +166,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8647919, 3.366136e-07, -5.
 
 [node name="Mug6" parent="Medium" instance=ExtResource("10_gloqb")]
 transform = Transform3D(-0.40606958, 1.4994242, 0.69053304, 1.4455209, -0.020454308, 0.894456, 0.79723126, 0.80081815, -1.2700837, -3.217263, 0.07024979, -6.794401)
+
+[node name="Mug21" parent="Medium" instance=ExtResource("10_gloqb")]
+transform = Transform3D(-0.593459, -1.2937706, 0.92949677, 1.4455209, -0.020454356, 0.8944561, -0.6695348, 1.1026062, 1.1072416, -2.3832176, 0.07024979, -6.794401)
 
 [node name="Mug7" parent="Medium" instance=ExtResource("10_gloqb")]
 transform = Transform3D(-1.039244, 0, -1.3453523, 0, 1.7000003, 0, 1.3453523, 0, -1.039244, 3.5341802, 0.77, -0.5912893)
@@ -206,6 +233,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5051284, 0.6205198, -3.813
 [node name="Pizza_Slice_10" parent="Medium" instance=ExtResource("8_8vcyt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2686136, 0.0033122138, 2.2749066)
 
+[node name="Pizza_Slice_17" parent="Medium" instance=ExtResource("8_8vcyt")]
+transform = Transform3D(-0.14195123, -0.9894767, 0.028031133, -0.5750162, 0.10547624, 0.8113148, -0.80573356, 0.09904873, -0.5839375, 4.7491417, -0.059176087, 4.102751)
+
 [node name="Plate8" parent="Medium" instance=ExtResource("11_hsk1u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7996136, -2.278067e-07, 1.5540397)
 
@@ -222,10 +252,10 @@ transform = Transform3D(-0.5341959, -0.42771405, 1.5561802, 1.607903, -7.028367e
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4884977, 2.3908079, -7.363879)
 
 [node name="pizzaSlice17" parent="Medium" instance=ExtResource("2_i36oc")]
-transform = Transform3D(0.020052476, 0, -0.99979895, 0, 1, 0, 0.99979895, 0, 0.020052476, -4.4365625, 2.5722694, -7.262207)
+transform = Transform3D(0.020052476, 0, -0.99979895, 0, 1, 0, 0.99979895, 0, 0.020052476, -4.4365625, 2.5597694, -7.262207)
 
 [node name="Pizza_Slice_13" parent="Medium" instance=ExtResource("8_8vcyt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5053265, 2.5724432, -7.651362)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5053265, 2.5435133, -7.651362)
 
 [node name="pizzaSlice18" parent="Medium" instance=ExtResource("2_i36oc")]
 transform = Transform3D(0.5806888, 0, -0.81412566, 0, 1, 0, 0.81412566, 0, 0.5806888, -0.5385484, 0.0038125517, -3.2239327)
@@ -260,6 +290,21 @@ transform = Transform3D(-0.8030152, 0, -0.5959586, 0, 1, 0, 0.5959586, 0, -0.803
 [node name="Mug16" parent="Medium" instance=ExtResource("10_gloqb")]
 transform = Transform3D(-1.3871255, 0, 0.9827941, 0, 1.7000005, 0, -0.9827941, 0, -1.3871255, -0.4572964, 3.6642673, -7.172766)
 
+[node name="Mug18" parent="Medium" instance=ExtResource("10_gloqb")]
+transform = Transform3D(-0.40781182, 0, -1.6503608, 0, 1.7000004, 0, 1.6503608, 0, -0.40781182, -1.1488287, 2.2279685, -7.1034093)
+
+[node name="Mug19" parent="Medium" instance=ExtResource("10_gloqb")]
+transform = Transform3D(-1.6846042, 0, -0.22827631, 0, 1.7000004, 0, 0.22827631, 0, -1.6846042, -1.8619096, 2.2279685, -7.1034093)
+
+[node name="Mug20" parent="Medium" instance=ExtResource("10_gloqb")]
+transform = Transform3D(-1.3871255, 0, 0.9827941, 0, 1.7000005, 0, -0.9827941, 0, -1.3871255, -2.0436943, 2.2279685, -7.1034093)
+
+[node name="Mug22" parent="Medium" instance=ExtResource("10_gloqb")]
+transform = Transform3D(-1.5081381, 0, -0.7845516, 0, 1.7000004, 0, 0.7845516, 0, -1.5081381, -3.108944, 2.5547981, -7.469036)
+
+[node name="Mug23" parent="Medium" instance=ExtResource("10_gloqb")]
+transform = Transform3D(0.34941483, 0, 1.6637038, 0, 1.7000004, 0, -1.6637038, 0, 0.34941483, -3.2907286, 2.5547981, -7.469036)
+
 [node name="CoppterHat_v1" parent="Medium" instance=ExtResource("14_kes2h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.877259, 0.27482432, 1.1443217)
 
@@ -292,6 +337,9 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.25
 
 [node name="Book_Small" parent="Medium" instance=ExtResource("17_56kw4")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.2713294, 1.4069996, 2.181936)
+
+[node name="Book_Small5" parent="Medium" instance=ExtResource("17_56kw4")]
+transform = Transform3D(0.93439746, 0.35623252, 0, -0.35623252, 0.93439746, 0, 0, 0, 1, 4.6462526, 0.07888079, 3.924)
 
 [node name="Book_Small4" parent="Medium" instance=ExtResource("17_56kw4")]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 4.1968775, 1.0007585, 2.181936)
