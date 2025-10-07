@@ -63,7 +63,16 @@ var decompressed_image: Image
 @onready var last_basis := basis
 
 
+func _enter_tree() -> void:
+	if Engine.is_editor_hint():
+		print("Enter tree! Breaking shitty duplication references caused by godot being dumb as shit.")
+		colors = colors.duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
+		shape = shape.duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
+
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		if colors: colors = (colors as Resource)
+	
 	if not bounds.changed.is_connected(on_bounds_changed):
 		bounds.changed.connect(on_bounds_changed)
 
@@ -115,7 +124,7 @@ var bag: PackedVector4Array = []
 
 func get_sample(rand: RandomNumberGenerator, item_scale: float) -> Vector3:
 	# Generate 8 possibilities
-	var total_weight := 0.0
+	var total_weight := 0.001
 	var sample: Vector4
 	bag.resize(64)
 	for i in range(64):
@@ -125,8 +134,8 @@ func get_sample(rand: RandomNumberGenerator, item_scale: float) -> Vector3:
 	
 	# Roll by normalized weight
 	var r := rand.randf()
-	sample = bag[63]
-	for i in range(63):
+	sample = Vector4.INF
+	for i in range(bag.size()):
 		sample = bag[i]
 		var weight := (sample.w / total_weight)
 		if r >= weight:
@@ -184,7 +193,7 @@ func _get_sample_pt_internal(rand: RandomNumberGenerator, item_scale: float) -> 
 		var pixel_color := decompressed_image.get_pixelv(pixel)
 		return Vector4(
 			pos3.x, pos3.y, pos3.z,
-			minf(1.0, pixel_color.a + 0.001)
+			minf(1.0, pixel_color.a)
 		)
 
 

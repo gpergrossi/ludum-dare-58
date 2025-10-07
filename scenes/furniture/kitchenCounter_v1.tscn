@@ -68,13 +68,13 @@ size = Vector3(0.00428418, 0.0011625977, 0.0019648438)
 size = Vector3(0.011216675, 0.0064203185, 0.001)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qokvm"]
-size = Vector3(4.198181, 0.48278046, 0.5860596)
+size = Vector3(4.198181, 0.33840752, 0.5860596)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wofj6"]
-size = Vector3(0.8427429, 0.5030441, 3.3730774)
+size = Vector3(0.8427429, 0.33555508, 3.3730774)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_113e4"]
-size = Vector3(5.2031097, 0.5030441, 0.6289215)
+size = Vector3(5.2031097, 0.33834648, 0.6289215)
 
 [node name="Node3D" type="Node3D"]
 
@@ -181,15 +181,15 @@ script = ExtResource("6_20nh3")
 the_mesh = NodePath("../Cube_002")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KitchenCounter_v1/CameraHider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.098236, 0.23936081, -0.15863037)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.098236, 0.16717434, -0.15863037)
 shape = SubResource("BoxShape3D_qokvm")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="KitchenCounter_v1/CameraHider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7759552, 0.25216293, -1.5521393)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7759552, 0.1684184, -1.5521393)
 shape = SubResource("BoxShape3D_wofj6")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="KitchenCounter_v1/CameraHider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5957718, 0.25216293, -2.9242172)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5957718, 0.16981411, -2.9242172)
 shape = SubResource("BoxShape3D_113e4")
 
 [editable path="KitchenCounter_v1"]

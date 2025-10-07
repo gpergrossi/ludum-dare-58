@@ -78,6 +78,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004729748, -1.1920929e-07, 
 
 [node name="Med_Props" parent="Room" instance=ExtResource("17_yc10j")]
 
+[node name="catBowl" parent="Room/Med_Props/Medium" index="14"]
+transform = Transform3D(2.440867, 0, 2.6461608, 0, 2.4, 0, -2.6461608, 0, 2.440867, -4.418231, 0.7800004, -4.7186775)
+
+[node name="Mug9" parent="Room/Med_Props/Medium" index="63"]
+transform = Transform3D(1.4727031, 0, -0.8492034, 0, 1.7000003, 0, 0.8492034, 0, 1.4727031, -4.031024, -1.1338144e-07, 1.6839422)
+
+[node name="Mug10" parent="Room/Med_Props/Medium" index="64"]
+transform = Transform3D(-0.8803922, 0, -1.4542732, 0, 1.7000003, 0, 1.4542732, 0, -0.8803922, -4.297222, -4.1752998e-08, 1.4203956)
+
+[node name="Plate7" parent="Room/Med_Props/Medium" index="65"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.026149, -4.5581164e-08, 1.3282669)
+
+[node name="Pizza_Slice_12" parent="Room/Med_Props/Medium" index="75"]
+transform = Transform3D(1, 0, 0, 0, 0.9922779, -0.12403446, 0, 0.12403446, 0.9922779, 3.4884977, 2.4341736, -7.654429)
+
 [node name="ClutterSystem" parent="Room" node_paths=PackedStringArray("player") instance=ExtResource("19_yc10j")]
 player = NodePath("../../Player")
 
@@ -109,3 +124,4 @@ shape = SubResource("WorldBoundaryShape3D_tipki")
 [connection signal="sleep_changed" from="Player" to="CanvasLayer/GameUI/PopupShop" method="_on_player_sleep_changed"]
 
 [editable path="CanvasLayer/GameUI"]
+[editable path="Room/Med_Props"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://dhq2bna7oyra4"]
+[gd_scene load_steps=89 format=3 uid="uid://dhq2bna7oyra4"]
 
 [ext_resource type="Script" uid="uid://c45o4rirqh8r0" path="res://code/clutter_system.gd" id="1_mpcbd"]
 [ext_resource type="PackedScene" uid="uid://k3u5xcvedbjc" path="res://scenes/clutter_plane.tscn" id="2_gwx86"]
@@ -11,135 +11,116 @@
 [ext_resource type="ArrayMesh" uid="uid://b4e1ab6tqploq" path="res://assets/models/clutter/pawPrint.res" id="9_byvkq"]
 [ext_resource type="ArrayMesh" uid="uid://browjnf5ejuir" path="res://assets/models/clutter/kibble.res" id="10_v5p7r"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ks51d"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_u6dng"]
 resource_local_to_scene = true
 size = Vector3(9.677306, 0.008544922, 12.447079)
 
-[sub_resource type="Gradient" id="Gradient_2wyq8"]
+[sub_resource type="Gradient" id="Gradient_g5q62"]
 offsets = PackedFloat32Array(0.20127796, 0.50479233, 1)
 colors = PackedColorArray(0.08729745, 0.07904642, 0.074268915, 1, 0.17, 0.15708001, 0.1496, 1, 0.19, 0.19, 0.19, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_figyt"]
-gradient = SubResource("Gradient_2wyq8")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_v5p7r"]
+gradient = SubResource("Gradient_g5q62")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_yfw72"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_tjn31"]
 resource_local_to_scene = true
 size = Vector3(9.662052, 0.008544922, 4.1822433)
 
-[sub_resource type="Gradient" id="Gradient_ejqpx"]
+[sub_resource type="Gradient" id="Gradient_yfw72"]
 offsets = PackedFloat32Array(0.20127796, 0.50479233, 1)
 colors = PackedColorArray(0.08729745, 0.07904642, 0.074268915, 1, 0.17, 0.15708001, 0.1496, 1, 0.19, 0.19, 0.19, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_byvkq"]
-gradient = SubResource("Gradient_ejqpx")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ejqpx"]
+gradient = SubResource("Gradient_yfw72")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_byvkq"]
 resource_local_to_scene = true
 size = Vector3(1.8861732, 0.008544922, 1.7132835)
 
+[sub_resource type="Gradient" id="Gradient_ks51d"]
+offsets = PackedFloat32Array(0.20127796, 0.50479233, 1)
+colors = PackedColorArray(0.08729745, 0.07904642, 0.074268915, 1, 0.17, 0.15708001, 0.1496, 1, 0.19, 0.19, 0.19, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_figyt"]
+gradient = SubResource("Gradient_ks51d")
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_bjbia"]
 resource_local_to_scene = true
 size = Vector3(9.425175, 0.008544922, 12.350643)
 
-[sub_resource type="Gradient" id="Gradient_2f3dj"]
+[sub_resource type="Gradient" id="Gradient_5hkhr"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.34628975, 1)
 colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_5hkhr"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g2jyp"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_2f3dj")
+gradient = SubResource("Gradient_5hkhr")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_g2jyp"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_mgku7"]
 resource_local_to_scene = true
 size = Vector3(2.2043917, 0.008544922, 3.2109213)
 
-[sub_resource type="Gradient" id="Gradient_fv21b"]
-resource_local_to_scene = true
-offsets = PackedFloat32Array(0, 0.34628975, 1)
-colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_mgku7"]
-resource_local_to_scene = true
-gradient = SubResource("Gradient_fv21b")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_uawbi"]
-resource_local_to_scene = true
-size = Vector3(3.9304237, 0.008544922, 7.14904)
-
-[sub_resource type="Gradient" id="Gradient_qkpxi"]
+[sub_resource type="Gradient" id="Gradient_uawbi"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.34628975, 1)
 colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_jwdwh"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_qkpxi")
+gradient = SubResource("Gradient_uawbi")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h6xto"]
 resource_local_to_scene = true
+size = Vector3(3.9304237, 0.008544922, 7.14904)
+
+[sub_resource type="Gradient" id="Gradient_7wu01"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.34628975, 1)
+colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_17pqh"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_7wu01")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qhvxn"]
+resource_local_to_scene = true
 size = Vector3(2.2741776, 0.008544922, 5.34239)
 
-[sub_resource type="Gradient" id="Gradient_dgi5k"]
-resource_local_to_scene = true
-offsets = PackedFloat32Array(0, 0.34628975, 1)
-colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_7wu01"]
-resource_local_to_scene = true
-gradient = SubResource("Gradient_dgi5k")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_17pqh"]
-resource_local_to_scene = true
-size = Vector3(2.5683022, 0.008544922, 5.0316696)
-
-[sub_resource type="Gradient" id="Gradient_kmb1v"]
-resource_local_to_scene = true
-offsets = PackedFloat32Array(0, 0.34628975, 1)
-colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_qhvxn"]
-resource_local_to_scene = true
-gradient = SubResource("Gradient_kmb1v")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_indl7"]
-resource_local_to_scene = true
-size = Vector3(1.1533245, 0.008544922, 1.1565338)
-
-[sub_resource type="Gradient" id="Gradient_yq6so"]
+[sub_resource type="Gradient" id="Gradient_indl7"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.34628975, 1)
 colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_uytov"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_yq6so")
+gradient = SubResource("Gradient_indl7")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_uytov"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_mh7h8"]
 resource_local_to_scene = true
-size = Vector3(1.1533245, 0.008544922, 1.1565338)
+size = Vector3(2.5683022, 0.008544922, 5.0316696)
 
-[sub_resource type="Gradient" id="Gradient_mh7h8"]
+[sub_resource type="Gradient" id="Gradient_3vqod"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.34628975, 1)
 colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_3vqod"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lh2qt"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_mh7h8")
+gradient = SubResource("Gradient_3vqod")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_lh2qt"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_xderr"]
 resource_local_to_scene = true
 size = Vector3(1.1533245, 0.008544922, 1.1565338)
 
-[sub_resource type="Gradient" id="Gradient_xderr"]
+[sub_resource type="Gradient" id="Gradient_povu3"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.34628975, 1)
 colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_2wokt"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_xderr")
+gradient = SubResource("Gradient_povu3")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6j8wl"]
 resource_local_to_scene = true
@@ -167,195 +148,220 @@ colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.6
 resource_local_to_scene = true
 gradient = SubResource("Gradient_4mk6x")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_mh7h8"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_apygl"]
+resource_local_to_scene = true
+size = Vector3(1.1533245, 0.008544922, 1.1565338)
+
+[sub_resource type="Gradient" id="Gradient_uj24o"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.34628975, 1)
+colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_acle7"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_uj24o")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4akw2"]
+resource_local_to_scene = true
+size = Vector3(1.1533245, 0.008544922, 1.1565338)
+
+[sub_resource type="Gradient" id="Gradient_bjw2a"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.34628975, 1)
+colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1isvt"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_bjw2a")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lue8n"]
 resource_local_to_scene = true
 size = Vector3(0.74042165, 0.008544922, 3.842688)
 
-[sub_resource type="Gradient" id="Gradient_3vqod"]
+[sub_resource type="Gradient" id="Gradient_hislh"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.34628975, 1)
 colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_lh2qt"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8ehm5"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_3vqod")
+gradient = SubResource("Gradient_hislh")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_xderr"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_yhkr3"]
 resource_local_to_scene = true
 size = Vector3(0.6376381, 0.008544922, 1.9278393)
 
-[sub_resource type="Gradient" id="Gradient_tel4y"]
+[sub_resource type="Gradient" id="Gradient_6h2sq"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.34628975, 1)
 colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_povu3"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5gahs"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_tel4y")
+gradient = SubResource("Gradient_6h2sq")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_figyt"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_bu2qa"]
 resource_local_to_scene = true
 size = Vector3(0.6376381, 0.008544922, 1.9278393)
 
-[sub_resource type="Gradient" id="Gradient_bjbia"]
+[sub_resource type="Gradient" id="Gradient_t1h50"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.34628975, 1)
 colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_g2jyp"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gm73e"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_bjbia")
+gradient = SubResource("Gradient_t1h50")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ejqpx"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ecn5t"]
 resource_local_to_scene = true
 size = Vector3(0.6376381, 0.008544922, 1.9278393)
 
-[sub_resource type="Gradient" id="Gradient_ks51d"]
+[sub_resource type="Gradient" id="Gradient_a8a0r"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.34628975, 1)
 colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_bjbia"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ijg0h"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_ks51d")
+gradient = SubResource("Gradient_a8a0r")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5hkhr"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_s5y37"]
 resource_local_to_scene = true
 size = Vector3(0.6376381, 0.008544922, 1.9278393)
 
-[sub_resource type="Gradient" id="Gradient_g2jyp"]
+[sub_resource type="Gradient" id="Gradient_j0dk1"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.34628975, 1)
 colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_uawbi"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_j7n3g"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_g2jyp")
+gradient = SubResource("Gradient_j0dk1")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_tjn31"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_vs8tk"]
 resource_local_to_scene = true
 size = Vector3(2.3408513, 0.008544922, 0.8550949)
 
-[sub_resource type="Gradient" id="Gradient_yfw72"]
+[sub_resource type="Gradient" id="Gradient_4qjv6"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.34628975, 1)
 colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ejqpx"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_r8h6u"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_yfw72")
+gradient = SubResource("Gradient_4qjv6")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_jwdwh"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_2q8b6"]
 resource_local_to_scene = true
 size = Vector3(2.3408513, 0.008544922, 0.8550949)
 
-[sub_resource type="Gradient" id="Gradient_h6xto"]
+[sub_resource type="Gradient" id="Gradient_bbjig"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.34628975, 1)
 colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_17pqh"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bhics"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_h6xto")
+gradient = SubResource("Gradient_bbjig")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_qhvxn"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_h5v2y"]
 resource_local_to_scene = true
 size = Vector3(2.3408513, 0.008544922, 0.8550949)
 
-[sub_resource type="Gradient" id="Gradient_indl7"]
+[sub_resource type="Gradient" id="Gradient_2xtl0"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.34628975, 1)
 colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_mh7h8"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p8i10"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_indl7")
+gradient = SubResource("Gradient_2xtl0")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_v5p7r"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_qgbi7"]
 resource_local_to_scene = true
 size = Vector3(1.2866364, 0.008544922, 0.39614677)
 
-[sub_resource type="Gradient" id="Gradient_tjn31"]
+[sub_resource type="Gradient" id="Gradient_65c12"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.34628975, 1)
 colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_yfw72"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_env0m"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_tjn31")
+gradient = SubResource("Gradient_65c12")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_3vqod"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_gdbg4"]
 resource_local_to_scene = true
 size = Vector3(1.2866364, 0.008544922, 0.39614677)
 
-[sub_resource type="Gradient" id="Gradient_lh2qt"]
+[sub_resource type="Gradient" id="Gradient_hrfkk"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.34628975, 1)
 colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_xderr"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_aus0u"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_lh2qt")
+gradient = SubResource("Gradient_hrfkk")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_povu3"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_am7eo"]
 resource_local_to_scene = true
 size = Vector3(1.2866364, 0.008544922, 0.39614677)
 
-[sub_resource type="Gradient" id="Gradient_2wokt"]
+[sub_resource type="Gradient" id="Gradient_f8k71"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.34628975, 1)
 colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_6j8wl"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tqycp"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_2wokt")
+gradient = SubResource("Gradient_f8k71")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_mgku7"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_iaaci"]
 resource_local_to_scene = true
 size = Vector3(1.3610916, 0.008544922, 0.43113518)
 
-[sub_resource type="Gradient" id="Gradient_uawbi"]
+[sub_resource type="Gradient" id="Gradient_yi5ll"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.34628975, 1)
 colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_h6xto"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_55s7q"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_uawbi")
+gradient = SubResource("Gradient_yi5ll")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_7wu01"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_hafg0"]
 resource_local_to_scene = true
 size = Vector3(1.3610916, 0.008544922, 0.43113518)
 
-[sub_resource type="Gradient" id="Gradient_17pqh"]
+[sub_resource type="Gradient" id="Gradient_52j5g"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.34628975, 1)
 colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_indl7"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_y3ott"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_17pqh")
+gradient = SubResource("Gradient_52j5g")
 
 [node name="ClutterSystem" type="Node3D"]
 script = ExtResource("1_mpcbd")
 
 [node name="ClutterPlaneDust" parent="." instance=ExtResource("2_gwx86")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.018141866, 0.0169124, -1.3697224)
-shape = SubResource("BoxShape3D_ks51d")
+shape = SubResource("BoxShape3D_u6dng")
 show_pattern_in_editor = false
 mesh = ExtResource("3_u6dng")
-colors = SubResource("GradientTexture1D_figyt")
+colors = SubResource("GradientTexture1D_v5p7r")
 item_count = 10000
-pattern = null
 min_size = 3.0
 max_size = 5.0
 
 [node name="ClutterPlane_DustLoft" parent="." instance=ExtResource("2_gwx86")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.062275648, 3.098961, -5.6170006)
-shape = SubResource("BoxShape3D_yfw72")
+shape = SubResource("BoxShape3D_tjn31")
 show_pattern_in_editor = false
 mesh = ExtResource("3_u6dng")
-colors = SubResource("GradientTexture1D_byvkq")
+colors = SubResource("GradientTexture1D_ejqpx")
 item_count = 3000
 pattern = null
 min_size = 3.0
@@ -377,9 +383,8 @@ points_per_item = 50
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010211229, 0.0169124, -1.4280224)
 shape = SubResource("BoxShape3D_bjbia")
 show_pattern_in_editor = false
-colors = SubResource("GradientTexture1D_5hkhr")
+colors = SubResource("GradientTexture1D_g2jyp")
 item_count = 100
-pattern = null
 min_size = 5.0
 max_size = 5.0
 size_class = 1
@@ -387,10 +392,10 @@ points_per_item = 10
 
 [node name="ClutterPlaneChips" parent="." instance=ExtResource("2_gwx86")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8352121, 0.043138623, 1.7999597)
-shape = SubResource("BoxShape3D_g2jyp")
+shape = SubResource("BoxShape3D_mgku7")
 show_pattern_in_editor = false
 mesh = ExtResource("4_g5q62")
-colors = SubResource("GradientTexture1D_mgku7")
+colors = SubResource("GradientTexture1D_jwdwh")
 item_count = 50
 pattern = null
 min_size = 4.0
@@ -400,10 +405,10 @@ points_per_item = 2
 
 [node name="ClutterPlanePaper" parent="." instance=ExtResource("2_gwx86")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6882923, 0.018463656, 1.174201)
-shape = SubResource("BoxShape3D_uawbi")
+shape = SubResource("BoxShape3D_h6xto")
 show_pattern_in_editor = false
 mesh = ExtResource("5_v5p7r")
-colors = SubResource("GradientTexture1D_jwdwh")
+colors = SubResource("GradientTexture1D_17pqh")
 item_count = 50
 pattern = null
 min_size = 4.0
@@ -413,10 +418,10 @@ points_per_item = 5
 
 [node name="ClutterPlaneLego2x2" parent="." instance=ExtResource("2_gwx86")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.123621, 0.025602609, -3.7059343)
-shape = SubResource("BoxShape3D_h6xto")
+shape = SubResource("BoxShape3D_qhvxn")
 show_pattern_in_editor = false
 mesh = ExtResource("6_tjn31")
-colors = SubResource("GradientTexture1D_7wu01")
+colors = SubResource("GradientTexture1D_uytov")
 item_count = 50
 pattern = null
 min_size = 2.0
@@ -426,10 +431,10 @@ points_per_item = 10
 
 [node name="ClutterPlaneLego4x2" parent="." instance=ExtResource("2_gwx86")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2697284, 0.036178112, -3.6444364)
-shape = SubResource("BoxShape3D_17pqh")
+shape = SubResource("BoxShape3D_mh7h8")
 show_pattern_in_editor = false
 mesh = ExtResource("7_yfw72")
-colors = SubResource("GradientTexture1D_qhvxn")
+colors = SubResource("GradientTexture1D_lh2qt")
 item_count = 20
 pattern = null
 min_size = 2.0
@@ -439,31 +444,7 @@ points_per_item = 20
 
 [node name="ClutterPlaneCoins" parent="." instance=ExtResource("2_gwx86")]
 transform = Transform3D(0.852193, 0, -0.5232276, 0, 1, 0, 0.5232276, 0, 0.852193, 1.7031183, 0.8865329, -5.410386)
-shape = SubResource("BoxShape3D_indl7")
-show_pattern_in_editor = false
-mesh = ExtResource("8_ejqpx")
-colors = SubResource("GradientTexture1D_uytov")
-item_count = 50
-pattern = null
-max_size = 1.0
-size_class = 1
-points_per_item = 20
-
-[node name="ClutterPlaneCoins2" parent="." instance=ExtResource("2_gwx86")]
-transform = Transform3D(0.852193, 0, -0.5232276, 0, 1, 0, 0.5232276, 0, 0.852193, 8.815432, 0.024732769, 0.6777011)
-shape = SubResource("BoxShape3D_uytov")
-show_pattern_in_editor = false
-mesh = ExtResource("8_ejqpx")
-colors = SubResource("GradientTexture1D_3vqod")
-item_count = 50
-pattern = null
-max_size = 1.0
-size_class = 1
-points_per_item = 20
-
-[node name="ClutterPlaneCoins3" parent="." instance=ExtResource("2_gwx86")]
-transform = Transform3D(0.852193, 0, -0.5232276, 0, 1, 0, 0.5232276, 0, 0.852193, 8.815432, 0.024732769, 1.4541494)
-shape = SubResource("BoxShape3D_lh2qt")
+shape = SubResource("BoxShape3D_xderr")
 show_pattern_in_editor = false
 mesh = ExtResource("8_ejqpx")
 colors = SubResource("GradientTexture1D_2wokt")
@@ -473,8 +454,8 @@ max_size = 1.0
 size_class = 1
 points_per_item = 20
 
-[node name="ClutterPlaneCoins4" parent="." instance=ExtResource("2_gwx86")]
-transform = Transform3D(0.852193, 0, -0.5232276, 0, 1, 0, 0.5232276, 0, 0.852193, 7.4918795, 0.024732769, 1.4585565)
+[node name="ClutterPlaneCoins2" parent="." instance=ExtResource("2_gwx86")]
+transform = Transform3D(0.852193, 0, -0.5232276, 0, 1, 0, 0.5232276, 0, 0.852193, 8.815432, 0.024732769, 0.6777011)
 shape = SubResource("BoxShape3D_6j8wl")
 show_pattern_in_editor = false
 mesh = ExtResource("8_ejqpx")
@@ -485,8 +466,8 @@ max_size = 1.0
 size_class = 1
 points_per_item = 20
 
-[node name="ClutterPlaneCoins5" parent="." instance=ExtResource("2_gwx86")]
-transform = Transform3D(0.852193, 0, -0.5232276, 0, 1, 0, 0.5232276, 0, 0.852193, 7.635373, 0.024732769, 0.5647198)
+[node name="ClutterPlaneCoins3" parent="." instance=ExtResource("2_gwx86")]
+transform = Transform3D(0.852193, 0, -0.5232276, 0, 1, 0, 0.5232276, 0, 0.852193, 8.815432, 0.024732769, 1.4541494)
 shape = SubResource("BoxShape3D_2oyin")
 show_pattern_in_editor = false
 mesh = ExtResource("8_ejqpx")
@@ -497,12 +478,36 @@ max_size = 1.0
 size_class = 1
 points_per_item = 20
 
+[node name="ClutterPlaneCoins4" parent="." instance=ExtResource("2_gwx86")]
+transform = Transform3D(0.852193, 0, -0.5232276, 0, 1, 0, 0.5232276, 0, 0.852193, 7.4918795, 0.024732769, 1.4585565)
+shape = SubResource("BoxShape3D_apygl")
+show_pattern_in_editor = false
+mesh = ExtResource("8_ejqpx")
+colors = SubResource("GradientTexture1D_acle7")
+item_count = 50
+pattern = null
+max_size = 1.0
+size_class = 1
+points_per_item = 20
+
+[node name="ClutterPlaneCoins5" parent="." instance=ExtResource("2_gwx86")]
+transform = Transform3D(0.852193, 0, -0.5232276, 0, 1, 0, 0.5232276, 0, 0.852193, 7.635373, 0.024732769, 0.5647198)
+shape = SubResource("BoxShape3D_4akw2")
+show_pattern_in_editor = false
+mesh = ExtResource("8_ejqpx")
+colors = SubResource("GradientTexture1D_1isvt")
+item_count = 50
+pattern = null
+max_size = 1.0
+size_class = 1
+points_per_item = 20
+
 [node name="ClutterPlanePawprints" parent="." instance=ExtResource("2_gwx86")]
 transform = Transform3D(0.9547844, 0, 0.38953292, 0, 1, 0, -0.30047458, 0, 1.2377752, 1.891448, 0.017445236, -0.056291666)
-shape = SubResource("BoxShape3D_mh7h8")
+shape = SubResource("BoxShape3D_lue8n")
 show_pattern_in_editor = false
 mesh = ExtResource("9_byvkq")
-colors = SubResource("GradientTexture1D_lh2qt")
+colors = SubResource("GradientTexture1D_8ehm5")
 item_count = 20
 pattern = null
 max_size = 1.0
@@ -511,10 +516,10 @@ points_per_item = 5
 
 [node name="ClutterPlaneChips2" parent="." instance=ExtResource("2_gwx86")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.31479, 0.49596125, -0.8669995)
-shape = SubResource("BoxShape3D_xderr")
+shape = SubResource("BoxShape3D_yhkr3")
 show_pattern_in_editor = false
 mesh = ExtResource("4_g5q62")
-colors = SubResource("GradientTexture1D_povu3")
+colors = SubResource("GradientTexture1D_5gahs")
 item_count = 50
 pattern = null
 min_size = 3.0
@@ -522,10 +527,10 @@ max_size = 3.0
 
 [node name="ClutterPlaneChips5" parent="." instance=ExtResource("2_gwx86")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.429156, 4.0677967, -6.2450404)
-shape = SubResource("BoxShape3D_figyt")
+shape = SubResource("BoxShape3D_bu2qa")
 show_pattern_in_editor = false
 mesh = ExtResource("4_g5q62")
-colors = SubResource("GradientTexture1D_g2jyp")
+colors = SubResource("GradientTexture1D_gm73e")
 item_count = 50
 pattern = null
 min_size = 3.0
@@ -533,10 +538,10 @@ max_size = 3.0
 
 [node name="ClutterPlaneChips3" parent="." instance=ExtResource("2_gwx86")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.31479, 0.49596125, 1.5463785)
-shape = SubResource("BoxShape3D_ejqpx")
+shape = SubResource("BoxShape3D_ecn5t")
 show_pattern_in_editor = false
 mesh = ExtResource("4_g5q62")
-colors = SubResource("GradientTexture1D_bjbia")
+colors = SubResource("GradientTexture1D_ijg0h")
 item_count = 50
 pattern = null
 min_size = 3.0
@@ -544,10 +549,10 @@ max_size = 3.0
 
 [node name="ClutterPlaneChips4" parent="." instance=ExtResource("2_gwx86")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.3860734, 0.49596125, -1.8661432)
-shape = SubResource("BoxShape3D_5hkhr")
+shape = SubResource("BoxShape3D_s5y37")
 show_pattern_in_editor = false
 mesh = ExtResource("4_g5q62")
-colors = SubResource("GradientTexture1D_uawbi")
+colors = SubResource("GradientTexture1D_j7n3g")
 item_count = 50
 pattern = null
 min_size = 3.0
@@ -555,10 +560,10 @@ max_size = 3.0
 
 [node name="ClutterPlane_Kibble" parent="." instance=ExtResource("2_gwx86")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8602738, 0.7800007, -4.6189284)
-shape = SubResource("BoxShape3D_tjn31")
+shape = SubResource("BoxShape3D_vs8tk")
 show_pattern_in_editor = false
 mesh = ExtResource("10_v5p7r")
-colors = SubResource("GradientTexture1D_ejqpx")
+colors = SubResource("GradientTexture1D_r8h6u")
 pattern = null
 max_size = 1.5
 size_class = 1
@@ -566,10 +571,10 @@ points_per_item = 5
 
 [node name="ClutterPlane_Kibble3" parent="." instance=ExtResource("2_gwx86")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5539877, 0.004187703, -4.0500603)
-shape = SubResource("BoxShape3D_jwdwh")
+shape = SubResource("BoxShape3D_2q8b6")
 show_pattern_in_editor = false
 mesh = ExtResource("10_v5p7r")
-colors = SubResource("GradientTexture1D_17pqh")
+colors = SubResource("GradientTexture1D_bhics")
 pattern = null
 max_size = 1.5
 size_class = 1
@@ -577,10 +582,10 @@ points_per_item = 5
 
 [node name="ClutterPlane_Kibble2" parent="." instance=ExtResource("2_gwx86")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8602738, 0.7800007, -4.6189284)
-shape = SubResource("BoxShape3D_qhvxn")
+shape = SubResource("BoxShape3D_h5v2y")
 show_pattern_in_editor = false
 mesh = ExtResource("10_v5p7r")
-colors = SubResource("GradientTexture1D_mh7h8")
+colors = SubResource("GradientTexture1D_p8i10")
 pattern = null
 max_size = 1.5
 size_class = 1
@@ -588,9 +593,9 @@ points_per_item = 5
 
 [node name="ClutterPlane_Tacks1" parent="." instance=ExtResource("2_gwx86")]
 transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 4.0596104, 0.26767173, 0.12723652)
-shape = SubResource("BoxShape3D_v5p7r")
+shape = SubResource("BoxShape3D_qgbi7")
 show_pattern_in_editor = false
-colors = SubResource("GradientTexture1D_yfw72")
+colors = SubResource("GradientTexture1D_env0m")
 item_count = 20
 pattern = null
 min_size = 2.0
@@ -599,9 +604,9 @@ points_per_item = 20
 
 [node name="ClutterPlane_Tacks2" parent="." instance=ExtResource("2_gwx86")]
 transform = Transform3D(-1, -7.642742e-15, 8.742278e-08, 0, -1, -8.742278e-08, 8.742278e-08, -8.742278e-08, 1, 4.0596104, 0.77984583, -0.56797695)
-shape = SubResource("BoxShape3D_3vqod")
+shape = SubResource("BoxShape3D_gdbg4")
 show_pattern_in_editor = false
-colors = SubResource("GradientTexture1D_xderr")
+colors = SubResource("GradientTexture1D_aus0u")
 item_count = 20
 pattern = null
 min_size = 2.0
@@ -610,9 +615,9 @@ points_per_item = 20
 
 [node name="ClutterPlane_Tacks3" parent="." instance=ExtResource("2_gwx86")]
 transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 4.0596104, 2.828434, -3.3379297)
-shape = SubResource("BoxShape3D_povu3")
+shape = SubResource("BoxShape3D_am7eo")
 show_pattern_in_editor = false
-colors = SubResource("GradientTexture1D_6j8wl")
+colors = SubResource("GradientTexture1D_tqycp")
 item_count = 20
 pattern = null
 min_size = 2.0
@@ -621,10 +626,10 @@ points_per_item = 20
 
 [node name="ClutterPlane_LegoStair" parent="." instance=ExtResource("2_gwx86")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0840964, 1.5476962, -1.5865395)
-shape = SubResource("BoxShape3D_mgku7")
+shape = SubResource("BoxShape3D_iaaci")
 show_pattern_in_editor = false
 mesh = ExtResource("7_yfw72")
-colors = SubResource("GradientTexture1D_h6xto")
+colors = SubResource("GradientTexture1D_55s7q")
 item_count = 20
 pattern = null
 min_size = 2.0
@@ -634,10 +639,10 @@ points_per_item = 10
 
 [node name="ClutterPlane_LegoStair2" parent="." instance=ExtResource("2_gwx86")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4.0840964, 2.3234293, -2.6157408)
-shape = SubResource("BoxShape3D_7wu01")
+shape = SubResource("BoxShape3D_hafg0")
 show_pattern_in_editor = false
 mesh = ExtResource("7_yfw72")
-colors = SubResource("GradientTexture1D_indl7")
+colors = SubResource("GradientTexture1D_y3ott")
 item_count = 20
 pattern = null
 min_size = 2.0

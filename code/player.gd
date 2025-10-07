@@ -1,7 +1,7 @@
 class_name RoboVac extends CharacterBody3D
 
 @onready var art: Node3D = %Art
-@onready var cat_hat: MeshInstance3D = %Cat_Hat
+@onready var cat_hat: StaticBody3D = %Cat_Hat
 @onready var coppter_hat_v_1: Node3D = %CoppterHat_v1
 @onready var main_camera: Camera3D = %"Main Camera"
 @onready var ring_particles: CPUParticles3D = %RingParticles
@@ -220,7 +220,7 @@ func _physics_process(delta: float) -> void:
 	
 	var estimate_velocity := (position - last_position).length() / delta
 	last_position = position
-	if estimate_velocity < 0.1:
+	if estimate_velocity < 0.2:
 		not_moving_time += delta
 	else:
 		not_moving_time = 0.0
@@ -230,7 +230,7 @@ func _physics_process(delta: float) -> void:
 	dialog_cooldown = move_toward(dialog_cooldown, 0.0, delta)
 	
 	var ray_origin := main_camera.global_position
-	var ray_target := global_position - global_basis.y * 0.05
+	var ray_target := global_position
 	var ignore_list: Array[RID] = []
 	var query := PhysicsRayQueryParameters3D.create(ray_origin, ray_target, 0xFFFFFFFF, ignore_list)
 	query.hit_from_inside = true
@@ -301,12 +301,13 @@ func _physics_process(delta: float) -> void:
 				frustration_time_plus += delta
 			else:
 				frustration_time_minus += delta
-			if frustration_time_plus > 1.0 and frustration_time_minus > 1.0 and dialog_cooldown <= 0.0:
+			if ((frustration_time_plus > 0.5 and frustration_time_minus > 0.1) or (frustration_time_plus > 5.0)) and dialog_cooldown <= 0.0:
 				player_is_stuck.emit(self)
 				dialog_cooldown = DIALOG_COOLDOWN_MAX
 		
 		# Handle move charge drain
-		current_charge -= absf(input_move) * (move_cost_rate / energy_efficiency) * delta
+		if not_moving_time < 0.5:
+			current_charge -= absf(input_move) * (move_cost_rate / energy_efficiency) * delta
 	
 	# Add the gravity.
 	if not is_on_floor():

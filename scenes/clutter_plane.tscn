@@ -4,24 +4,24 @@
 [ext_resource type="Texture2D" uid="uid://csvl4a2s8unhi" path="res://assets/images/pattern.png" id="2_33r6d"]
 [ext_resource type="ArrayMesh" uid="uid://bwpftc2yfrspi" path="res://assets/models/clutter/tack.res" id="2_jsn3c"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_33r6d"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_jsn3c"]
 resource_local_to_scene = true
 size = Vector3(1.2866364, 0.008544922, 1.1440125)
 
-[sub_resource type="Gradient" id="Gradient_jsn3c"]
+[sub_resource type="Gradient" id="Gradient_odn8x"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.34628975, 1)
 colors = PackedColorArray(0.29219013, 0.29219002, 0.29218993, 1, 0.60061526, 0.60061526, 0.60061526, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_odn8x"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3khxe"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_jsn3c")
+gradient = SubResource("Gradient_odn8x")
 
 [node name="ClutterPlane" type="CollisionShape3D"]
-shape = SubResource("BoxShape3D_33r6d")
+shape = SubResource("BoxShape3D_jsn3c")
 script = ExtResource("1_nlswf")
 mesh = ExtResource("2_jsn3c")
-colors = SubResource("GradientTexture1D_odn8x")
+colors = SubResource("GradientTexture1D_3khxe")
 item_count = 500
 pattern = ExtResource("2_33r6d")
 min_size = 1.0
@@ -30,7 +30,7 @@ max_size = 10.0
 [node name="Sprite3D" type="Sprite3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
-pixel_size = 0.0019494491
+pixel_size = 0.0020553297
 texture = ExtResource("2_33r6d")
 region_enabled = true
-region_rect = Rect2(0, 135.58057, 660, 586.83887)
+region_rect = Rect2(0, 130.69612, 626, 556.6078)

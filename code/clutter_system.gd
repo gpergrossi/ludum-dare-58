@@ -174,6 +174,8 @@ func add_particles(mesh_set: MultiMeshInstance3D, plane: ClutterPlane, amount: i
 			var color := plane.get_random_color(rand)
 			var size := plane.get_random_size(rand)
 			var part_pos := plane.get_sample(rand, size)
+			if not part_pos.is_finite():
+				part_pos = mesh_set.multimesh.get_instance_transform(0).origin
 			var part_basis := plane.basis.rotated(plane.basis.y, rand.randf() * TAU).scaled(size * Vector3.ONE)
 			var xform := Transform3D(part_basis, part_pos)
 			mesh_set.multimesh.set_instance_color(index + i, color)

@@ -158,7 +158,7 @@ script = SubResource("GDScript_tefeu")
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-text = "v0.1.2"
+text = "v0.1.4"
 horizontal_alignment = 2
 
 [node name="VBoxDust" type="VBoxContainer" parent="MarginContainer"]

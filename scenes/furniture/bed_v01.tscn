@@ -39,15 +39,17 @@ surface_material_override/1 = ExtResource("6_iyxbs")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bed/Bed/Bed_Body/Bed_Covers/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_2ff27")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Bed/Bed/Bed_Body" index="1" node_paths=PackedStringArray("the_mesh", "another_mesh")]
-script = ExtResource("7_h2vek")
-the_mesh = NodePath("..")
-another_mesh = NodePath("../Bed_Covers")
+[node name="StaticBody3D" type="StaticBody3D" parent="Bed/Bed/Bed_Body" index="1"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bed/Bed/Bed_Body/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_n8rxf")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Bed/Bed/Bed_Body/StaticBody3D"]
+[node name="CameraHider" type="StaticBody3D" parent="Bed/Bed/Bed_Body" index="2" node_paths=PackedStringArray("the_mesh", "another_mesh")]
+script = ExtResource("7_h2vek")
+the_mesh = NodePath("..")
+another_mesh = NodePath("../Bed_Covers")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Bed/Bed/Bed_Body/CameraHider"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01855468, -0.3927307, -0.0059890747)
 shape = SubResource("BoxShape3D_iyxbs")
 
