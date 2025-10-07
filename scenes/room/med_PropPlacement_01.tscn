@@ -258,7 +258,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1258316, 4.3099346, -6.673
 transform = Transform3D(-0.8030152, 0, -0.5959586, 0, 1, 0, 0.5959586, 0, -0.8030152, -4.109691, 4.320113, -6.660491)
 
 [node name="Mug16" parent="Medium" instance=ExtResource("10_gloqb")]
-transform = Transform3D(-1.3871255, 0, 0.9827941, 0, 1.7000005, 0, -0.9827941, 0, -1.3871255, -0.4572964, 3.706672, -7.172766)
+transform = Transform3D(-1.3871255, 0, 0.9827941, 0, 1.7000005, 0, -0.9827941, 0, -1.3871255, -0.4572964, 3.6642673, -7.172766)
 
 [node name="CoppterHat_v1" parent="Medium" instance=ExtResource("14_kes2h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.877259, 0.27482432, 1.1443217)

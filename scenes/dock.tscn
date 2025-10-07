@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://3j15a5i12y2c"]
+[gd_scene load_steps=9 format=3 uid="uid://3j15a5i12y2c"]
 
 [ext_resource type="Script" uid="uid://dvddy7iifqfhb" path="res://code/dock.gd" id="1_pi7v4"]
 [ext_resource type="PackedScene" uid="uid://dq7ssm6bkx1tn" path="res://scenes/FBX_imports/BT_Imports/Roomba_Charger_v2.fbx" id="2_uvgon"]
+[ext_resource type="Material" uid="uid://cexx2elibijte" path="res://assets/materials/instances/o_Metal_DRK.tres" id="3_gm2c5"]
+[ext_resource type="Material" uid="uid://dsqnnpajoj33n" path="res://assets/materials/instances/o_Metal.tres" id="4_oqimr"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tbgi4"]
 height = 0.05991374
@@ -52,5 +54,12 @@ color_ramp = SubResource("Gradient_uvgon")
 [node name="Roomba_Charger_v2" parent="." instance=ExtResource("2_uvgon")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.03056842)
 
+[node name="Charger" parent="Roomba_Charger_v2/Updated_Assets" index="0"]
+surface_material_override/0 = ExtResource("3_gm2c5")
+surface_material_override/1 = ExtResource("4_oqimr")
+surface_material_override/2 = ExtResource("4_oqimr")
+
 [connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]
 [connection signal="body_exited" from="Detector" to="." method="_on_detector_body_exited"]
+
+[editable path="Roomba_Charger_v2"]
