@@ -3,6 +3,20 @@ class_name PlayerUpgrades extends RefCounted
 var purchases: Dictionary[StringName, bool] = {}
 var all_upgrades: Array[StringName] = []
 
+const ICON_BATTERY = preload("uid://qpxqiuts6mjq")
+const ICON_CARPET = preload("uid://bpelqn7tvp60a")
+const ICON_DASH = preload("uid://deidsur08mfn4")
+const ICON_DOUBLE_JUMP = preload("uid://dp5lgjsufx6g7")
+const ICON_DUST_CAPACITY = preload("uid://cflon5t0qdxom")
+const ICON_EFFICIENCY = preload("uid://dnuryvw88ww5a")
+const ICON_ENERGY_REGEN = preload("uid://bs8f3ju6jgbvl")
+const ICON_HELICOPTOR = preload("uid://bua74lteas6au")
+const ICON_JUMP = preload("uid://c7nm4jhwpdn8f")
+const ICON_SMALL_OBJECTS = preload("uid://cjm20b08edp56")
+const ICON_SPEED = preload("uid://bubet8xaic1u0")
+const ICON_TURNING = preload("uid://wu4wpydjussu")
+const ICON_VACCUM_POWER = preload("uid://dvrf55pkxxmo5")
+
 signal upgrades_changed()
 
 func _init() -> void:
@@ -284,3 +298,48 @@ func apply_upgrade(upgrade : StringName, player: RoboVac) -> void:
 		
 		Upgrade_Generator: player.energy_regen = 2.0
 		Upgrade_Teleport: return
+
+
+func get_upgrade_icon(upgrade: StringName) -> Texture2D:
+	match upgrade:
+		Upgrade_Speed_I: return ICON_SPEED
+		Upgrade_Speed_II: return ICON_SPEED
+		Upgrade_Speed_III: return ICON_SPEED
+
+		Upgrade_Turning_I: return ICON_TURNING
+		Upgrade_Turning_II: return ICON_TURNING
+		Upgrade_Turning_III: return ICON_TURNING
+
+		Upgrade_Battery_I: return ICON_BATTERY
+		Upgrade_Battery_II: return ICON_BATTERY
+		Upgrade_Battery_III: return ICON_BATTERY
+
+		Upgrade_Vacuum_Radius_I: return ICON_VACCUM_POWER
+		Upgrade_Vacuum_Radius_II: return ICON_VACCUM_POWER
+		Upgrade_Vacuum_Radius_III: return ICON_VACCUM_POWER
+
+		Upgrade_Vacuum_Capacity_I: return ICON_DUST_CAPACITY
+		Upgrade_Vacuum_Capacity_II: return ICON_DUST_CAPACITY
+		Upgrade_Vacuum_Capacity_III: return ICON_DUST_CAPACITY
+
+		Upgrade_Efficiency_I: return ICON_EFFICIENCY
+		Upgrade_Efficiency_II: return ICON_EFFICIENCY
+		Upgrade_Efficiency_III: return ICON_EFFICIENCY
+
+		Upgrade_Carpet_Speed: return null
+		Upgrade_Cat_Speed: return null
+		Upgrade_Low_Rider: return ICON_CARPET
+		Upgrade_Stuff_Collector_I: return ICON_SMALL_OBJECTS
+		Upgrade_Stuff_Collector_II: return ICON_SMALL_OBJECTS
+
+		Upgrade_Dash: return ICON_DASH
+		Upgrade_Jump: return ICON_JUMP
+		Upgrade_Helicopter: return ICON_HELICOPTOR
+		Upgrade_Double_Jump: return ICON_DOUBLE_JUMP
+		Upgrade_Jetpack: return ICON_HELICOPTOR
+		Upgrade_Quick_Turn: return null
+		Upgrade_Teleport: return null
+		Upgrade_Generator: return ICON_ENERGY_REGEN
+	
+	push_warning("No such upgrade \"" + upgrade + "\"!")
+	return null

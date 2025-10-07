@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ttle2gx3ns1h"]
+[gd_scene load_steps=26 format=3 uid="uid://ttle2gx3ns1h"]
 
 [ext_resource type="Theme" uid="uid://do0lbre163efj" path="res://assets/data/ui_theme.tres" id="1_crnce"]
 [ext_resource type="Texture2D" uid="uid://cmh8dch3fefrd" path="res://assets/images/UI/Dust_ui/dust_icon.png" id="2_x0n6o"]
@@ -6,10 +6,12 @@
 [ext_resource type="Script" uid="uid://bpsvkjcb822ad" path="res://code/ui/progress_bar_dust.gd" id="4_oqj4c"]
 [ext_resource type="Texture2D" uid="uid://xca7eq8p5omv" path="res://assets/images/UI/Dust_ui/dust_overlay.png" id="5_pbku6"]
 [ext_resource type="Script" uid="uid://bxotqlnrj5vex" path="res://code/ui/label_dust.gd" id="6_i3ans"]
-[ext_resource type="Script" uid="uid://cgdaov6841ifx" path="res://code/ui/progress_bar_battery.gd" id="7_5bpyr"]
-[ext_resource type="Script" uid="uid://bl78r2iibvsco" path="res://code/ui/label_battery.gd" id="8_84uof"]
+[ext_resource type="Texture2D" uid="uid://cxp1pyg8y4ej2" path="res://assets/images/UI/Battery_ui/battery_1_v2.png" id="7_x0n6o"]
+[ext_resource type="Texture2D" uid="uid://d3ikk2kllsoh3" path="res://assets/images/UI/Battery_ui/battery_2_vert.png" id="8_crnce"]
+[ext_resource type="Script" uid="uid://cgdaov6841ifx" path="res://code/ui/progress_bar_battery.gd" id="9_aq72h"]
 [ext_resource type="Script" uid="uid://c5gde2jetgtt0" path="res://code/ui/popup_respawn.gd" id="9_cyqav"]
 [ext_resource type="Script" uid="uid://cvqyrpvp84up1" path="res://code/ui/popup_docking_station.gd" id="10_baxkn"]
+[ext_resource type="Script" uid="uid://bl78r2iibvsco" path="res://code/ui/label_battery.gd" id="10_oqj4c"]
 [ext_resource type="Script" uid="uid://dgtsfdncydm43" path="res://code/button_highlight.gd" id="11_20oq5"]
 [ext_resource type="Script" uid="uid://bytb6rn3npm0o" path="res://code/ui/popup_shop.gd" id="12_plh64"]
 [ext_resource type="PackedScene" uid="uid://cvnlxf8mywvy4" path="res://scenes/ui/upgrade_ui.tscn" id="13_t1jn2"]
@@ -39,18 +41,6 @@ corner_radius_top_right = 32
 corner_radius_bottom_right = 32
 corner_radius_bottom_left = 32
 corner_detail = 16
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gqmmt"]
-content_margin_left = 16.0
-content_margin_top = 8.0
-content_margin_right = 16.0
-content_margin_bottom = 8.0
-bg_color = Color(0, 0, 0, 0.22352941)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-corner_detail = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dp3eg"]
 content_margin_left = 24.0
@@ -164,6 +154,13 @@ size_flags_vertical = 0
 text = "FPS: 2"
 script = SubResource("GDScript_tefeu")
 
+[node name="Version" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "v0.1.2"
+horizontal_alignment = 2
+
 [node name="VBoxDust" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -234,37 +231,75 @@ text = "1000 / 1000"
 horizontal_alignment = 1
 script = ExtResource("6_i3ans")
 
-[node name="Bottom Panel" type="PanelContainer" parent="MarginContainer"]
+[node name="VBoxBattery" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxBattery"]
+layout_mode = 2
+theme_override_constants/margin_left = -5
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxBattery/MarginContainer"]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("7_x0n6o")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxBattery"]
+layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 8
-theme_override_styles/panel = SubResource("StyleBoxFlat_gqmmt")
+theme_override_styles/panel = SubResource("StyleBoxFlat_2wyq8")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Bottom Panel"]
+[node name="Control" type="Control" parent="MarginContainer/VBoxBattery/PanelContainer"]
+custom_minimum_size = Vector2(20, 413.61)
 layout_mode = 2
 
-[node name="LabelBattery" type="Label" parent="MarginContainer/Bottom Panel/VBoxContainer"]
-layout_mode = 2
-text = "Battery:"
-
-[node name="ProgressBarBattery" type="ProgressBar" parent="MarginContainer/Bottom Panel/VBoxContainer"]
-custom_minimum_size = Vector2(400, 20)
-layout_mode = 2
+[node name="ProgressBarBattery" type="TextureProgressBar" parent="MarginContainer/VBoxBattery/PanelContainer/Control"]
+layout_mode = 0
+offset_left = -42.0
+offset_top = 6.0
+offset_right = 14.0
+offset_bottom = 409.0
 value = 100.0
-show_percentage = false
-script = ExtResource("7_5bpyr")
+fill_mode = 3
+texture_progress = ExtResource("8_crnce")
+script = ExtResource("9_aq72h")
 
-[node name="Label" type="Label" parent="MarginContainer/Bottom Panel/VBoxContainer/ProgressBarBattery"]
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxBattery/PanelContainer/Control"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 9
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_top = -3.6950073
+offset_right = 74.0
+offset_bottom = 3.6950073
 grow_vertical = 2
-text = "100%"
+theme_override_constants/margin_left = -45
+theme_override_constants/margin_top = -15
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = -30
+
+[node name="Overlay Ticks" type="TextureRect" parent="MarginContainer/VBoxBattery/PanelContainer/Control/MarginContainer3"]
+layout_mode = 2
+texture = ExtResource("5_pbku6")
+expand_mode = 1
+stretch_mode = 6
+flip_h = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxBattery"]
+layout_mode = 2
+theme_override_constants/margin_left = -14
+
+[node name="LabelBattery" type="Label" parent="MarginContainer/VBoxBattery/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/outline_size = 6
+text = "1000 / 1000"
 horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("8_84uof")
+script = ExtResource("10_oqj4c")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -363,7 +398,7 @@ vertical_alignment = 1
 [node name="LabelInstructions" type="Label" parent="PopupDockingStation/VBoxContainer"]
 custom_minimum_size = Vector2(80, 20)
 layout_mode = 2
-text = "Finish the objective and end the day to purchase upgrades for tomorrow."
+text = "Finish the objective to purchase upgrades."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -377,7 +412,7 @@ alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 disabled = true
-text = " End Day "
+text = " Purchase Upgrades "
 
 [node name="ButtonHighlight" type="Panel" parent="PopupDockingStation/VBoxContainer/HBoxContainer/ButtonSleep"]
 unique_name_in_owner = true

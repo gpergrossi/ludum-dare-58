@@ -48,7 +48,11 @@ corner_detail = 5
 theme_override_styles/panel = SubResource("StyleBoxFlat_85g3d")
 
 [node name="PopupShop" parent="CanvasLayer/GameUI" index="3" node_paths=PackedStringArray("player")]
+visible = true
 player = NodePath("../../../Player")
+
+[node name="Button" parent="CanvasLayer/GameUI/PopupShop/MarginContainer/PopupWindow/VBoxContainer/HBoxContainer" index="0"]
+text = "   Return to Game   "
 
 [node name="Highlight" parent="CanvasLayer/GameUI/PopupShop/MarginContainer/PopupWindow/VBoxContainer/HBoxContainer/Button" index="0"]
 theme_override_styles/panel = SubResource("StyleBoxFlat_choun")
@@ -82,8 +86,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4403428, 0)
 shape = SubResource("WorldBoundaryShape3D_tipki")
 
 [connection signal="battery_died" from="Player" to="CanvasLayer/GameUI/PopupRespawn" method="_on_player_battery_died"]
-[connection signal="charge_changed" from="Player" to="CanvasLayer/GameUI/MarginContainer/Bottom Panel/VBoxContainer/ProgressBarBattery" method="_on_player_charge_changed"]
-[connection signal="charge_changed" from="Player" to="CanvasLayer/GameUI/MarginContainer/Bottom Panel/VBoxContainer/ProgressBarBattery/Label" method="_on_player_charge_changed"]
+[connection signal="charge_changed" from="Player" to="CanvasLayer/GameUI/MarginContainer/VBoxBattery/PanelContainer/Control/ProgressBarBattery" method="_on_player_charge_changed"]
+[connection signal="charge_changed" from="Player" to="CanvasLayer/GameUI/MarginContainer/VBoxBattery/MarginContainer2/LabelBattery" method="_on_player_charge_changed"]
 [connection signal="dust_changed" from="Player" to="CanvasLayer/GameUI/MarginContainer/VBoxDust/PanelContainer/Control/ProgressBarDust" method="_on_player_dust_changed"]
 [connection signal="dust_changed" from="Player" to="CanvasLayer/GameUI/MarginContainer/VBoxDust/MarginContainer2/LabelDust" method="_on_player_dust_changed"]
 [connection signal="dust_storage_changed" from="Player" to="CanvasLayer/GameUI/PopupDockingStation" method="_on_player_dust_storage_changed"]

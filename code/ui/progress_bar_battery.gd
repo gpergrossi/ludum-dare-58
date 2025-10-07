@@ -1,5 +1,4 @@
-extends ProgressBar
-
+extends Range
 
 func _on_player_charge_changed(current: float, max_: float) -> void:
 	value = current

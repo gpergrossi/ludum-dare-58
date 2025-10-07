@@ -9,6 +9,7 @@ class_name UpgradeUI extends PanelContainer
 var shop: PopupShop
 var upgrade: StringName = "Uninitialized"
 var displayed: StringName = ""
+var upgrade_icon: Texture2D = null
 
 var unlocked := false
 var purchased := false
@@ -21,6 +22,7 @@ func _process(delta: float) -> void:
 	unlocked = shop.upgrades.is_upgrade_unlocked(upgrade)
 	purchased = shop.upgrades.is_upgrade_purchased(upgrade)
 	price = shop.upgrades.get_upgrade_cost(upgrade)
+	upgrade_icon = shop.upgrades.get_upgrade_icon(upgrade)
 	
 	label_name.text = upgrade
 	label_price.text = "Price: " + str(roundi(price * LabelDust.display_scale))
@@ -37,6 +39,9 @@ func _process(delta: float) -> void:
 		opacity = 1.0
 		modulate = Color(Color.WHITE, opacity)
 		visible = true
+	
+	if upgrade_icon != null:
+		icon.texture = upgrade_icon
 	
 	if not unlocked:
 		visible = false
