@@ -63,12 +63,6 @@ var decompressed_image: Image
 @onready var last_basis := basis
 
 
-func _enter_tree() -> void:
-	if Engine.is_editor_hint():
-		print("Enter tree! Breaking shitty duplication references caused by godot being dumb as shit.")
-		colors = colors.duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
-		shape = shape.duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
-
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		if colors: colors = (colors as Resource)

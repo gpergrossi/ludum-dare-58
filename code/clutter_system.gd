@@ -13,10 +13,12 @@ func do_forced_update() -> void:
 @export var max_particles := 20000
 @export var player: RoboVac
 
+signal small_props_changed(collected: int, total: int)
+
 var clutter_planes: Array[ClutterPlane] = []
 var update_delay := 0.0
 var current_particle_count := 0
-var desired_particle_count := 0
+var total_particle_count := 0
 var _dirty_set: Dictionary[ClutterPlane, bool] = {}
 var _working_sets: Dictionary[ClutterPlane, int] = {}
 var _mesh_sets: Dictionary[ClutterPlane, MultiMeshInstance3D] = {}
@@ -71,14 +73,14 @@ func on_clutter_plane_changed(clutter_plane: ClutterPlane) -> void:
 		update_delay = MIN_UPDATE_DELAY
 	
 	# Recompute desired particle count
-	desired_particle_count = 0
+	total_particle_count = 0
 	for plane in clutter_planes:
-		desired_particle_count += plane.item_count
-	#print("Currently need " + str(desired_particle_count) + " particles")
+		total_particle_count += plane.item_count
+	#print("Currently need " + str(total_particle_count) + " particles")
 	
 	## Compute and potentially update global particle density
 	#var old_scale := particle_density_scale
-	#particle_density_scale = minf(1.0, float(max_particles) / float(desired_particle_count))
+	#particle_density_scale = minf(1.0, float(max_particles) / float(total_particle_count))
 	#if particle_density_scale != old_scale:
 		#for plane in clutter_planes:
 			#_dirty_set[plane] = true
@@ -105,6 +107,13 @@ func _process(delta: float) -> void:
 			add_particles(mesh_set, plane, mini(roundi(float(MAX_PARTICLES_PER_LOOP) / _working_sets.size()), target_count - mesh_set.multimesh.visible_instance_count))
 		else:
 			_working_sets.erase(plane)
+			current_particle_count = 0
+			for cplane in clutter_planes:
+				if _mesh_sets.has(cplane):
+					mesh_set = _mesh_sets[cplane]
+					current_particle_count += mesh_set.multimesh.visible_instance_count
+			if not Engine.is_editor_hint():
+				small_props_changed.emit(total_particle_count - current_particle_count, total_particle_count)
 	
 	do_dust_collection(delta)
 
@@ -204,7 +213,7 @@ func do_dust_collection(delta: float):
 		
 		var particles := _mesh_sets[plane]
 		
-		for i in range(begin, minf(plane.item_count, begin + batch_size)):
+		for i in range(begin, minf(particles.multimesh.visible_instance_count, begin + batch_size)):
 			var xform := particles.multimesh.get_instance_transform(i)
 			
 			var ppos := xform.origin
@@ -220,9 +229,19 @@ func do_dust_collection(delta: float):
 				var pbasis := xform.basis
 			
 				if dist2 < 0.15:
-					particles.multimesh.set_instance_transform(i, Transform3D(Basis.from_scale(Vector3.ZERO), ppos))
+					# Overwrite with last particle
+					if particles.multimesh.visible_instance_count > 0:
+						var last_index := particles.multimesh.visible_instance_count-1
+						var last_color := particles.multimesh.get_instance_color(last_index)
+						var last_xform := particles.multimesh.get_instance_transform(last_index)
+						particles.multimesh.set_instance_color(i, last_color)
+						particles.multimesh.set_instance_transform(i, last_xform)
+						particles.multimesh.visible_instance_count -= 1
 					if player:
 						player.on_dust_collected(plane, plane.points_per_item)
+						current_particle_count -= 1
+						if not Engine.is_editor_hint():
+							small_props_changed.emit(total_particle_count - current_particle_count, total_particle_count)
 					continue
 				
 				if dist2 < 0.3:

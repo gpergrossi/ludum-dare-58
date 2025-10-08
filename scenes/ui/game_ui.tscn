@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ttle2gx3ns1h"]
+[gd_scene load_steps=33 format=3 uid="uid://ttle2gx3ns1h"]
 
 [ext_resource type="Theme" uid="uid://do0lbre163efj" path="res://assets/data/ui_theme.tres" id="1_crnce"]
 [ext_resource type="Texture2D" uid="uid://cmh8dch3fefrd" path="res://assets/images/UI/Dust_ui/dust_icon.png" id="2_x0n6o"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" uid="uid://cvqyrpvp84up1" path="res://code/ui/popup_docking_station.gd" id="10_baxkn"]
 [ext_resource type="Script" uid="uid://bl78r2iibvsco" path="res://code/ui/label_battery.gd" id="10_oqj4c"]
 [ext_resource type="Script" uid="uid://dgtsfdncydm43" path="res://code/button_highlight.gd" id="11_20oq5"]
+[ext_resource type="Script" uid="uid://4mdw8gq576xb" path="res://code/ui/progress_bar_clean.gd" id="11_pbku6"]
+[ext_resource type="Script" uid="uid://biihlqxe8n35p" path="res://code/ui/label_cleanliness.gd" id="12_i3ans"]
 [ext_resource type="Script" uid="uid://bytb6rn3npm0o" path="res://code/ui/popup_shop.gd" id="12_plh64"]
 [ext_resource type="PackedScene" uid="uid://cvnlxf8mywvy4" path="res://scenes/ui/upgrade_ui.tscn" id="13_t1jn2"]
 
@@ -41,6 +43,32 @@ corner_radius_top_right = 32
 corner_radius_bottom_right = 32
 corner_radius_bottom_left = 32
 corner_detail = 16
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pbku6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5bpyr"]
+corner_radius_top_left = 13
+corner_radius_top_right = 13
+corner_radius_bottom_right = 13
+corner_radius_bottom_left = 13
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqj4c"]
+bg_color = Color(0.18717611, 0.18717617, 0.18717602, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbku6"]
+bg_color = Color(0.20520413, 0.45809746, 0.59257734, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3ans"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 13
+corner_radius_top_right = 13
+corner_radius_bottom_right = 13
+corner_radius_bottom_left = 13
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dp3eg"]
 content_margin_left = 24.0
@@ -303,6 +331,58 @@ script = ExtResource("10_oqj4c")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 layout_mode = 2
+
+[node name="Cleanliness" type="PanelContainer" parent="MarginContainer"]
+clip_children = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_pbku6")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/Cleanliness"]
+clip_children = 2
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5bpyr")
+
+[node name="ProgressBarCleanliness" type="ProgressBar" parent="MarginContainer/Cleanliness/PanelContainer"]
+custom_minimum_size = Vector2(800, 24)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_oqj4c")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pbku6")
+value = 50.0
+show_percentage = false
+script = ExtResource("11_pbku6")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Cleanliness/PanelContainer/ProgressBarCleanliness"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 4
+
+[node name="LabelCleanliness" type="Label" parent="MarginContainer/Cleanliness/PanelContainer/ProgressBarCleanliness/MarginContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 6
+text = "Total Cleanliness: 0%"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("12_i3ans")
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Cleanliness"]
+layout_mode = 2
+theme_override_constants/margin_left = -2
+theme_override_constants/margin_top = -2
+theme_override_constants/margin_right = -2
+theme_override_constants/margin_bottom = -2
+
+[node name="Outline" type="PanelContainer" parent="MarginContainer/Cleanliness/MarginContainer2"]
+clip_children = 2
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i3ans")
 
 [node name="PopupRespawn" type="PanelContainer" parent="."]
 unique_name_in_owner = true

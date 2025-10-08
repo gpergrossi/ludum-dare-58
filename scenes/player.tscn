@@ -91,6 +91,9 @@ visible = false
 [node name="BodyCore" parent="Art/roomba_v2/Robo_armature/Skeleton3D" index="3"]
 transform = Transform3D(-0.99999964, -0.0006477016, 8.7195076e-07, -6.0826997e-09, 0.0013555888, 0.9999991, -0.00064770196, 0.9999991, -0.001355648, 0.0002629717, 0.05853645, -0.20308107)
 
+[node name="face" parent="Art/roomba_v2/Robo_armature/Skeleton3D/BodyCore" index="3"]
+transform = Transform3D(-0.9999999, 0.00057818973, -0.00029191445, -0.0006477013, -0.89207107, 0.4518939, 8.719944e-07, 0.45189384, 0.89207155, 0.03115239, 0.015795011, 0.0660483)
+
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Art/roomba_v2/Robo_armature/Skeleton3D/BodyCore" index="8"]
 remote_path = NodePath("../../../../../BodyAttached")
 

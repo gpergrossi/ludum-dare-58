@@ -7,8 +7,8 @@ class_name PlayerBaseStats extends Resource
 @export var move_speed := 0.5
 @export var jump_speed := 2.2
 @export var turn_speed := 1.0
-@export var dash_speed := 3.0
-@export var dash_duration := 0.5
+@export var dash_speed := 4.0
+@export var dash_duration := 0.75
 @export var max_charge := 30.0
 @export var max_dust := 1000.0
 

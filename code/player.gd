@@ -344,7 +344,6 @@ func _physics_process(delta: float) -> void:
 		
 		if upgrades.is_upgrade_purchased(PlayerUpgrades.Upgrade_Jump):
 			if Input.is_action_just_pressed("jump") and current_charge > (jump_cost / energy_efficiency):
-				print("try jump. " + ("on ground" if is_on_floor() else (str(air_jumps_used) + "/" + str(max_air_jumps) + " used")))
 				if is_on_floor() or air_jumps_used < max_air_jumps:
 					current_charge -= (jump_cost / energy_efficiency)
 					vertical_velocity += jump_speed
@@ -399,6 +398,10 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_key_pressed(KEY_PAGEDOWN):
 		upgrades.grant_all_upgrades()
+	
+	if Input.is_key_pressed(KEY_DELETE):
+		vacuum_radius = 500.0
+		max_dust = 200000
 	
 	# Pick up medium and large objects
 	for i in range(get_slide_collision_count()):
@@ -465,7 +468,6 @@ func notify_exit_dock(dock: Dock):
 
 
 func do_special_pickups(sbgp: StaticBodyGamePiece):
-	print("Special pickup?")
 	if sbgp.name == "CatRoll":
 		pickup_special.emit(self, sbgp.name)
 		cat_hat.visible = true

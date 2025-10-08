@@ -257,24 +257,24 @@ func get_upgrade_prereqs(upgrade: StringName) -> Array[StringName]:
 func apply_upgrade(upgrade : StringName, player: RoboVac) -> void:
 	match upgrade:
 		Upgrade_Speed_I:  player.move_speed = player.base_stats.move_speed * 1.5
-		Upgrade_Speed_II:  player.move_speed = player.base_stats.move_speed * 1.75
-		Upgrade_Speed_III:  player.move_speed = player.base_stats.move_speed * 2.0
+		Upgrade_Speed_II:  player.move_speed = player.base_stats.move_speed * 2.0
+		Upgrade_Speed_III:  player.move_speed = player.base_stats.move_speed * 2.5
 
-		Upgrade_Turning_I:  player.turn_speed = player.base_stats.turn_speed * 1.25
-		Upgrade_Turning_II:  player.turn_speed = player.base_stats.turn_speed * 1.5
-		Upgrade_Turning_III:  player.turn_speed = player.base_stats.turn_speed * 1.75
+		Upgrade_Turning_I:  player.turn_speed = player.base_stats.turn_speed * 1.5
+		Upgrade_Turning_II:  player.turn_speed = player.base_stats.turn_speed * 2.0
+		Upgrade_Turning_III:  player.turn_speed = player.base_stats.turn_speed * 2.5
 
 		Upgrade_Battery_I:  player.max_charge = player.base_stats.max_charge * 2.0
 		Upgrade_Battery_II:  player.max_charge = player.base_stats.max_charge * 4.0
 		Upgrade_Battery_III:  player.max_charge = player.base_stats.max_charge * 8.0
 
-		Upgrade_Vacuum_Radius_I:  player.vacuum_radius = player.base_stats.vacuum_radius * 1.25
-		Upgrade_Vacuum_Radius_II:  player.vacuum_radius = player.base_stats.vacuum_radius * 1.5
-		Upgrade_Vacuum_Radius_III:  player.vacuum_radius = player.base_stats.vacuum_radius * 2.0
+		Upgrade_Vacuum_Radius_I:  player.vacuum_radius = player.base_stats.vacuum_radius * 1.5
+		Upgrade_Vacuum_Radius_II:  player.vacuum_radius = player.base_stats.vacuum_radius * 2.0
+		Upgrade_Vacuum_Radius_III:  player.vacuum_radius = player.base_stats.vacuum_radius * 2.5
 
 		Upgrade_Vacuum_Capacity_I:  player.max_dust = player.base_stats.max_dust * 2.0
-		Upgrade_Vacuum_Capacity_II:  player.max_dust = player.base_stats.max_dust * 4.0
-		Upgrade_Vacuum_Capacity_III:  player.max_dust = player.base_stats.max_dust * 8.0
+		Upgrade_Vacuum_Capacity_II:  player.max_dust = player.base_stats.max_dust * 5.0
+		Upgrade_Vacuum_Capacity_III:  player.max_dust = player.base_stats.max_dust * 10.0
 
 		Upgrade_Efficiency_I:  player.energy_efficiency = player.base_stats.energy_efficiency * 1.10
 		Upgrade_Efficiency_II:  player.energy_efficiency = player.base_stats.energy_efficiency * 1.20

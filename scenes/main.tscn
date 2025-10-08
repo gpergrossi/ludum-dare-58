@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://cahfo4lc3ufi6"]
+[gd_scene load_steps=18 format=3 uid="uid://cahfo4lc3ufi6"]
 
 [ext_resource type="PackedScene" uid="uid://ttle2gx3ns1h" path="res://scenes/ui/game_ui.tscn" id="1_tipki"]
 [ext_resource type="PackedScene" uid="uid://djefabn5cbvf0" path="res://scenes/environment.tscn" id="1_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://cjm20b08edp56" path="res://assets/images/UI/Upgrade_ui/SmallObjects.png" id="2_choun"]
+[ext_resource type="Script" uid="uid://daro7lifno12x" path="res://code/win_screen.gd" id="2_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://cr3833ido0so1" path="res://scenes/player.tscn" id="4_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://3j15a5i12y2c" path="res://scenes/dock.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://ckhaa76vvgbwy" path="res://scenes/room/room_walls_t01.tscn" id="7_o6xl0"]
@@ -9,6 +11,29 @@
 [ext_resource type="PackedScene" uid="uid://bx6wo5s48pcm1" path="res://scenes/room/furnitureLayout_01.tscn" id="16_2wyq8"]
 [ext_resource type="PackedScene" uid="uid://crspbokqxy40t" path="res://scenes/room/med_PropPlacement_01.tscn" id="17_yc10j"]
 [ext_resource type="PackedScene" uid="uid://dhq2bna7oyra4" path="res://scenes/clutter_system.tscn" id="19_yc10j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eb6dy"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 16.0
+bg_color = Color(0.26657522, 0.2665752, 0.2665752, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 5
+
+[sub_resource type="Gradient" id="Gradient_eb6dy"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_choun"]
+colors = PackedColorArray(0.646029, 0.646029, 0.646029, 1, 1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85g3d"]
 resource_local_to_scene = true
@@ -50,6 +75,82 @@ step = 0.1
 [node name="ProgressBarBattery" parent="CanvasLayer/GameUI/MarginContainer/VBoxBattery/PanelContainer/Control" index="0"]
 step = 0.1
 
+[node name="Win Screen" type="PanelContainer" parent="CanvasLayer/GameUI/MarginContainer" index="5"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_eb6dy")
+script = ExtResource("2_ya4ey")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameUI/MarginContainer/Win Screen"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="LabelWin2" type="Label" parent="CanvasLayer/GameUI/MarginContainer/Win Screen/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 48
+text = "Victory!"
+horizontal_alignment = 1
+
+[node name="LabelWin" type="Label" parent="CanvasLayer/GameUI/MarginContainer/Win Screen/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 24
+text = "You actually did it!
+There is nothing more to clean.
+Thanks for playing."
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/GameUI/MarginContainer/Win Screen/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/MarginContainer/Win Screen/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="ButtonOK" type="Button" parent="CanvasLayer/GameUI/MarginContainer/Win Screen/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "  Close Dialog  "
+
+[node name="ProgressBarCleanliness" parent="CanvasLayer/GameUI/MarginContainer/Cleanliness/PanelContainer" index="0" node_paths=PackedStringArray("panel_container", "victory_particles")]
+panel_container = NodePath("../../MarginContainer2/Outline")
+victory_particles = NodePath("../../MarginContainer2/Control/VictoryParticles")
+
+[node name="Control" type="Control" parent="CanvasLayer/GameUI/MarginContainer/Cleanliness/MarginContainer2" index="1"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="VictoryParticles" type="CPUParticles2D" parent="CanvasLayer/GameUI/MarginContainer/Cleanliness/MarginContainer2/Control"]
+z_index = -3
+emitting = false
+amount = 500
+texture = ExtResource("2_choun")
+lifetime = 5.0
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(400, 0)
+direction = Vector2(0, 1)
+spread = 60.0
+gravity = Vector2(0, 200)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 0.2
+scale_amount_max = 0.2
+color_ramp = SubResource("Gradient_eb6dy")
+color_initial_ramp = SubResource("Gradient_choun")
+
 [node name="PopupDockingStation" parent="CanvasLayer/GameUI" index="2"]
 visible = false
 
@@ -78,21 +179,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004729748, -1.1920929e-07, 
 
 [node name="Med_Props" parent="Room" instance=ExtResource("17_yc10j")]
 
-[node name="catBowl" parent="Room/Med_Props/Medium" index="14"]
-transform = Transform3D(2.440867, 0, 2.6461608, 0, 2.4, 0, -2.6461608, 0, 2.440867, -4.418231, 0.7800004, -4.7186775)
-
-[node name="Mug9" parent="Room/Med_Props/Medium" index="63"]
-transform = Transform3D(1.4727031, 0, -0.8492034, 0, 1.7000003, 0, 0.8492034, 0, 1.4727031, -4.031024, -1.1338144e-07, 1.6839422)
-
-[node name="Mug10" parent="Room/Med_Props/Medium" index="64"]
-transform = Transform3D(-0.8803922, 0, -1.4542732, 0, 1.7000003, 0, 1.4542732, 0, -0.8803922, -4.297222, -4.1752998e-08, 1.4203956)
-
-[node name="Plate7" parent="Room/Med_Props/Medium" index="65"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.026149, -4.5581164e-08, 1.3282669)
-
-[node name="Pizza_Slice_12" parent="Room/Med_Props/Medium" index="75"]
-transform = Transform3D(1, 0, 0, 0, 0.9922779, -0.12403446, 0, 0.12403446, 0.9922779, 3.4884977, 2.4341736, -7.654429)
-
 [node name="ClutterSystem" parent="Room" node_paths=PackedStringArray("player") instance=ExtResource("19_yc10j")]
 player = NodePath("../../Player")
 
@@ -108,6 +194,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4403428, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="OutOfBounds"]
 shape = SubResource("WorldBoundaryShape3D_tipki")
 
+[connection signal="pressed" from="CanvasLayer/GameUI/MarginContainer/Win Screen/VBoxContainer/MarginContainer/HBoxContainer/ButtonOK" to="CanvasLayer/GameUI/MarginContainer/Win Screen" method="_on_button_ok_pressed"]
+[connection signal="true_completion" from="CanvasLayer/GameUI/MarginContainer/Cleanliness/PanelContainer/ProgressBarCleanliness" to="CanvasLayer/GameUI/MarginContainer/Win Screen" method="_on_progress_bar_cleanliness_true_completion"]
+[connection signal="on_props_changed" from="Room/Med_Props" to="CanvasLayer/GameUI/MarginContainer/Cleanliness/PanelContainer/ProgressBarCleanliness" method="_on_med_props_on_props_changed"]
+[connection signal="on_props_changed" from="Room/Med_Props" to="CanvasLayer/GameUI/MarginContainer/Cleanliness/PanelContainer/ProgressBarCleanliness/MarginContainer/LabelCleanliness" method="_on_med_props_on_props_changed"]
+[connection signal="small_props_changed" from="Room/ClutterSystem" to="CanvasLayer/GameUI/MarginContainer/Cleanliness/PanelContainer/ProgressBarCleanliness" method="_on_clutter_system_small_props_changed"]
+[connection signal="small_props_changed" from="Room/ClutterSystem" to="CanvasLayer/GameUI/MarginContainer/Cleanliness/PanelContainer/ProgressBarCleanliness/MarginContainer/LabelCleanliness" method="_on_clutter_system_small_props_changed"]
 [connection signal="battery_died" from="Player" to="CanvasLayer/GameUI/PopupRespawn" method="_on_player_battery_died"]
 [connection signal="charge_changed" from="Player" to="CanvasLayer/GameUI/MarginContainer/VBoxBattery/PanelContainer/Control/ProgressBarBattery" method="_on_player_charge_changed"]
 [connection signal="charge_changed" from="Player" to="CanvasLayer/GameUI/MarginContainer/VBoxBattery/MarginContainer2/LabelBattery" method="_on_player_charge_changed"]
@@ -124,4 +216,3 @@ shape = SubResource("WorldBoundaryShape3D_tipki")
 [connection signal="sleep_changed" from="Player" to="CanvasLayer/GameUI/PopupShop" method="_on_player_sleep_changed"]
 
 [editable path="CanvasLayer/GameUI"]
-[editable path="Room/Med_Props"]

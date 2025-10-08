@@ -1,9 +1,10 @@
-[gd_scene load_steps=89 format=3 uid="uid://dhq2bna7oyra4"]
+[gd_scene load_steps=90 format=3 uid="uid://dhq2bna7oyra4"]
 
 [ext_resource type="Script" uid="uid://c45o4rirqh8r0" path="res://code/clutter_system.gd" id="1_mpcbd"]
 [ext_resource type="PackedScene" uid="uid://k3u5xcvedbjc" path="res://scenes/clutter_plane.tscn" id="2_gwx86"]
 [ext_resource type="QuadMesh" uid="uid://deklg6rj0sj1r" path="res://assets/models/clutter/particle_mesh.tres" id="3_u6dng"]
 [ext_resource type="ArrayMesh" uid="uid://dbf3hxewrxllw" path="res://assets/models/clutter/chip_broken.res" id="4_g5q62"]
+[ext_resource type="Texture2D" uid="uid://csvl4a2s8unhi" path="res://assets/images/pattern.png" id="4_v5p7r"]
 [ext_resource type="ArrayMesh" uid="uid://bhkumiojjr5g5" path="res://assets/models/clutter/paper_crinkle.res" id="5_v5p7r"]
 [ext_resource type="ArrayMesh" uid="uid://bl6d0qlwcnju7" path="res://assets/models/clutter/lego2x2.res" id="6_tjn31"]
 [ext_resource type="ArrayMesh" uid="uid://b5r00yc5j1ieo" path="res://assets/models/clutter/lego2x4.res" id="7_yfw72"]
@@ -13,7 +14,7 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u6dng"]
 resource_local_to_scene = true
-size = Vector3(9.677306, 0.008544922, 12.447079)
+size = Vector3(9.677306, 0.008544922, 12.539946)
 
 [sub_resource type="Gradient" id="Gradient_g5q62"]
 offsets = PackedFloat32Array(0.20127796, 0.50479233, 1)
@@ -46,7 +47,7 @@ gradient = SubResource("Gradient_ks51d")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bjbia"]
 resource_local_to_scene = true
-size = Vector3(9.425175, 0.008544922, 12.350643)
+size = Vector3(9.678193, 0.008544922, 12.539443)
 
 [sub_resource type="Gradient" id="Gradient_5hkhr"]
 resource_local_to_scene = true
@@ -347,12 +348,13 @@ gradient = SubResource("Gradient_52j5g")
 script = ExtResource("1_mpcbd")
 
 [node name="ClutterPlaneDust" parent="." instance=ExtResource("2_gwx86")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.018141866, 0.0169124, -1.3697224)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.018141866, 0.0169124, -1.4161558)
 shape = SubResource("BoxShape3D_u6dng")
 show_pattern_in_editor = false
 mesh = ExtResource("3_u6dng")
 colors = SubResource("GradientTexture1D_v5p7r")
 item_count = 10000
+pattern = ExtResource("4_v5p7r")
 min_size = 3.0
 max_size = 5.0
 
@@ -363,7 +365,6 @@ show_pattern_in_editor = false
 mesh = ExtResource("3_u6dng")
 colors = SubResource("GradientTexture1D_ejqpx")
 item_count = 3000
-pattern = null
 min_size = 3.0
 max_size = 5.0
 points_per_item = 10
@@ -374,17 +375,16 @@ shape = SubResource("BoxShape3D_byvkq")
 show_pattern_in_editor = false
 mesh = ExtResource("3_u6dng")
 colors = SubResource("GradientTexture1D_figyt")
-pattern = null
-min_size = 2.0
 max_size = 3.0
 points_per_item = 50
 
 [node name="ClutterPlaneTacks" parent="." instance=ExtResource("2_gwx86")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010211229, 0.0169124, -1.4280224)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.023221254, 0.0169124, -1.4170899)
 shape = SubResource("BoxShape3D_bjbia")
 show_pattern_in_editor = false
 colors = SubResource("GradientTexture1D_g2jyp")
 item_count = 100
+pattern = ExtResource("4_v5p7r")
 min_size = 5.0
 max_size = 5.0
 size_class = 1
@@ -397,7 +397,6 @@ show_pattern_in_editor = false
 mesh = ExtResource("4_g5q62")
 colors = SubResource("GradientTexture1D_jwdwh")
 item_count = 50
-pattern = null
 min_size = 4.0
 max_size = 4.0
 size_class = 1
@@ -410,7 +409,6 @@ show_pattern_in_editor = false
 mesh = ExtResource("5_v5p7r")
 colors = SubResource("GradientTexture1D_17pqh")
 item_count = 50
-pattern = null
 min_size = 4.0
 max_size = 5.0
 size_class = 1
@@ -423,9 +421,6 @@ show_pattern_in_editor = false
 mesh = ExtResource("6_tjn31")
 colors = SubResource("GradientTexture1D_uytov")
 item_count = 50
-pattern = null
-min_size = 2.0
-max_size = 2.0
 size_class = 1
 points_per_item = 10
 
@@ -436,9 +431,6 @@ show_pattern_in_editor = false
 mesh = ExtResource("7_yfw72")
 colors = SubResource("GradientTexture1D_lh2qt")
 item_count = 20
-pattern = null
-min_size = 2.0
-max_size = 2.0
 size_class = 1
 points_per_item = 20
 
@@ -449,7 +441,6 @@ show_pattern_in_editor = false
 mesh = ExtResource("8_ejqpx")
 colors = SubResource("GradientTexture1D_2wokt")
 item_count = 50
-pattern = null
 max_size = 1.0
 size_class = 1
 points_per_item = 20
@@ -461,7 +452,6 @@ show_pattern_in_editor = false
 mesh = ExtResource("8_ejqpx")
 colors = SubResource("GradientTexture1D_jkm3h")
 item_count = 50
-pattern = null
 max_size = 1.0
 size_class = 1
 points_per_item = 20
@@ -473,7 +463,6 @@ show_pattern_in_editor = false
 mesh = ExtResource("8_ejqpx")
 colors = SubResource("GradientTexture1D_byj4b")
 item_count = 50
-pattern = null
 max_size = 1.0
 size_class = 1
 points_per_item = 20
@@ -485,7 +474,6 @@ show_pattern_in_editor = false
 mesh = ExtResource("8_ejqpx")
 colors = SubResource("GradientTexture1D_acle7")
 item_count = 50
-pattern = null
 max_size = 1.0
 size_class = 1
 points_per_item = 20
@@ -497,7 +485,6 @@ show_pattern_in_editor = false
 mesh = ExtResource("8_ejqpx")
 colors = SubResource("GradientTexture1D_1isvt")
 item_count = 50
-pattern = null
 max_size = 1.0
 size_class = 1
 points_per_item = 20
@@ -509,7 +496,6 @@ show_pattern_in_editor = false
 mesh = ExtResource("9_byvkq")
 colors = SubResource("GradientTexture1D_8ehm5")
 item_count = 20
-pattern = null
 max_size = 1.0
 size_class = 1
 points_per_item = 5
@@ -521,7 +507,6 @@ show_pattern_in_editor = false
 mesh = ExtResource("4_g5q62")
 colors = SubResource("GradientTexture1D_5gahs")
 item_count = 50
-pattern = null
 min_size = 3.0
 max_size = 3.0
 
@@ -532,7 +517,6 @@ show_pattern_in_editor = false
 mesh = ExtResource("4_g5q62")
 colors = SubResource("GradientTexture1D_gm73e")
 item_count = 50
-pattern = null
 min_size = 3.0
 max_size = 3.0
 
@@ -543,7 +527,6 @@ show_pattern_in_editor = false
 mesh = ExtResource("4_g5q62")
 colors = SubResource("GradientTexture1D_ijg0h")
 item_count = 50
-pattern = null
 min_size = 3.0
 max_size = 3.0
 
@@ -554,7 +537,6 @@ show_pattern_in_editor = false
 mesh = ExtResource("4_g5q62")
 colors = SubResource("GradientTexture1D_j7n3g")
 item_count = 50
-pattern = null
 min_size = 3.0
 max_size = 3.0
 
@@ -564,7 +546,6 @@ shape = SubResource("BoxShape3D_vs8tk")
 show_pattern_in_editor = false
 mesh = ExtResource("10_v5p7r")
 colors = SubResource("GradientTexture1D_r8h6u")
-pattern = null
 max_size = 1.5
 size_class = 1
 points_per_item = 5
@@ -575,7 +556,6 @@ shape = SubResource("BoxShape3D_2q8b6")
 show_pattern_in_editor = false
 mesh = ExtResource("10_v5p7r")
 colors = SubResource("GradientTexture1D_bhics")
-pattern = null
 max_size = 1.5
 size_class = 1
 points_per_item = 5
@@ -586,7 +566,6 @@ shape = SubResource("BoxShape3D_h5v2y")
 show_pattern_in_editor = false
 mesh = ExtResource("10_v5p7r")
 colors = SubResource("GradientTexture1D_p8i10")
-pattern = null
 max_size = 1.5
 size_class = 1
 points_per_item = 5
@@ -597,8 +576,6 @@ shape = SubResource("BoxShape3D_qgbi7")
 show_pattern_in_editor = false
 colors = SubResource("GradientTexture1D_env0m")
 item_count = 20
-pattern = null
-min_size = 2.0
 max_size = 3.0
 points_per_item = 20
 
@@ -608,8 +585,6 @@ shape = SubResource("BoxShape3D_gdbg4")
 show_pattern_in_editor = false
 colors = SubResource("GradientTexture1D_aus0u")
 item_count = 20
-pattern = null
-min_size = 2.0
 max_size = 3.0
 points_per_item = 20
 
@@ -619,8 +594,6 @@ shape = SubResource("BoxShape3D_am7eo")
 show_pattern_in_editor = false
 colors = SubResource("GradientTexture1D_tqycp")
 item_count = 20
-pattern = null
-min_size = 2.0
 max_size = 3.0
 points_per_item = 20
 
@@ -631,9 +604,6 @@ show_pattern_in_editor = false
 mesh = ExtResource("7_yfw72")
 colors = SubResource("GradientTexture1D_55s7q")
 item_count = 20
-pattern = null
-min_size = 2.0
-max_size = 2.0
 size_class = 1
 points_per_item = 10
 
@@ -644,8 +614,5 @@ show_pattern_in_editor = false
 mesh = ExtResource("7_yfw72")
 colors = SubResource("GradientTexture1D_y3ott")
 item_count = 20
-pattern = null
-min_size = 2.0
-max_size = 2.0
 size_class = 1
 points_per_item = 10
